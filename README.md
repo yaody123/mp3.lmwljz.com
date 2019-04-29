@@ -6,10 +6,12 @@
 > Wow, such a lovely dwyy music player
 
 **[在线体验](http://mp3.lmwljz.com)**
+http://mp3.lmwljz.com
+
 
 # 试听
 
-**[无味 - 啊悠悠](http://mp3.lmwljz.com/index/play/qq/mid/000DFFmY2T4pnx.html)**
+**[无味 - 啊悠悠.mp3](http://mp3.lmwljz.com/index/play/qq/mid/000DFFmY2T4pnx.html)**
 
 ## 安装
 
@@ -17,7 +19,8 @@
 
 ！提示：如配置文件部分加密或删除，如果需要请联系作者
 
-**[在先文档](https://www.kancloud.cn/yaody123/dwyyapi/895045)**
+**[在线文档](https://www.kancloud.cn/yaody123/dwyyapi/895045)**
+https://www.kancloud.cn/yaody123/dwyyapi/895045
 
 ## 关于懂我音乐
 1、三站合一， 支持 QQ/酷狗/百度音乐资源免费获取，MV在线播放；
