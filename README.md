@@ -5,7 +5,7 @@
 
 > Wow, such a lovely dwyy music player
 
-**[在线体验](https://mp3.lmwljz.com)**
+**[在线体验](http://mp3.lmwljz.com)**
 
 # 试听
 
