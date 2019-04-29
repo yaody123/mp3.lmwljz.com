@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$title}_{$Think.config.webname} - 懂你所听</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="email=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="applicable-device" content="mobile">
+<link rel="stylesheet" href="{:modified('/css/common.css','mobile')}">
+
+<script>
+var _hmt = _hmt || [];
+</script>
+
+<script type="text/javascript">
+	var gbParams = {
+		kg_domain : "/",
+		rankid : "23784",
+		curPage  : "1",
+		totalPage : "6"
+	};
+</script>
+</head>
+<body>
+
+<div class="top-fixed" id="topFixed">
+	<div class="top-hd">
+		<a class="logo" href="/" title="{$Think.config.webname}"></a>
+		<!-- <div class="download-app"><span>下载{$Think.config.webname}</span></div> -->
+		<a href="{:url('Index/search')}" class="btn-search" id="btnSearch"></a>
+	</div>
+	<div class="top-goback top-goback-bg" id="topGoback">
+		<p class="page-title">{$title}</p>
+		<div class="goback" id="goback"><i></i></div>
+	</div>
+</div>
+
+<div class="bd js-bd-box" id="bd">
+	<!-- start search -->
+	<div class="search-box">
+		<div class="search-form-box">
+			<form name="searchForm" class="search-form">
+				<span class="search-icon"></span>
+				<input type="text" placeholder="歌手/歌名/拼音" name="keyword" value="" id="keyword" class="search-keyword">
+				<input type="button" value="搜索" class="search-btn  " id="searchBtn">
+			</form>
+		</div>
+	</div>
+	<!--最近热门-->
+	<div class="hot-search" id="hotSearch">
+	   <div class="hot-search-hd">热门推荐</div>
+	   <!--<ul class="hot-search-list" id="hotSearchList">
+		<li><a href="javascript:;" class="hot-keyword js-hot-keyword" onclick="searchModule.hotSearch({el:this});">无限歌谣季送门票</a> </li> 
+	   </ul>-->
+	</div>
+
+	<!--搜索结果-->
+	<div class="search-result" id="searchResult">
+		<div class="search-result-hd"></div>
+		<ul class="panel-songslist panel-songslist-rank" id="panelSongsList">
+		{foreach  name="list.data.lists" item="v" key="k"}
+			<li class="panel-songslist-item"  data-hash="{$v.FileHash}">
+				<div class="panel-songs-item-name btn_play">
+					<span>{$v.FileName}</span>
+				</div>
+				<div class="panel-songs-item-download lm_down"><i></i></div>
+				<span class="panel-songs-item-num">{$k+1}</span>
+			</li>
+		{/foreach}
+		</ul>
+	</div>
+	<div class="ploading" id="ploading" style="display: block;">加载中...</div>
+</div>
+
+<!--返回-->
+<div class="to-top" id="toTop"></div>
+{include file="public/mplay" /}
+
+<script>
+$(function(){
+	$('#searchBtn').click(function(){
+		var keyword = $("input[name='keyword']").val();
+		if(!keyword)return false;
+		$.ajax({
+			type: 'get',
+			timeout: 30000, // 超时时间 30 秒
+			headers: {
+			  'Host':'mobiles.service.kugou.com',
+			  'Referer':'https://m3ws.kugou.com/search/index',
+			  'Cookie':'kg_mid=58c61aa57db62d1df8aea333f58556be'
+			},
+			url: "{:config('kugou.msearch')}",
+			dataType:"jsonp",
+			jsonpCallback:"kgJSONP231605638",
+			data: {'format':'jsonp','keyword':keyword,'pagesize':'50','showtype':'1','page':'1','platform':'WebFilter'},
+			success: function(data){
+				var html = ''
+				if(data.status==1){
+					var list = data.data.lists;
+					$.each(list,function(idx,obj){
+						idx   = idx+1;
+						html += '<li class="panel-songslist-item"  data-hash="'+obj.FileHash+'">';
+						html +=	'<div class="panel-songs-item-name btn_play"><span>'+obj.FileName+'</span></div>';
+						//html +=	'<div class="panel-songs-item-download lm_down"><i></i></div>';
+						html +=	'<span class="panel-songs-item-num">'+ idx +'</span>';
+						html += '</li>';
+					});
+					$('#hotSearch').hide();
+                    $('#panelSongsList').find('li').remove();
+                    $('.search-result-hd').show().text(' 共有'+data.data.total+'条结果 ');
+					$('#panelSongsList').prepend(html);
+
+					totalList = 50;
+                    $('.panel-songslist-item .btn_play').click(function(){
+                        pindex  = $(this).parent().index();    //播放条目编号
+                        playindex($(this).parent().data('hash'));
+						//console.log(pindex+'-----222---'+totalList);
+                    });
+                    $('.download,.lm_down').click(function(){});
+
+					$('#timeshow').on('DOMNodeInserted',function(){
+						timeshow = $('#timeshow').text();
+						if(!timetotal){
+							timetotal = $("#time").text();//总时长
+						}
+						if(timeshow == timetotal && timeshow){
+							pindex = pindex;
+							/*列表循环*/
+							if(pindex == totalList){
+								pindex = 0;
+							}
+							var timetotal;
+							playindex($('#panelSongsList>li').eq(pindex).data('hash'));
+						}
+					});
+
+				}
+			},
+			error: function(err) {
+			  console.log(err);
+			},
+			complete: function(XMLHttpRequest, status) { //请求完成后最终执行参数　
+
+			}
+		},'json');
+	});
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<meta name="referrer" content="never" >
+{if condition="token_ik123()"}
+<script>
+	var VW_VSID = "{:token_ik123()}";
+</script>
+{else /}
+<script> var VW_VSID;</script>
+<script src="http://fv.ik123.com/_sys_vw.vhtml?js=yes"></script>
+<!-- <script src="http://mp4.ik123.com/_sys_vw.vhtml?js=yes"></script> -->
+<script>
+	if(VW_VSID){$.get('/index/ik123/setvsid.html',{'vsid':VW_VSID});}
+</script>
+{/if}

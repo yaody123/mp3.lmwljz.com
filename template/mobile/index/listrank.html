@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{$title}_{$Think.config.webname} - 懂你所听</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="email=no">
+	<meta name="format-detection" content="address=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="applicable-device" content="mobile">
+    <link rel="stylesheet" href="{:modified('/css/common.css','mobile')}">
+
+	<script type="text/javascript">
+		var gbParams = {
+			kg_domain : "{:url('rank')}",
+			rankid : "23784",
+			curPage  : "1",
+			totalPage : "6"
+		};
+	</script>
+</head>
+<body>
+
+<div class="top-fixed" id="topFixed">
+	<div class="top-hd">
+		<a class="logo" href="/" title="{$Think.config.webname}"></a>
+		<div class="download-app js-downloadApp" id="tcdownload"><span>下载{$Think.config.webname}</span></div>
+		<a href="{:url('search')}" class="btn-search" id="btnSearch"></a>
+	</div>
+
+	<div class="top-goback" id="topGoback">
+		<p class="page-title">{$title}</p>
+		<div class="goback" id="goback"><i></i></div>
+	</div>
+</div>
+
+<div class="bd bd-top js-bd-box" id="bd">
+	<div class="rank-info-hd" id="imgBoxInfo"><!-- onerror="this.onerror=null;this.src='__PUBLIC_MOBILE__/images/default.png';" -->
+		<img src="{$param['head'][$id]['img']}"  style="margin-top: -87.5px;">
+		<div class="rank-info-time">
+			<span>上次更新时间：{if condition="$list"}{$list['0']['addtime']|substr=###,0,10}{/if}</span>
+		</div>
+	</div>
+
+	<ul class="panel-songslist panel-songslist-rank" id="panelSongsList">
+	{foreach  name="list" item="v" key="k"}
+		<li class="panel-songslist-item" data-hash="{$v.hash}">
+			<div class="panel-songs-item-name btn_play">
+				<span>{$v.filename}</span>
+			</div>
+			<div class="panel-songs-item-download lm_down"><i></i></div>
+			<span class="panel-songs-item-num one{$k}">{$k+1}</span>
+		</li>
+	{/foreach}
+	</ul>
+	<!-- end panel-songslist -->
+	<div class="ploading" id="ploading" style="display: block;">加载中...</div>
+	<div class="ploading-done" id="ploadingDone">更多好歌，尽在酷狗 <span class="" id="openAppBtn" onclick="_hmt.push([&#39;_trackEvent&#39;,&#39;listsoftware&#39;, &#39;listdownload&#39;, &#39;listkugou&#39;])">打开APP</span></div>
+</div>
+<!--end bd -->
+
+<!-- start 返回 -->
+<div class="to-top" id="toTop"></div>
+<!-- end 返回 -->
+{include file="public/mplay" /}
+</body>
+</html>

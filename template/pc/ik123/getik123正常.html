@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$title}_{$list.title} - {$Think.config.title}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{:modified('/css/mplayer.css')}">
+<link href="{:modified('/css/play.css')}" rel="stylesheet" type="text/css" />
+<style>
+.footerWrapper {width: 100%;position: absolute;bottom: 0px;}
+.header{background: #fff}
+.content_box {overflow-y: none;}
+.audio_extinfo{max-width:560px;}
+
+.audio-module .controls-bar {margin-left: 170px;}
+.audio-module .controls-right{margin-left: 560px;}
+.audio_title {padding-top: 50px;}
+.audio_extinfo .song_info {text-align: left;}
+.rotate-container{margin: 15px auto;}
+.audio_extinfo,.content_box{overflow-y:inherit;}
+
+.audio-module .player-module{width:580px;}
+.audio-module .controls-left .icon-playbar-prev{margin-left:0px;}
+.audio-module .controls-right, .audio-module .controls-right .mode-volume-list{width:20px;}
+.audio-module .controls-left .icon-playbar-pause, .audio-module .controls-left .icon-playbar-play{margin-left:47px;}
+
+.jp-state-muted .icon-playbar-maxvox{background-position: -160px -195px;}
+.jp-state-muted .icon-playbar-maxvox:hover{background-position: -144px -195px}
+
+.content_box{}
+
+.song_form{margin:20px auto;height: auto;overflow: hidden;}
+.song_form .input-block{width:78%;float: left}
+.song_form .input-button{width:20%;float: left}
+.song_form .input-block input{border-color:#e6e6e6;line-height:1.3;border-width:1px;border-style:solid;background-color:#fff;border-radius:2px;display:block;width:100%;padding-left:10px;height:37px;border-bottom:none;border-top: none;border-left:none;}
+
+.song_down{height: auto;overflow: hidden;}
+.song_down .input-block{width:100%;}
+.song_down .input-block p{font-size: 14px;text-align: left;}
+.song_down .input-button{margin-bottom: 20px;display:none;border: 1px dashed #8bc34a;height: auto;overflow: hidden;padding: 10px 5px;}
+</style>
+<script type="text/javascript" src="__PUBLIC__/play/js/jquery.min.js"></script>
+{include file="public/ik123_vsid" /}
+</head>
+
+<body>
+<div style="background:#fff;">{include file="public/header" /}</div>
+<div class="play_box">
+	<div class="content_box">
+		<div class="content_box_bg" style="background-image:url(__PUBLIC__/images/play/logo.png);"></div>
+		<div class="audio_title"><h5>{$list.title}</h5></div>
+		<div class="rotate-container" style="background-image:url(__PUBLIC__/images/play/logo.png);"></div>
+		<div class="audio_extinfo">
+			<div class="song_info">
+				<p >歌曲：<span class="song_info_title">{$list.title}</span><br>
+				来源：<a href="{$list.ik123_url}" target="_blank" class="song_info_href">ik123 · 深港DJ俱乐部</a><br><br>
+				<hr>更多关注【林梦网络】  <a href="http://mp3.lmwljz.com" target="_blank">[lmwljz.com]懂我音乐</a><br>QQ：1415336788<br>如有侵权，请联系删除！<br>
+				</p>
+			</div>
+			<div class="song_form">
+				<div class="input-block">
+					<input type="text" name="url" autocomplete="off" placeholder="请输入试听URL地址" class="layui-input" value="{$list.ik123_url}">
+				</div>
+				<div class="input-button">
+					<button class="layui-btn layui-btn-normal getapi">确定提交</button>
+				</div>
+			</div>
+			<div class="song_down">
+				<div class="input-button">
+					<!-- <fieldset><legend>下载</legend> -->
+					<div style="text-align: left;" class="download-url">
+						<font color="#f1f3f5" style="font-weight:bolder;">下载方式：</font>
+						<button class="layui-btn layui-btn-warm download ondown"><a href="javascript:;" download="电信下载" target="_blank">电信下载</a></button>
+						<button class="layui-btn layui-btn-warm download" style="margin-left:10px;"><a href="javascript:;" download="联通下载" target="_blank">联通下载</a></button>
+					</div>
+					<!-- </fieldset> -->
+				</div>
+				<div class="input-block">
+					<div class="layui-form-item layui-form-text" style="border: 1px #ccc dashed;padding: 5px;">
+					<p style="margin-bottom:5px;"><font color="#ff0000">免责声明：</font></p>
+					<p>本应用仅供学习研究使用，使用者进行商业行为与本作者无关；</p>
+					<p>本站音频文件来自各网站接口，本站不会修改任何音频文件；</p>
+					<p>音频版权来自各网站，本站只提供数据查询服务，不提供任何音频存储和贩卖服务。</p>
+					  <!-- <textarea placeholder="试听地址" class="layui-textarea" name='play_url'>{$list.url}</textarea> -->
+					</div>
+					<input type="hidden" name="play_url">
+				</div>
+			</div>
+			<!---->
+		</div>
+	</div>
+</div>
+<!--*********-->
+<div class="audio-module playerbg jp-audio" id="jp_container_1"  role="application" aria-label="media player" style="position: absolute;bottom:0px;">
+	<div class="module-bg"></div>
+	<div class="player-module jp-type-playlist" >
+		<!--  模块左部分：上一首，播放，暂停，下一首  -->
+		<div class="controls-left">
+			<a class="icon icon-playbar-prev jp-previous prev_next"  data-id="{$list.prev_song}" title="上一曲"></a>
+			<a class="icon icon-playbar-play jp-play" id="toggle"></a>
+			<a class="icon icon-playbar-next jp-next prev_next"  data-id="{$list.next_song}"  title="下一曲"></a>
+		</div>
+		<!-- 模块中间部分：容器  -->
+		<div class="controls-bar">
+			<!-- 模块中间部分：上半部分：歌曲信息 -->
+			<div class="song-info">
+				<!-- 歌曲名 -->
+				<div class="like-song">
+					<div class="controls-songName" title=""><span class="songName" id="songName">&nbsp;{$list.title}</span></div>
+				</div>
+				<!-- 时长 -->
+				<div class="coding-duration jp-time-holder">
+					<span class="duration ie8" id="duration">
+					<i class="change-time jp-current-time" role="timer" aria-label="time">&nbsp;00</i> / 
+					<i class="all-time jp-duration"  role="timer" aria-label="duration">&nbsp;00</i></span>
+				</div>
+			</div>
+			<!-- 模块中间部分：下半部分：播放控制条容器 -->
+			<div class="bar" id="bar">
+				<!-- 播放进度背景（自适应） -->
+				<div class="bg" id="progress_bg">
+					<span class="icon icon-playbar-bgleft" id="bg_left"></span>
+					<span class="bg-middle barBG" id="bg_middle"></span>
+					<span class="icon icon-playbar-bgright" id="bg_right"></span>
+				</div>
+				<!-- 播放进度条（自适应） -->
+				<div class="progress-bar jp-progress jp-seek-bar1" id="progress_bar">
+					<span class="icon icon-playbar-progressleft" id="progress_left"></span>
+					<div class="progress-middle " id="progress_middle">
+						<span class="progress barProgress jp-play-bar" id="progress"></span>
+					</div>
+				</div>
+				<!-- 播放定位头（自适应） -->
+				<div class="drag-playhead jp-seek-bar" id="drag_playhead1">
+					<span class="icon icon-playbar-playhead" id="playhead"></span>
+				</div>
+			</div>
+		</div>
+		<!-- 模块右部分：容器 -->
+		<div class="controls-right">
+			<!-- 模块右部分： 音量控制面板 -->
+			<div class="mode-volume-list">
+				<!-- 音量开关控制按钮 -->
+				<div class="volume-icon" id="volume"><span class="icon icon-playbar-maxvox" id="volume_icon" data-volume='0'></span></div>
+				<!-- 音量控制面板 -->
+				<div class="volume-panel" id="volume_panel">
+					<div class="volume-control" id="volume_control">
+						<span class="icon icon-playbar-progressbottom" id="volume_bottom"></span>
+						<div class="volume-bar" id="volume_bar">
+							<span class="volume-progress volumeProgress" id="volume_progress" style="top: 32px;"></span>
+						</div>
+						<div class="volume-head" id="volume_head">
+							<span class="icon icon-playbar-volumehead" id="volumehead" style="top: 33.2px;"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div  class="dwpayer"><div id="lm_player" class="jp-jplayer"></div></div>
+</div>
+<!--*********-->
+
+<script type="text/javascript" src="{:modified('/play/js/lmwljz.myplayer.js')}"></script>
+<script>
+	var timeshow,timetotal;
+    var ready     = false;
+	//var next_song = "{$list.next_song}";
+
+    $("#lm_player").jPlayer({
+        ready: function (event) {
+            ready = true;
+            $(this).jPlayer("setMedia", {"m4a":"{$list.url}"});//.jPlayer("play",2);
+        },
+        pause: function() { /*$(this).jPlayer("clearMedia");*/ },
+        error: function(event) {
+            /*if(ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
+              	//$(this).jPlayer("setMedia", stream).jPlayer("play");
+				//$(this).jPlayer("play",Math.floor(stream.status.currentTime));
+            }*/
+        },
+		ended:function(){
+			$(this).jPlayer("play");
+			//window.location.href= "{:url('play',['type'=>$list['type']])}?id="+next_song;
+		},
+        swfPath: "__PUBLIC__/play/js",
+        supplied: "m4a",
+        preload: "none",
+        wmode: "window",
+        //solution:"flash,html",
+        volume: 1, //默认音量
+        useStateClassSkin: true,
+        autoBlur: false,
+        keyEnabled: true,
+        smoothPlayBar:true
+    });
+
+	$('.prev_next').click(function(){
+		layer.msg('切歌失败');
+        var id = $(this).data('id');
+		if(id){
+			//window.location.href= "{:url('play',['type'=>$list['type']])}?id="+id;
+		}
+	});
+
+	//静音
+	$('#volume_icon').click(function(){
+		var v = $(this).data('volume');
+		if(v){
+			$("#lm_player").jPlayer("unmute");//恢复
+			$(this).data('volume',0);
+			layer.msg('音量100');
+		}else{
+			$("#lm_player").jPlayer("mute");
+			$(this).data('volume',1);
+			layer.msg('静音');
+		}        
+	});
+
+	$('.getapi').click(function(){
+		var url = $("input[name='url']").val();
+		if(url){
+			$.post('#',{'url':url},function(data){
+				if(data.code==1){
+					//$('#lm_player').jPlayer( "clearMedia" );
+					var medias= data.url.replace('#vsid#',VW_VSID);
+					console.log(data.url);
+					console.log(medias);
+					$('.audio_title h5').text(data.title);
+					$('#lm_player').jPlayer("setMedia", {"m4a":medias});
+					$(".song_down input[name='play_url']").val(medias);
+					
+					if(data.status==1){
+						$(".download-url a").attr({'href':medias,'download':data.title+'.mp4'});
+						$(".song_down .input-button").show();
+						$(".song_info .song_info_title").text(data.title);
+						$(".song_info .song_info_href").attr('href',url);
+						layer.msg('歌曲：'+data.title+' - '+data.authors);
+						$('#lm_player').jPlayer("play",2);
+						downing(data);
+					}else{
+						$('#lm_player').jPlayer("play");
+					}
+				}else{
+					$(".song_down .input-button").hide();
+					layer.msg(data.msg);
+				}
+			},'json')
+		}else{
+			layer.msg('URL不能为空');
+		}
+	});
+
+	$('.download').click(function(){
+		//if(window.event.stopPropagation){window.event.stopPropagation();}else{window.event.cancelBubble = true;}
+		var playurl = $(".song_down input[name='play_url']").val();
+		if(playurl){
+			//openDownloadDialog(playurl,$('song_info_title').text()+'.mp4');
+			//window.open(playurl,'_self');
+		}else{
+			layer.alert('暂不提供下载服务');
+		}
+	});
+
+	function downing(obj) {
+         layer.confirm('歌曲：'+obj.title+'<br>是否立即下载？', {
+            btn : [ '确定', '取消' ],
+			title:'下载提示！'
+        }, function(index) {
+			layer.close(index);
+            var index = layer.load(0,{shade: [0.7, '#393D49']}, {shadeClose: true}); //0代表加载的风格，支持0-2
+            openDownloadDialog(obj.url, obj.title)
+			layer.close(index);
+        }); 
+    }
+
+	/**
+	 * 通用的打开下载对话框方法，没有测试过具体兼容性
+	 * @param url 下载地址，也可以是一个blob对象，必选
+	 * @param saveName 保存文件名，可选
+	 */
+	function openDownloadDialog(url, saveName){
+		if(typeof url == 'object' && url instanceof Blob){
+			url = URL.createObjectURL(url); // 创建blob地址
+		}
+		var aLink = document.createElement('a');
+		aLink.href = url;
+		aLink.download = saveName || ''; // HTML5新增的属性，指定保存文件名，可以不要后缀，注意，file:///模式下不会生效
+		var event;
+		if(window.MouseEvent){ 
+			event = new MouseEvent('click');
+		}else{
+			event = document.createEvent('MouseEvents');
+			event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+		}
+		aLink.dispatchEvent(event);
+	}
+</script>
+<script type="text/javascript" src="{:modified('/js/index.js')}"></script>
+<script type="text/javascript" charset="UTF-8" src="{:url('index/statistics','','js')}"></script>
+<script src="{:modified('/layui/layui.all.js')}"></script>
+<script type="text/javascript">
+	$(".searh_btn").click(function(){
+		$('form').submit();
+	});
+</script>
+</body>
+</html>

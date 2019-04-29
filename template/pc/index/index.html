@@ -1,0 +1,506 @@
+{include file="public/base_head" /}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit|ie-comp|ie-stand"> 
+<title>{$Think.config.webname} - 懂你所听 - 全网免费试听下载</title>
+<meta itemprop="name" content="{$Think.config.webname} - 懂你所听 - 全网免费试听下载"/>
+<meta itemprop="image" content="{$Think.config.domain}{:modified('/images/play/logo.png')}" />
+<meta name="keywords" content="{$Think.config.keywords}">
+<meta name="description" itemprop="description" content="【{$Think.config.webname}】{$Think.config.descript}">
+<link href="/favicon.ico" rel="shortcut icon">
+<link rel="stylesheet" href="{:modified('/css/index.css')}">
+<style>
+.banner .sliderItem a{width:100%;height:500px;}
+</style>
+
+</head>
+
+<body>
+    <div class="mainPage">
+		{include file="public/header" /}
+		<!--幻灯片-->
+		{if condition="$list['banner']"}
+        <div class="sliderWrap">
+			<div class="banner">
+				<ul>
+				
+					<!-- <li class="sliderItem" data-bg="http://imge.kugou.com/commendpic/20180731/20180731104456680089.jpg">
+				   					<a target="_blank" href="javascript:;" data-src="javascript:;" style="background:url(http://imge.kugou.com/commendpic/20180731/20180731104456680089.jpg) no-repeat center top "></a>
+				   </li>
+				   					<li class="sliderItem" data-bg="http://imge.kugou.com/commendpic/20180531/20180531001109900499.jpg">
+				   					<a target="_blank" href="javascript:;" title="格子兮" data-src="javascript:;" style="background:url(http://imge.kugou.com/commendpic/20180531/20180531001109900499.jpg) no-repeat center top "></a>
+				   </li>
+				   <li class="sliderItem" data-bg="http://imge.kugou.com/commendpic/20170913/20170913175748750902.jpg">
+				   					<a target="_blank" href="javascript:;" title="繁星网 缔造星途神话" data-src="javascript:;" style="background:url(http://imge.kugou.com/commendpic/20170913/20170913175748750902.jpg) no-repeat center top "></a>
+				   </li> -->
+				{volist name="list.banner" id='v'}
+				<li class="sliderItem" data-bg="{$v.content}">
+				   	<a target="_blank" href="{if condition="$v['url']"}{$v.url}{else /}javascript:;{/if}" data-src="javascript:;" style="background:url({$v.content}) no-repeat center top "  title="{$v.title}"></a>
+				</li>
+				{/volist}
+				</ul>
+        	</div>
+		</div>
+		{/if}
+		<!--幻灯片-->
+        <div class="downloadBlur">
+            <div class="downloadWrapper" id="downloadWrapper"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1903" height="500" id="blurred_8mwvhkcum" class="bg-blur" viewBox="0 0 1903 500" preserveAspectRatio="none"><filter id="blur_8mwvhkcum"><fegaussianblur in="SourceGraphic" stdDeviation="20"></fegaussianblur></filter><image x="0" y="0" width="1903" height="500" externalResourcesRequired="true" href="http://imge.kugou.com/commendpic/20180531/20180531001109900499.jpg" style="filter:url(#blur_8mwvhkcum)" preserveAspectRatio="none"></image></svg></div>
+            <div class="overlayer"></div>
+        </div>
+        <div class="download">
+            <a href="javascript:;" id="pcDown">下载PC版</a>
+            <span class="line"></span>
+            <a href="javascript:;" id="iphoneDown">下载iPhone版</a>
+            <span class="line"></span>
+            <a href="http://downloadpkg.apicloud.com/app/download?path=http://A6098916016721.qiniucdn.apicloud-system.com/da638ab346fe33fc5f9a5297f91d1432_d" id="androidDown">下载Android版</a>
+        </div>
+		<iframe src="{:url('play/dwyy')}" height="80" width="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+        <div class="content" id="content">
+            <div class="subContentM" id="secoundContent">
+                <!-- 精选歌单 -->
+                <div class="itemM selectSongList">
+                    <div class="itemTitle">
+                        <h3><b>精选</b>歌单</h3><a target="_blank" href="http://www.kugou.com/yy/html/special.html" class="more fr">更多</a></div>
+                    <div class="itemContent">
+						<div class="cpt cptBig">
+							<p class="cptT"><span class="icon icon-select_icon"></span><span class="num">25.7万</span></p>
+							  <img _src="http://imge.kugou.com/soft/collection/480/20180531/20180531100025633470.jpg" width="325" height="325" src="__PUBLIC__/images/20180531100025633470.jpg" _def="http://static.kgimg.com/public/root/images/rankdefalut.jpg" loading="1" class=" ">
+							<div class="Cover">
+								<a target="_blank" href="javascript:;"></a><div class="playBtn icon icon-play_s" data-index="0" data-id="431929">播放</div>
+							</div>
+							<p class="cptBg"></p>
+							<div class="cptB">
+								<p class="songListName">回忆录 | 谢谢和你爱过，也不遗憾与你错过</p>
+								<p class="songListSinger">如烟-</p>
+							</div>
+						</div>
+						<div class="cpt cptMid">
+							<p class="cptT"><span class="icon icon-select_icon"></span><span class="num">10.0万</span></p>
+							  <img _src="http://imge.kugou.com/soft/collection/150/20180529/20180529132227404275.jpg" width="160" height="160" src="__PUBLIC__/images/20180529132227404275.jpg" _def="http://static.kgimg.com/public/root/images/rankdefalut.jpg" loading="1" class=" ">
+							<div class="Cover">
+								<a target="_blank" href="javascript:;"></a><div class="playBtn icon icon-play_s" data-index="1" data-id="430821">播放</div>
+							</div>
+							<p class="cptBg"></p>
+							<div class="cptB">
+								<p class="songListName">左岸咖啡店：午后迷情爵士与猫</p>
+								<p class="songListSinger">小穆来</p>
+							</div>
+						</div>
+						<div class="cpt cptMid">
+							<p class="cptT"><span class="icon icon-select_icon"></span><span class="num">0.9万</span></p>
+							<img _src="http://imge.kugou.com/soft/collection/150/20180530/20180530192643365989.jpg" width="160" height="160" src="__PUBLIC__/images/20180530192643365989.jpg" _def="http://static.kgimg.com/public/root/images/rankdefalut.jpg" loading="1" class=" ">
+							<div class="Cover">
+								<a target="_blank" href="javascript:;"></a>
+								<div class="playBtn icon icon-play_s" data-index="2" data-id="432501">播放</div>
+							</div>
+							<p class="cptBg"></p>
+							<div class="cptB">
+								<p class="songListName">和风音乐：来自霓虹民族的の风情</p>
+								<p class="songListSinger">Listen-Wind</p>
+							</div>
+						</div>
+						<div class="cpt cptMid">
+							<p class="cptT"><span class="icon icon-select_icon"></span><span class="num">5.8万</span></p>
+							  <img _src="http://imge.kugou.com/soft/collection/150/20180530/20180530110429924661.jpg" width="160" height="160" src="__PUBLIC__/images/20180530110429924661.jpg" _def="http://static.kgimg.com/public/root/images/rankdefalut.jpg" loading="1" class=" ">
+							<div class="Cover">
+								<a target="_blank" href="javascript:;"></a>
+								<div class="playBtn icon icon-play_s" data-index="3" data-id="432417">播放</div>
+							</div>
+							<p class="cptBg"></p>
+							<div class="cptB">
+								<p class="songListName">致南方：烟雨小城里的民谣与诗</p>
+								<p class="songListSinger">糖糖推荐</p>
+							</div>
+						</div>
+						<div class="cpt cptMid">
+							<p class="cptT"><span class="icon icon-select_icon"></span><span class="num">19.0万</span></p>
+							<img _src="http://imge.kugou.com/soft/collection/150/20180525/20180525012807780777.jpg" width="160" height="160" src="__PUBLIC__/images/20180525012807780777.jpg" _def="http://static.kgimg.com/public/root/images/rankdefalut.jpg" loading="1" class=" ">
+							<div class="Cover">
+								<a target="_blank" href="javascript:;"></a>
+								<div class="playBtn icon icon-play_s" data-index="4" data-id="426776">播放</div>
+							</div>
+							<p class="cptBg"></p>
+							<div class="cptB">
+								<p class="songListName">【韩系丨情殇】爱情真的很简单吗？</p>
+								<p class="songListSinger">小龙</p>
+							</div>
+						</div>
+                    </div>
+                </div>
+                <!-- 精选歌单 -->
+                <!-- 热门歌单 -->
+                <div class="itemM HotSongList">
+                    <div class="itemTitle">
+                        <h3><b>热门</b>榜单</h3><a target="_blank" href="{:url('rank')}" class="more fr">更多</a></div>
+                    <div class="itemContent">
+						<!--__PUBLIC__/images/T1M4h4BKKj1RCvBVdK.jpg_240x240.jpg-->
+						{volist name="list.toprank" id="top"}
+                            <div class="listItem dwyy_play" >
+                                 <a class="dwyy_play" href="javascript:;" data-url="{:url('play/kugou',['mid'=>$top['hash']])}">
+                                    <div class="Cover"><div class="playBtn icon icon-play_s">播放</div></div>
+                                    <span class="arrow icon-big_arrow_right"></span>
+                                    <img _src="{$top.img}" src="{$top.img}" width="98" height="98" _def="http://static.kgimg.com/public/root/images/rankdefalut.jpg" loading="1" class=" ">
+                                    <div class="list">
+                                        <dl>
+                                            <dt>{$top.title}</dt>
+											{volist name="top.data" id="topd" key="tk"}
+											<dd>{$tk} . {$topd}</dd>
+											{/volist}
+                                        </dl>
+                                    </div>
+                                </a>
+                            </div>
+						{/volist}
+                    </div>
+                <!-- 热门歌单 -->
+                </div>
+            </div>
+            <div class="hardWare">
+				<img src="__PUBLIC__/images/4a97e576aaa18b6e83047a2a5dfff867.jpg">
+			</div>
+            <div class="subContentM">
+                <!-- 新歌首发 -->
+                <div class="itemM newSongList">
+                    <div class="itemTitle hasBorder">
+                        <h3><b>热门</b>单曲</h3>
+                        <div class="tabT" id="SongtabMenu">
+							{volist name="list.hotsong" id="hot" key="k"}
+                            <span class='MenuItem {if condition="$k eq 1"} active{/if}' data="{$k}">{$hot.name}</span>
+							{/volist}
+                            <!-- <span class="MenuItem" data="1">欧美</span>
+                            <span class="MenuItem" data="2">韩国</span>
+                            <span class="MenuItem" data="3">日本</span> -->
+                        </div>
+                        <!-- <button class="playAll"><span class="icon icon-play"></span><em>全部播放</em></button> -->
+                    </div>
+                    <div class="itemContent">
+                        <div class="tabC" id="SongtabContent">
+							{volist name="list.hotsong" id="hotli" key="lk"}
+                            <ul {if condition="$lk neq 1"}style="display: none"{/if}>
+								{volist name="hotli.data" id="vo"}
+								<li>
+									<a href="javascript:;" target="_blank" class="dwyy_play" data-url="{:url('play/kugou',['mid'=>$vo['hash']])}">
+										<span class="songName">{$vo.audio_name}</span>
+										<!-- <span class="songTips"></span> -->
+										<span class="songTime">{$vo.duration}</span>
+										<span class="icon playBtn icon-play dwyy_play" data-url="{:url('play/kugou',['mid'=>$vo['hash']])}"></span>
+										<span class="icon downloadBtn icon-download " onclick="dwyy_download('{$vo.hash}','kugou')"></span>
+										<span class="icon shareBtn icon-share"></span>
+									</a>
+								</li>
+								{/volist}
+                            </ul>
+							{/volist}
+                            
+                        </div>
+                    </div>
+                    <div class="pages p">
+                        <a class="prev disable">上一页</a>
+                        <div class="page"><span class="currentPage">1</span>/<span class="allPage">3</span></div>
+                        <a class="next">下一页</a>
+                    </div>   
+                </div>
+                <!-- 新歌首发 -->
+                <!-- 推荐Mv -->
+                <div class="itemM albumList">
+                    <div class="itemTitle"><h3><b>推荐</b>MV</h3><!-- <a target="_blank" href="http://www.kugou.com/mvweb/html/" class="more fr">更多</a> --></div>
+                    <div class="itemContent">
+						{volist name="list.mvlist" id="v" key='mk'}
+						<div class="cpt {if condition="$mk-1 eq 0"}cptBigL{else /}cptMidL{/if}">
+							<a target="_blank" href="{:url('play/mv',array('vid'=>$v['vid']))}">
+								<img _src="{$v.pic}" width="320" height="175" src="__PUBLIC__/images/blank.gif" _def="http://static.kgimg.com/public/root/images/mv_defalut.jpg">
+								<div class="Cover"><div class="playBtn icon icon-play_b" data-vid="{$v.vid}">播放</div></div>
+								<p class="cptBg"></p>
+								<div class="cptB">
+									<p class="songListName">{$v.title} {$v.singer_name}</p>
+									<p class="songListSinger">{$v.mvdesc}</p>
+								</div>
+							</a>
+						</div>
+						{/volist}
+						<!-- <div class="cpt cptBigL">
+							<a target="_blank" href="http://www.kugou.com/mvweb/html/mv_669945.html">
+								<img _src="http://imge.kugou.com/mvhdpic/400/20180527/20180527130116101234.jpg" width="320" height="175" src="__PUBLIC__/images/blank.gif" _def="http://static.kgimg.com/public/root/images/mv_defalut.jpg">
+								<div class="Cover"><div class="playBtn icon icon-play_b">播放</div></div>
+								<p class="cptBg"></p>
+								<div class="cptB">
+									<p class="songListName">麻烦少女 (创造101 第六期)</p>
+									<p class="songListSinger">杨超越、陈意涵Estelle、鹿小草、刘人语、谈楚然、SING-许诗茵</p>
+								</div>
+							</a>
+						</div>
+						 <div class="cpt cptMidL">
+							<a target="_blank" href="http://www.kugou.com/mvweb/html/mv_668980.html">
+								<img _src="http://imge.kugou.com/commendpic/20180526/20180526100547724937.jpg" width="154" height="84" src="__PUBLIC__/images/blank.gif" _def="http://static.kgimg.com/public/root/images/mv_defalut.jpg">
+								<div class="Cover"><div class="playBtn icon icon-play_b">播放</div></div>
+								<p class="cptBg"></p>
+								<div class="cptB">
+									<p class="songListName">Like That</p>
+									<p class="songListSinger">吴亦凡</p>
+								</div>
+							</a>
+						</div>
+						 <div class="cpt cptMidL">
+							<a target="_blank" href="http://www.kugou.com/mvweb/html/mv_668944.html">
+								<img _src="http://imge.kugou.com/commendpic/20180525/20180525100502914476.jpg" width="154" height="84" src="__PUBLIC__/images/blank.gif" _def="http://static.kgimg.com/public/root/images/mv_defalut.jpg">
+								<div class="Cover"><div class="playBtn icon icon-play_b">播放</div></div>
+								<p class="cptBg"></p>
+								<div class="cptB">
+									<p class="songListName">与你常在</p>
+									<p class="songListSinger">eason and the duo band</p>
+								</div>
+							</a>
+						</div> -->
+						
+                        
+                    </div>
+                </div>
+                <!-- 推荐Mv -->
+            </div>
+
+            <div class="forSaleM"><img src="__PUBLIC__/images/4a97e576aaa18b6e83047a2a5dfff867.jpg"></div>
+
+            <div class="subContentM limitHeight">
+                <div class="itemM HotRadio">
+                    <div class="itemTitle">
+                        <h3><b>热门</b>电台</h3><!-- <a target="_blank" href="http://www.kugou.com/fmweb/html/index.html" class="more fr">更多</a> --></div>
+                    <div class="itemContent">
+                        <ul>
+                            <li>
+                                <a target="_blank" href="javascript:;">
+                                    <div class="Cover"><div class="playBtn icon icon-radio_play"></div></div>
+                                    <div class="radioLogo"><img width="100" height="100" _src="http://static.kgimg.com/public/root//images/radio_1.jpg" src="__PUBLIC__/images/blank.gif" class=" "></div>
+                                    <div class="radioKind">KTV必点曲</div>
+                                    <div class="radioName">陈奕迅 - 婚礼的祝福</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="javascript:;">
+                                    <div class="Cover"><div class="playBtn icon icon-radio_play" style="display: none;"></div></div>
+                                    <div class="radioLogo"><img width="100" height="100" _src="http://static.kgimg.com/public/root//images/radio_2.jpg" src="__PUBLIC__/images/blank.gif" class=" "></div>
+                                    <div class="radioKind">中文DJ</div>
+                                    <div class="radioName">李佩玲 - 心有独钟(Live)</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="javascript:;">
+                                    <div class="Cover"><div class="playBtn icon icon-radio_play" style="display: none;"></div></div>
+                                    <div class="radioLogo"><img width="100" height="100" _src="http://static.kgimg.com/public/root//images/radio_3.jpg" src="__PUBLIC__/images/blank.gif" class=" "></div>
+                                    <div class="radioKind">酷狗热歌</div>
+                                    <div class="radioName">那英 - 放爱一条生路</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="javascript:;">
+                                    <div class="Cover"><div class="playBtn icon icon-radio_play" style="display: none;"></div></div>
+                                    <div class="radioLogo"><img width="100" height="100" _src="http://static.kgimg.com/public/root//images/radio_4.jpg" src="__PUBLIC__/images/blank.gif" class=" "></div>
+                                    <div class="radioKind">网络红歌</div>
+                                    <div class="radioName">斯琴高丽 - 情如花</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="javascript:;">
+                                    <div class="Cover"><div class="playBtn icon icon-radio_play" style="display: none;"></div></div>
+                                    <div class="radioLogo"><img width="100" height="100" _src="http://static.kgimg.com/public/root//images/radio_5.jpg" src="__PUBLIC__/images/blank.gif" class=" "></div>
+                                    <div class="radioKind">经典</div>
+                                    <div class="radioName">G.E.M.邓紫棋 - 泡沫 - DJ版</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="javascript:;">
+                                    <div class="Cover"><div class="playBtn icon icon-radio_play"></div></div>
+                                    <div class="radioLogo"><img width="100" height="100" _src="http://static.kgimg.com/public/root//images/radio_6.jpg" src="__PUBLIC__/images/blank.gif" class=" "></div>
+                                    <div class="radioKind">老情歌</div>
+                                    <div class="radioName">索朗扎西 - 郎啊郎</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="javascript:;">
+                                    <div class="Cover"><div class="playBtn icon icon-radio_play"></div></div>
+                                    <div class="radioLogo"><img width="100" height="100" _src="http://static.kgimg.com/public/root//images/radio_7.jpg" src="__PUBLIC__/images/blank.gif" class=" "></div>
+                                    <div class="radioKind">新歌</div>
+                                    <div class="radioName">Owl City - Wolf Bite</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="javascript:;">
+                                    <div class="Cover"><div class="playBtn icon icon-radio_play" style="display: none;"></div></div>
+                                    <div class="radioLogo"><img width="100" height="100" _src="http://static.kgimg.com/public/root//images/radio_8.jpg" src="__PUBLIC__/images/blank.gif" class=" "></div>
+                                    <div class="radioKind">动漫</div>
+                                    <div class="radioName">刘若英、黄立行 - 分开旅行</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="javascript:;">
+                                    <div class="Cover"><div class="playBtn icon icon-radio_play" style="display: none;"></div></div>
+                                    <div class="radioLogo"><img width="100" height="100" _src="http://static.kgimg.com/public/root//images/radio_9.jpg" src="__PUBLIC__/images/blank.gif" class=" "></div>
+                                    <div class="radioKind">轻音乐</div>
+                                    <div class="radioName">GALA - 点豆豆</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="javascript:;">
+                                    <div class="Cover"><div class="playBtn icon icon-radio_play" style="display: none;"></div></div>
+                                    <div class="radioLogo"><img width="100" height="100" _src="http://static.kgimg.com/public/root//images/radio_10.jpg" src="__PUBLIC__/images/blank.gif" class=" "></div>
+                                    <div class="radioKind">最爱成名曲</div>
+                                    <div class="radioName">Alicia Keys - 28 Thousand Days</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 推荐Mv -->
+                <div class="itemM HotSinger">
+                    <div class="itemTitle">
+                        <h3><b>热门</b>歌手</h3>
+                        <div class="tabT" id="tabMenu"><span class="active" data="0">华语</span><span data="1">欧美</span><span data="2">日韩</span><span data="3"><a class="more" href="http://www.kugou.com/yy/html/singer.html">更多</a></span></div>
+                    </div>
+                    <div class="itemContent">
+                        <div>
+                            <ul class="firstUl clearFix" id="SingertabContent">
+                                <li class="item">
+                                    <ul class="chinaSinger secondUl clearFix" id="chinaSingerContent">
+                                        <li>
+											<div class="cpt cptMid">
+												<a target="_blank" class="singerLink" href="javascript:;">
+													<img class="singerImg" src="__PUBLIC__/images/singdefalut.jpg" _src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20180508/20180508175857586.jpg" _def="http://static.kgimg.com/public/root/images/singdefalut.jpg">
+													<div class="Cover"><div class="playBtn icon">播放</div></div>
+													<p class="cptBg"></p>
+													<div class="cptB"><p class="songListSinger">薛之谦</p></div>
+												</a>
+											</div>
+										
+											<div class="cpt cptMid">
+												<a target="_blank" class="singerLink" href="javascript:;">
+													<img class="singerImg" src="__PUBLIC__/images/singdefalut.jpg" _src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20180515/20180515002522714.jpg" _def="http://static.kgimg.com/public/root/images/singdefalut.jpg">
+													<div class="Cover"><div class="playBtn icon">播放</div></div>
+													<p class="cptBg"></p>
+													<div class="cptB"><p class="songListSinger">周杰伦</p></div>
+												</a>
+											</div>
+
+											 <div class="cpt cptSmall">
+												<a target="_blank" class="singerLink" href="javascript:;">
+													<img class="singerImg" src="__PUBLIC__/images/singdefalut.jpg" _src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20180521/20180521175618738.jpg" _def="http://static.kgimg.com/public/root/images/singdefalut.jpg">
+													<div class="Cover"><div class="playBtn icon">播放</div></div>
+													<p class="cptBg"></p>
+													<div class="cptB"><p class="songListSinger">虎二</p></div>
+												</a>
+											</div>
+
+											 <div class="cpt cptSmall">
+												<a target="_blank" class="singerLink" href="javascript:;">
+													<img class="singerImg" src="__PUBLIC__/images/singdefalut.jpg" _src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20180302/20180302142740562.jpg" _def="http://static.kgimg.com/public/root/images/singdefalut.jpg">
+													<div class="Cover"><div class="playBtn icon">播放</div></div>
+													<p class="cptBg"></p>
+													<div class="cptB"><p class="songListSinger">庄心妍</p></div>
+												</a>
+											</div>
+									
+											 <div class="cpt cptSmall">
+												<a target="_blank" class="singerLink" href="javascript:;">
+													<img class="singerImg" src="__PUBLIC__/images/singdefalut.jpg" _src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20180528/20180528175359523.jpg" _def="http://static.kgimg.com/public/root/images/singdefalut.jpg">
+													<div class="Cover"><div class="playBtn icon">播放</div></div>
+													<p class="cptBg"></p>
+													<div class="cptB"><p class="songListSinger">小洲</p></div>
+												</a>
+											</div>
+                                        </li>
+                                    </ul>
+                                    <div class="tabC" id="subMenu">
+                                        <a class="icon icon-s-dot icon-s_dot_hover" data="0"></a>
+                                        <a class="icon icon-s-dot" data="1"></a>
+                                        <a class="icon icon-s-dot" data="2"></a>
+                                    </div>    
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- 推荐Mv -->
+            </div>
+            <div class="forSaleM">
+                <img src="__PUBLIC__/images/4a97e576aaa18b6e83047a2a5dfff867.jpg">
+            </div>
+            <div class="partner itemM ">
+                <div class="itemTitle">
+                    <h3><b>合作</b>伙伴</h3></div>
+                <div class="itemContent">
+                    <div class="hz_logo clear_fix">
+                        <a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner01.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="EMI" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner02.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="SONY" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner03.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="海蝶" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner04.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="丰华唱片" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner05.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="喜欢音乐" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner06.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="种子音乐" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner07.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="亚神娱乐音乐" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner08.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="bma" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner09.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="中唱总公司" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner10.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="中国好声音" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner11.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="孔雀唱片" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner12.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="简单快乐" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner13.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="鸟人艺术" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner14.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner15.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title=""><img title="极韵文化" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner16.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="天浩盛世" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner17.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="太合麦田" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner18.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="东music" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner19.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="music" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner20.jpg" alt=""></a>
+						<a href="javascript:;" hidefocus="true" title="" rel="nofollow"><img title="大国文化" width="130" height="58" src="__PUBLIC__/images/blank.gif" _src="http://static.kgimg.com/public/root//images/logo/partner21.jpg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="friendLink itemM ">
+                <div class="itemTitle">
+                    <h3><b>友情</b>链接</h3><a target="_blank" href="javascript:;" class="more fr">更多</a></div>
+                <div class="itemContent">
+					<a target="_blank" href="//mp3.lmwljz.com/ik123/api.html" title="深港DJ下载">深港DJ下载</a>
+					<a target="_blank" href="//mp3.lmwljz.com/" title="懂我音乐网">懂我音乐网</a>
+					<a target="_blank" href="//api.lmwljz.com/" title="懂我音乐API">懂我音乐API</a>
+					<a target="_blank" href="//tieba.baidu.com/f?kw=%E6%9E%97%E6%A2%A6%E7%BD%91%E7%BB%9C&ie=utf-8&tp=0" title="林梦网络百度贴吧">林梦网络吧</a>
+					<a target="_blank" href="//www.lmwljz.com" title="林梦网络官网">林梦网络官网</a>
+					<a target="_blank" href="//tieba.baidu.com/p/2932501391?red_tag=2466918913" title="IK123下载教程">IK123下载教程</a>
+					<a target="_blank" href="//www.yue365.com/" title="365音乐网">365音乐网</a>
+					<a target="_blank" href="//www.ik123.com" title="深港DJ">深港DJ</a>
+					<a target="_blank" href="//www.baidu.com/" title="百度一下,你就知道">百度一下,你就知道</a>
+                </div>
+            </div>
+        </div>
+{include file="public/footer" /}
+    <!-- <div class="macDownload" id="macDownload" style="display: none;">
+        <div class="macDownload-left">
+            <div class="macDownload-logo"></div>
+            <p class="macDownload-title">Mac版酷狗音乐已更新</p>
+            <p class="macDownload-txt">就是歌多</p>
+        </div>
+        <div class="macDownload-right">
+            <a class="macClick-up" target="_blank" href="https://itunes.apple.com/cn/app/%E9%85%B7%E7%8B%97%E9%9F%B3%E4%B9%90-%E5%B0%B1%E6%98%AF%E6%AD%8C%E5%A4%9A/id658741592?l=en&amp;mt=12">详情</a>
+            <a class="macClick-down" target="_blank" href="http://download.kugou.com/download/kugou_mac">下载</a>
+        </div>
+    </div> -->
+
+	
+ <!--    <script type="text/javascript" src="{:modified('/js/index.js')}"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/common_527f9e808b.js"></script> -->
+	<!----><script type="text/javascript" src="__PUBLIC__/js/background-blur.js"></script>
+	<script src="{:modified('/js/common.js')}"></script>
+	<script>
+		//var apmCollectData = apmCollectData || [];
+	</script>
+
+<!-- <div class="search_recommend top_search_recommend hide show" style="display: block;">
+	<dl class="recommend_song_list recommend_list">
+		<dd data-type="song" title="ok歌"><em>ok</em>歌</dd>
+	</dl>
+	<h4><span class="icon_arrow"></span>MV</h4>
+	<dl class="recommend_mv_list recommend_list">
+		<dd data-type="mv" title="OK Go - Obsession">OK Go - Obsession</dd>
+	</dl>
+</div> -->
+
+</body>
+</html>

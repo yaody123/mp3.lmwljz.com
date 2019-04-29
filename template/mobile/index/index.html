@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{$Think.config.webname} - 懂你所听</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta name="keywords" content="{$Think.config.keywords}">
+<meta name="description" itemprop="description"  content="【{$Think.config.webname}】{$Think.config.descript}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="email=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="applicable-device" content="mobile">
+<meta name="baidu-site-verification" content="UtTQyEGNH4">
+<link rel="stylesheet" href="{:modified('/css/common.css','mobile')}">
+<link href="/favicon.ico" rel="shortcut icon">
+
+<meta itemprop="name"  content="{$Think.config.webname} - 懂你所听"/>
+<meta itemprop="image" content="{$Think.config.domain}{:modified('/images/play/logo.png')}">
+
+<!-- start 全局变量 -->
+<script type="text/javascript">
+	var gbParams = {
+		kg_domain : "/"
+	};
+</script>
+<!-- end 全局变量-->
+
+</head>
+
+<body islist="false">
+	{include file="public/header" /}
+	<div class="bd js-bd-box bd-bottom" id="bd">
+        <!-- start 焦点图 -->
+		{if condition="$list['banner']"}
+        <div class="mod-slider" id="modSlider">
+            <div class="swipe-wrap">
+				{volist name="list.banner" id='v'}
+				<div><a href="{if condition="$v['url']"}{$v.url}{else /}javascript:;{/if}"><img src="{$v.content}" onerror="this.onerror=null;this.src='http://m.kugou.com/v3/static/images/index/ban.jpg';"></a></div>
+				{/volist}
+			</div>
+            <div class="swipe-pos" id="swipePos">
+				{volist name="list.banner" id='v'}
+            	<div><span></span></div>
+				{/volist}
+			</div>
+        </div>
+		{/if}
+        <!-- end 焦点图 -->
+
+		<ul class="panel-songslist" id="panelSongsList">
+			{volist name="list.data" id="v"}
+			<li class="panel-songslist-item" data-hash="{$v.hash}">
+				<div class="panel-songs-item-name btn_play"><span>{$v.filename}</span></div>
+				<div class="panel-songs-item-download download"><i></i></div>
+			</li>
+			{/volist}
+		</ul>
+	</div>
+	{include file="public/mplay" /}
+</body>
+</html>

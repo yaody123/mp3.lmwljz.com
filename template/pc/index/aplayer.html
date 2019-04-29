@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+<title>APlayer</title>
+<style>
+body{text-rendering: auto;}
+#evanyou-canvas { z-index: -1 !important;}
+.aplayer-wrap {max-width: 750px;margin: 20px auto;background-color: #fff;z-index: 1;}
+#aplayer1{margin:5px;}
+</style>
+<script src="__PUBLIC__/js/jquery-1.11.2.min.js"></script>
+<script src="__PUBLIC__/aplayer/color-thief.js"></script>
+<script src="__PUBLIC__/aplayer/APlayer.min.js"></script>
+<link href="__PUBLIC__/aplayer/APlayer.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="aplayer-wrap">
+    <div id="aplayer1">
+		<pre class="aplayer-lrc-content"></pre>
+	</div>
+</div>
+<div id="aplayer0"></div>
+
+<script>
+var data = {:json_encode($list)};
+var audio= [];
+var ap0,ap1;
+//console.log(data);
+
+if(data.length>0){
+	$.each(data,function(i,n){
+		audio[i] = {'lrc':n.lyrics,'name':n.title,'cover':n.songimg,'url':n.url,'artist':n.author};
+	});
+	aplayer1();
+	aplayer0()
+}
+
+function playinfo(res){
+	//console.log(res.lrc.current);
+	//res.lrc.current = '12346';
+	return res;
+}
+
+//迷你模式
+function aplayer0(){
+    ap0 = new APlayer({
+        container: document.getElementById('aplayer0'),
+		fixed:true,
+        theme: '#505d6b',
+		autoplay:false,
+        lrcType: 2,
+        audio: audio
+    });
+}
+
+//正常模式
+function aplayer1(){
+    ap1 = new APlayer({
+        container: document.getElementById('aplayer1'),
+        theme: '#505d6b',
+		autoplay:true,
+        lrcType: 1,
+        audio: audio
+    });
+}
+
+ap1.on('play', function () {
+	console.log('播放');
+	var t= "[00:00.00]APlayer audio1";
+     t +="[00:04.01]is";
+     t +="[00:08.02]amazing";
+	$('.aplayer-lrc-content').html(t);
+});
+ap1.on('ended', function () {
+	console.log('ended');
+});
+ap1.on('playing', function () {
+	console.log('playing');
+});
+ap1.on('pause', function () {
+	console.log('pause');
+});
+
+
+
+</script>
+
+</body>
+</html>

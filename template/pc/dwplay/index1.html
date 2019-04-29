@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$Think.config.webname} - 懂你所听</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> 
+	addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+	function hideURLbar(){ window.scrollTo(0,1); } 
+</script>
+
+<link href="__PUBLIC__/css/dwplay.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script src="__PUBLIC__/js/jquery-1.11.2.min.js"></script>
+
+</head>
+<body>
+<!-- main -->
+<div class="audio-main w3ls">
+	<h1>Music Profile Widget</h1>
+	<div class="audio-record-list">
+
+		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+			<div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
+				<div class="jp-type-playlist">
+					<div class="jp-gui jp-interface">
+						<!--操作按钮-->
+						<div class="jp-controls">
+							<button class="jp-previous" role="button" tabindex="0">上一首</button>
+							<button class="jp-play" role="button" tabindex="0">播放</button>
+							<button class="jp-next" role="button" tabindex="0">下一首</button>
+							<button class="jp-stop" role="button" tabindex="0">停止</button>
+						</div>
+						<!--播放进度-->
+						<div class="jp-progress">
+							<div class="jp-seek-bar">
+								<div class="jp-play-bar"></div>
+							</div>
+						</div>
+						<!--音量控制-->
+						<div class="jp-volume-controls">
+							<button class="jp-mute" role="button" tabindex="0">音量-</button>
+							<button class="jp-volume-max" role="button" tabindex="0">音量+</button>
+							<div class="jp-volume-bar">
+								<div class="jp-volume-bar-value"></div>
+							</div>
+						</div>
+						<!--播放时间轴-->
+						<div class="jp-time-holder">
+							<div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+							<div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
+						</div>
+					</div>
+					<!--列表-->
+					<div class="jp-playlist">
+						<ul>
+							<li>&nbsp;</li>
+						</ul>
+					</div>
+					<div class="jp-no-solution">
+						<span>Update Required</span>
+						To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+					</div>
+				</div>
+			</div>
+	</div>
+	<div class="footer agile">
+		<div class="copy-right">
+			<p> &copy; 2016 Music Profile Widget. All Rights Reserved | Design by  <a href="http://w3layouts.com/"> W3layouts</a></p>
+		</div>
+	</div>
+</div>
+<!-- //main -->
+<!-- script for play-list -->
+<link href="__PUBLIC__/css/dwplay.blue.monday.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jplayer.playlist.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	new jPlayerPlaylist({
+		jPlayer: "#jquery_jplayer_1",
+		cssSelectorAncestor: "#jp_container_1"
+	}, 
+	{$list}
+	,
+	 {
+		//swfPath: "../../dist/jplayer",
+		swfPath: "__PUBLIC__/play/js",
+		supplied: "oga, mp3",
+		wmode: "window",
+		useStateClassSkin: true,
+		autoBlur: false,
+		smoothPlayBar: true,
+		keyEnabled: true
+	}
+	);
+});
+//]]>
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="懂我音乐, 歌手,明星,音乐,在线音乐,在线听歌,听歌,新专辑,港台,日本,韩国,欧美,英国">
+<meta name="description" content="懂我音乐官方网站是中国最新最全的在线正版音乐网站,提供最新的在线音乐服务、免费音乐下载、最新的音乐播放器下载。">
+<title>{$title}_排行榜 - {$Think.config.webname} - 懂你所听</title>
+<link href="/favicon.ico" rel="shortcut icon">
+<link rel="stylesheet" href="__PUBLIC__/css/rankPage.min.css" type="text/css">
+<link rel="stylesheet" href="__PUBLIC__/css/common.css" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/collect.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/js/lib.js"></script> -->
+<script type="text/javascript">
+	var lmtoken = "{$token}";
+</script>
+
+</head>
+
+<body>
+{include file="public/header" /}
+<div class="pc_temp_wrap pc_temp_2col_critical">
+	<div class="pc_temp_main">
+		{include file="public/menu_top" /}
+		<div class="pc_temp_content">
+			<div class="pc_temp_container">
+				<div class="pc_rank_title clear_fix">
+					<div id="pc_temp_title" class="pc_temp_title">
+						<h3>{$param.title}</h3>
+						<span class="rank_update">{if condition="$list"}{$list['0']['addtime']|substr=###,0,10} 更新{/if}</span>
+						<a href="javascript:;" class="pc_temp_btn_s02 pc_temp_bicon_play" title="播放全部" data-active="play" data-index="" hidefocus="true"><span><i class="t2"></i>播放全部</span></a>
+					</div>
+				</div>
+				<div id="rankWrap">
+					<div class="pc_temp_songhead clear_fix">					
+						<span class="pc_temp_btn_check pc_temp_btn_checked checkedAll"></span>全选
+					</div>
+					<div class="pc_temp_songlist ">
+						<ul>
+							{volist name="list" id="v" key="k"}
+							<li class=" " title="{$v.filename}" data-index="0">
+								<span class="pc_temp_btn_check pc_temp_btn_checked" data-index="0"></span>
+								<span class="pc_temp_coverlayer"></span>
+								<span class="pc_temp_num"><strong>{$k}</strong></span>
+								<a data-href="{:url('play/kugou',array('mid'=>$v['hash']))}" class="pc_temp_songname" title="{$v.filename}" target="_blank">{$v.filename}</a>
+								<span class="pc_temp_tips_r">
+									<a href="javascript:;" data-active="play" data-index="0" class="pc_temp_btn_listen" title="播放" hidefocus="true" onclick="mp_play('{$v.hash}')">播放</a>
+									<a href="javascript:;" onclick="mp_download('{$v['hash']}')" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+									<a href="javascript:;" data-active="share" data-index="0" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+									<span class="pc_temp_time">{$v.duration|Duration=###}</span>
+								</span>
+							</li>
+							{/volist}
+						</ul>
+					</div>
+				</div>
+				<!--<div class="download" id="download">查看更多内容，请下载客户端 <span><a target="_blank" href="http://download.kugou.com/download/kugou_pc">立即下载</a></span></div>-->
+				<div class="fans_login"></div>
+				<div class="pc_temp_nvg">
+					<span id="mypage">
+					{$param['pagelist']}
+						<!--<a style="visibility:hidden" id="page_first" title="首页" class="direct btnPage" href="javascript:void(0)">首页</a>
+						<span style="visibility:hidden" class="PrePageSpan"><a id="page_pre_" href="javascript:void(0)" title="上一页" class="direct btnPage" return="" false;"="">上一页</a></span>
+						<span id="page_1" class="current">1</span>
+						<a id="page_2" href="javascript:void(0)">2</a>
+						<a id="page_3" href="javascript:void(0)">3</a>
+						<a id="page_4" href="javascript:void(0)">4</a>
+						<a id="page_5" href="javascript:void(0)">5</a>
+						<span class="NextPageSpan" style="border:0px;padding:0px;"><a id="page_next_2" href="javascript:void(0)" title="下一页" class="direct btnPage">下一页</a></span>
+						<a id="page_last_23" title="尾页" href="{:url('index',array('id'=>$param['id'],'p'=>$param['page']))}" class="direct btnPage">尾页</a>-->
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--排行榜-->
+{include file="public/footer" /}
+<script src="{:modified('/js/common.js')}"></script>
+<!-- <script type="text/javascript">
+	var apmCollectData = apmCollectData || [];
+
+	//搜索
+	$(".searh_btn").click(function(){
+		$('form').submit();
+	});
+
+	//待选搜索
+	$(".search_recommend").on('click','dl dd',function(){
+		var title = $(this).attr('title');
+		$("input[name='keyword']").val(title);
+		$('form').submit();
+		//console.log();
+	});
+
+</script> -->
+
+</body>
+</html>

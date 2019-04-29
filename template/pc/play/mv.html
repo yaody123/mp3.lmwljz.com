@@ -1,0 +1,202 @@
+{include file="public/base_head" /}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="懂我音乐|lmwljz.com|mp3.lmwljz.com|{$list.title}|{$list.author}|林梦网络">
+<meta name="description" content="《懂我音乐》{$title},{$list.desc}">
+<meta http-equiv="Content-Language" content="zh-cn">
+<!-- <meta name="mobile-agent" content="format==[html5];url=https://mp3.lmwljz.com"> -->
+<meta name="applicable-device" content="pc">
+<meta name="referrer" content="never">
+<title>{$title} - {$Think.config.webname} - 懂你所听</title>
+<link href="/favicon.ico" rel="shortcut icon">
+<link rel="stylesheet" href="__PUBLIC__/css/rankPage.min.css" type="text/css">
+<link rel="stylesheet" href="__PUBLIC__/css/common.css" type="text/css">
+<link rel="canonical" href="https://mp3.lmwljz.com/">
+<link rel="stylesheet" href="{:modified('/play/css/layout_0321.css')}">
+<link rel="stylesheet" href="{:modified('/play/css/video_detail.css')}">
+<link rel="stylesheet" href="{:modified('/play/css/video_player.css')}">
+<!-- <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/collect.js"></script> -->
+</head>
+
+<body>
+{include file="public/header" /}
+
+<div class="mod_mv">
+    <div class="section_inner">
+        <div class="mv__player" id="mvplayer">
+            <div id="js_qmvedio_1_1" class="video_player_box" style="width:auto;height:674px;">
+                <div class="js_qv_showctrl video_player">
+                    <!-- <video class="video_player__source" width="auto" height="100%" webkit-playsinline="isiPhoneShowPlaysinline" playsinline="true" preload="metadata" src="http://220.170.89.151/vcloud1049.tc.qq.com/1049_M0115200000mek8L13qCD91001622440.f9844.mp4?vkey=1532A3487F973370859CB239BBD2AD1A13BDEDD3920D1B321B9CF7D78A42EC943D715A21DE2ABE56F84DAC09D37D0401CC2A57E8946ABBD5DC5FFCCD3FF411B2F08EDF8114BF9511F26948DBBFC99AF5772086C4EC72BE84" autoplay controls=""></video> -->
+                    <video class="video_player__source" width="auto" height="100%" webkit-playsinline="isiPhoneShowPlaysinline" playsinline="true" preload="metadata" src="{$list.playurl}" autoplay controls=""></video>
+                </div>
+            </div>
+        </div>
+
+        <div class="mv__info" id="mv_control">
+            <h1 class="mv__title">
+                <span class="mv__name" title="{$list.title}">{$list.title}</span>
+				{if condition="!$list['uploader_nick']"}
+				  <span class="mv__line">-</span>
+				  <a href="javascript:;" class="mv__singer js_singer" data-stat="y_new.mv.singername" data-singermid="{$list.author}">{$list.author}</a>
+				{/if}
+            </h1>
+            <span class="mv__listen">播放量：{$list.playcnt}</span>
+
+            <div class="mv_toolbar">
+                <a href="javascript:;" class="mv_toolbar__item mv_toolbar__phone js_mv_code"  data-target="popup_phone_qrcode"><i class="mv_toolbar__icon_phone sprite"></i>在手机上播</a>
+                <i class="mv_toolbar__line"></i>
+                <a href="javascript:;" class="mv_toolbar__item mv_toolbar__inform js_accusation" data-type="8" data-id="x0030mee0hk">举报</a>
+                <i class="mv_toolbar__line"></i>
+                <a class="mod_btn_comment js_into_comment btn_comment99" data-stat="y_new.mv.gotocomment" href="https://y.qq.com/n/yqq/mv/v/x0030mee0hk.html#comment_box"><span class="btn_comment__numbers"><i class="btn_comment__numb btn_comment__numb_1"></i><i class="btn_comment__numb btn_comment__numb_0"></i></span><span class="icon_txt">评论</span></a>
+                <i class="mv_toolbar__line"></i>
+                <a href="javascript:;" class="mv_toolbar__item mv_toolbar__share sprite js_mv_share"><i class="icon_txt">分享</i></a>
+                <i class="mv_toolbar__line"></i>
+                <a href="javascript:;" class="mv_toolbar__item mv_toolbar__like sprite js_mv_fav"><i class="icon_txt">收藏</i></a>
+            </div>
+        </div>
+        <!-- 浮层 -->
+        <div class="popup_phone_qrcode" id="popup_phone_qrcode" data-aria="popup"
+             style="bottom:-148px;right:240px;display:none;">
+            <i class="popup_phone_qrcode__arrow"></i>
+            <img src="imgs/qrcode_qqmusic.jpg" class="popup_phone_qrcode__pic">
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="mv_others" id="mv_list" style="">
+        <h2 class="mv_others__tit">大部分人还爱看</h2>
+        <div class="mod_slider ">
+            <div class="mod_mv_list">
+                <ul class="mv_list__list" style="left: 0px;">
+				{volist name="list.other" id="v"}
+					<li class="mv_list__item">
+                        <div class="mv_list__item_box">
+                            <a href="{:url('play/mv',array('vid'=>$v['vid']))}" class="mv_list__cover mod_cover" data-stat="y_new.mv.othercmv.play"  data-vid="b00112ejsxa" hidefocus="true">
+                                <img class="mv_list__pic" src="{$v.cover_pic}"  onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/mv_300.png?max_age=31536000&#39;;this.onerror=null;" alt="{$v.name}">
+                                <i class="mod_cover__icon_play"></i>
+                            </a>
+                            <h3 class="mv_list__title"><a href="#"  data-stat="y_new.mv.othercmv.mvname"  data-vid="b00112ejsxa">{$v.name}</a></h3>
+                            <p class="mv_list__singer">
+								 <a href="javascript:;" class="js_singer" data-stat="y_new.mv.othermv.singername" data-singermid="004b7ZtM2AJzDb" title="{$v.author}">{if condition="$v['uploader_nick']"}上传者：{/if}{$v.author}</a>
+                            </p>
+                            <div class="mv_list__info">
+							<span class="mv_list__listen"><i  class="mv_list__listen_icon sprite"></i>
+							{if condition="($v['playcnt']/1000)>1"}
+								{:round($v['playcnt']/1000,1)}万
+							{else /}
+								{$v['playcnt']}
+							{/if}
+							</span>{$v.pubdate|date='Y-m-d',###}</div>
+                        </div>
+                    </li>
+				{/volist}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mod_mv_info mv_mv_others" id="mv_info" style="">
+        <h2 class="mv_others__tit">视频简介</h2>
+        <div class="mv_info__about">
+			{if condition="!$list['uploader_nick']"}
+			<a href="javascript:;" class="mv_info__name js_singer" data-stat="y_new.mv.desc.singername" data-singermid="{$list.author}">{$list.author}</a>
+			{/if}
+            <span class="mv_info__time">发行时间：<time>{$list.pubdate|date='Y-m-d',###}</time></span>
+        </div>
+        <div class="mv_info__cont"><p></p></div>
+    </div>
+    <div class="mod_comment" id="comment_box">
+        <div class="part__hd">
+            <h2 class="part__tit">评论
+			{if condition="$list['comment']['total']"}
+			<span class="c_tx_thin part__tit_desc js_all_comment_num">共{$list.comment.total}条评论</span></h2>
+			{/if}
+        </div>
+        <div class="mod_comment js_cmt_input">
+            <div class="comment__input">
+                <div class="comment__textarea js_comment__textarea  c_bg_normal">
+                    <div class="comment__textarea_inner">
+                        <!--c_tx_normal-->
+                        <!--focus评论框的时候将.comment__textarea_default模块隐藏，同时显示.comment__textarea_input-->
+                        <div class="comment__textarea_default c_tx_thin js_reply_text_blur" name="" id="reply_text_blur" contenteditable="true">期待你的神评论……</div>
+                        <div class="js_reply_text comment__textarea_input c_tx_normal" name="" id="reply_text" contenteditable="true" style="display:none;"></div>
+                    </div>
+                    <!--字数超过后添加comment__tips--warn_tx 去掉c_tx_thin-->
+                    <div class="comment__tips js_comment_tips c_tx_thin" data-max="300">剩余<span class="c_tx_highlight">300</span>字</div>
+                </div>
+                <a class="comment__face js_cmt_face" href="javascript:;" data-type="reply"><i class="icon_comment icon_comment_face"></i></a>
+                <div class="comment__tool"><a href="javascript:;" class="mod_btn_green comment__tool_btn js_send_reply">发表评论</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mod_all_comment js_mod_all">
+            <div class="comment_type__title c_b_normal"><h2>最新评论({:count($list['comment']['list'])})</h2></div>
+            <ul class="comment__list js_all_list">
+				<!--
+				<li class="comment__list_item c_b_normal js_cmt_li" style="visibility: visible;">
+					<a href="javascript:;" class="comment__avatar js_nick" data-uin="1152921504714923708">
+						<img class="js_lazy_comment_pic" data-original="//thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJhM8RUy9xHQo6NUepBxDZwrcrfHf5X11DcGcb5hrnibLFHMpAucT06mJDHiao852JJBUO8v0UNgMoA/132" alt="陌路到末路" onerror="this.src='//y.gtimg.cn/mediastyle/global/img/person_300.png?max_age=2592000';this.onerror=null" title="陌路到末路" src="//thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJhM8RUy9xHQo6NUepBxDZwrcrfHf5X11DcGcb5hrnibLFHMpAucT06mJDHiao852JJBUO8v0UNgMoA/132" style="display: block; visibility: visible;">
+					</a>
+					<h4 class="comment__title"><a href="javascript:;" class="c_tx_thin js_nick js_nick_only" data-uin="1152921504714923708">陌路到末路</a></h4>
+					<p class="c_tx_normal comment__text js_middle js_hot_text">
+						回复 <a href="javascript:;" class="js_nick js_replyed_nick c_tx_current" data-uin="1152921504757019599">@风之夏</a>: <span class="js_subcomment">吴启华版的张无忌心里爱得最深的其实是小昭，</span> 
+					</p>
+					<p class="c_tx_normal comment__text c_tx_thin comment__text--history js_hot_text">这版的小昭真可怜，张无忌对小昭完全没有爱意，反而是兄妹情</p>
+					<div class="comment__opt js_comment_opt" data-commentid="mv_q00303bh818_1152921504757019599_1555243329_1152921504714923708_1555249452">
+						<span class="comment__date c_tx_thin">4月14日 21:44</span>
+						<a class="comment__report js_cmt_accusation" data-commentid="mv_q00303bh818_1152921504757019599_1555243329_1152921504714923708_1555249452" href="javascript:;">举报</a>
+						<a class="comment__zan js_cmt_praise " data-commentid="mv_q00303bh818_1152921504757019599_1555243329_1152921504714923708_1555249452" href="javascript:;"><i class="icon_comment icon_comment_like"></i><span class="js_praise_num">2</span></a>
+						<a class="comment__feedback js_feedback icon_comment icon_comment_feedback" href="javascript:;" data-nick="陌路到末路" data-uin="1152921504714923708" data-cmtid="mv_q00303bh818_1152921504757019599_1555243329_1152921504714923708_1555249452">回复</a>
+					</div>
+					<div class="js_reply_container"></div>
+				</li>-->
+				<!---->
+				{volist name="$list.comment.list" id="vt"}
+				<li class="comment__list_item c_b_normal js_cmt_li ">
+                    <a href="javascript:;" class="comment__avatar js_nick" data-uin="{$vt.uin}">
+                        <img class="js_lazy_comment_pic" src="{$vt.avatarurl}" alt="{$vt.nick}"  onerror="this.src=&#39;//y.gtimg.cn/mediastyle/global/img/person_300.png?max_age=2592000&#39;;this.onerror=null" title="{$vt.nick}">
+                    </a>
+                    <h4 class="comment__title"><a href="javascript:;" class="c_tx_thin js_nick js_nick_only" data-uin="{$vt.uin}">{$vt.nick}</a>
+						{if condition="$vt['vipicon']"}
+						<span class="vip_icon"><img src="{$vt.vipicon}" alt="绿钻"></span>
+						{/if}
+					</h4>
+					{if condition="$vt['middlecommentcontent']"}
+					<p class="c_tx_normal comment__text js_middle js_hot_text">
+						回复 <a href="javascript:;" class="js_nick js_replyed_nick c_tx_current" data-uin="1152921504757019599">{$vt['middlecommentcontent']['0']['replyednick']}</a>: 
+						<span class="js_subcomment">{$vt['middlecommentcontent']['0']['subcommentcontent']}</span> 
+					</p>
+					<p class="c_tx_normal comment__text c_tx_thin comment__text--history js_hot_text">{$vt.rootcommentcontent}</p>
+					{else/}
+						<p class="c_tx_normal comment__text js_hot_text">{$vt.rootcommentcontent}</p>
+					{/if}
+                    
+                    <div class="comment__opt js_comment_opt" data-commentid="mv_x0030mee0hk_1421159830_1555301961">
+                        <span class="comment__date c_tx_thin">{$vt.time|date='Y-d-m H:i:s',###}</span>
+                        <a class="comment__report js_cmt_accusation" data-commentid="mv_x0030mee0hk_1421159830_1555301961" href="javascript:;">举报</a>
+                        <a class="comment__zan js_cmt_praise " data-commentid="mv_x0030mee0hk_1421159830_1555301961" href="javascript:;"><i class="icon_comment icon_comment_like"></i><span class="js_praise_num">{$vt.praisenum}</span></a>
+                        <a class="comment__feedback js_feedback icon_comment icon_comment_feedback" href="javascript:;" data-nick="{$vt.nick}" data-uin="1421159830" data-cmtid="mv_x0030mee0hk_1421159830_1555301961">回复</a>
+                    </div>
+                    <div class="js_reply_container"></div>
+                </li>
+				{/volist}
+            </ul>
+            <div class="comment__show_all"><span class="comment__show_all_link c_tx_thin">—— 以上为全部评论 ——</span></div>
+        </div>
+        <p class="comment__rule"><a class="js_rule_btn" href="javascript:;">懂我音乐评论指北</a></p>
+    </div>
+</div>
+
+<a href="javascript:;" class="btn_bottom_feedback js_btn_feedback">反馈</a>
+<a href="javascript:;" class="btn_bottom_player sprite_before js_openplayer"><span class="icon_txt">播放器</span></a>
+
+{include file="public/footer" /}
+<script src="{:modified('/js/common.js')}"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{$Think.config.webname} - 懂你所听</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta name="keywords" content="{$Think.config.webname},y.lmwljz.com">
+<meta name="description" itemprop="description"  content="【{$Think.config.webname}】最新最全的在线正版音乐网站，本站为您免费提供最全的在线音乐试听下载，以及全球海量电台和MV播放服务、最新音乐播放器下载。音乐总有新玩法">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="email=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="applicable-device" content="mobile">
+<meta name="baidu-site-verification" content="UtTQyEGNH4">
+<link rel="stylesheet" href="{:modified('/css/common.css','mobile')}">
+<link href="/favicon.ico" rel="shortcut icon">
+
+<meta itemprop="name"  content="{$Think.config.webname} - 懂你所听"/>
+<meta itemprop="image" content="http://mp3.lmwljz.com{:modified('/images/play/logo.png')}">
+
+<script type="text/javascript" src="__PUBLIC__/play/js/jquery.min.js"></script>
+{include file="../pc/public/ik123_vsid" /}
+<!-- start 全局变量 -->
+<script type="text/javascript">
+	var gbParams = {
+		kg_domain : "/"
+	};
+</script>
+<!-- end 全局变量-->
+
+</head>
+
+<body islist="false">
+	{include file="public/header" /}
+	<div class="bd js-bd-box bd-bottom" id="bd">
+        <!-- start 焦点图 -->
+        <!-- <div class="mod-slider" id="modSlider">
+            <div class="swipe-wrap">
+				<div><a href="javascript:;"><img src="__PUBLIC_MOBILE__/images/banner.jpg" onerror="this.onerror=null;this.src='http://m.kugou.com/v3/static/images/index/ban.jpg';"></a></div>
+				<div><a href="javascript:;"><img src="__PUBLIC_MOBILE__/images/20180616020619937097.jpg" onerror="this.onerror=null;this.src='http://m.kugou.com/v3/static/images/index/ban.jpg';"></a></div>
+				<div><a href="javascript:;"><img src="__PUBLIC_MOBILE__/images/20180615215714882680.jpg" onerror="this.onerror=null;this.src='http://m.kugou.com/v3/static/images/index/ban.jpg';"></a></div>
+				<div><a href="javascript:;"><img src="__PUBLIC_MOBILE__/images/20180608204421999896.jpg" onerror="this.onerror=null;this.src='http://m.kugou.com/v3/static/images/index/ban.jpg';"></a></div>
+				<div><a href="javascript:;" target="_blank"><img src="__PUBLIC_MOBILE__/images/20180615000246280713.jpg" onerror="this.onerror=null;this.src='http://m.kugou.com/v3/static/images/index/ban.jpg';"></a></div>
+			</div>
+            <div class="swipe-pos" id="swipePos">
+            	<div class=""><span></span></div>
+				<div class=""><span></span></div>
+				<div class=""><span></span></div>
+				<div class=""><span></span></div>
+				<div><span></span></div>
+			</div>
+        </div>
+        end 焦点图 -->
+
+		<ul class="panel-songslist" id="panelSongsList">
+			{volist name="list" id="v"}
+			<li class="panel-songslist-item" data-id="{$v.id}">
+				<div class="panel-songs-item-name btn_play"><span>[懂我音乐] {$v.title|str_replace=array('ik123','试听','by','com','.com',' -',' '),'',###}</span></div>
+				<div class="panel-songs-item-download download"><i></i></div>
+			</li>
+			{/volist}
+		</ul>
+	</div>
+	{include file="public/ik_play" /}
+<script type="text/javascript" src="__IMGCSS__/layui/layui.js"></script>
+<script type="text/javascript">
+layui.use(['layer','element'], function(){
+  var layer = layui.layer //弹层
+  ,element = layui.element //元素操作 
+});
+</script>
+</body>
+</html>

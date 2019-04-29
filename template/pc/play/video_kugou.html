@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta name="keywords" content="{$list.title}{if condition="$list['author']"}_{$list.author}{/if},{$Think.config.webname},y.lmwljz.com,mp3.lmwljz.com">
+<meta name="description" itemprop="description"  content="MV：{$list.title}{if condition="$list['author']"}_{$list.author}{/if},【{$Think.config.webname}】最新最全的在线正版音乐网站，本站为您免费提供最全的在线音乐试听下载，以及全球海量电台和MV播放服务、最新音乐播放器下载。音乐总有新玩法,尽在mp3.lmwljz.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="email=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="applicable-device" content="mobile">
+<meta name="baidu-site-verification" content="UtTQyEGNH4">
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<title>{$list.title}{if condition="$list['author']"}_{$list.author}{/if} - MV在线播放_{$Think.config.webname}</title>
+<style>
+body{border:0px; padding:0px; margin:0px}
+div{margin:0px auto;}
+#video{width:100%;height:100%;margin: 0px auto;}
+</style>
+<script>
+	var w = $(window).width();
+	var h = $(window).height();
+	{if condition="$list['ismobile']"}
+	window.webmvplayer ='<video width="'+w+'" height="'+h+'" src="{$list.playurl}" preload="auto" autoplay="" controls="" class="embed-responsive-item" poster="{$list.albumimg}"></video>';
+	{else /}
+	window.webmvplayer = '<div style= "width:100%; height:'+h+'px;">';
+	webmvplayer +='	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="700"height="400">';
+	webmvplayer +=' <param name="movie" value="/static/lmwlj.video.swf" />';
+	webmvplayer +=' <param name="quality" value="high" />';
+	webmvplayer +=' <param name="allowFullScreen" value="true" />';
+	webmvplayer +=' <param name="Flvplayer" value="vcastr_file={$list.playurl}&IsAutoPlay=1&IsContinue=1" />';
+	webmvplayer +=' <embed src="/static/lmwlj.video.swf" allowfullscreen="true" flashvars="vcastr_file={$list.playurl}&LogoUrl=/static/index/images/logo.png&IsAutoPlay=1&vcastr_title={$list.title}&IsContinue=1" quality="high"pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="100%" height="'+h+'" id="webmvplayer" name="webmvplayer" allowscriptaccess="always"></embed>';
+	webmvplayer +=' </object></div>';
+	{/if}
+/*function mvplay(url,w,h){ 
+	var frameid = Math.random(); 
+	window.webmvplayer = '<embed id="webmvplayer" name="webmvplayer" src="http://static.kgimg.com/common/swf/video/videoPlayer.swf" height="'+h+'" width="'+w+'" allowscriptaccess="always" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="skinurl=http%3a%2f%2fstatic.kgimg.com%2fcommon%2fswf%2fvideo%2fskin.swf&amp;aspect=true&amp;url='+url+'&amp;autoplay=true&amp;fullscreen=true&amp;initfun=flashinit" type="application/x-shockwave-flash" wmode="Transparent" allowfullscreen="true"></embed><script>window.onload = function() { parent.document.getElementById(\''+frameid+'\').height = document.getElementById(\'webmvplayer\').height+\'px\'; }<'+'/script>';	document.write('<iframe id="'+frameid+'" src="javascript:parent.webmvplayer;" frameBorder="0" scrolling="no" width="100%" frameborder="0" vsspace="0" hspace="0" marginwidth="0" marginheight="0" ></iframe>'); 
+}*/
+</script>
+</head>
+
+<body>
+<div id="video">
+	<!-- <video width="1024" height="576" src="http://fs.mv.open.kugou.com/201812272105/37c4c9a44c77acd5bce0840cda8dbc26/G148/M02/18/0D/dJQEAFwgsQKAM9bbAQpkknu01Ws776.mkv" preload="auto" autoplay="" controls="" playsinline="true" webkit-playsinline="true" webkit-playsinline="" x5-playsinline="" x-webkit-airplay="allow"class="embed-responsive-item"></video> -->
+	<iframe id="webmvplayer" src="javascript:parent.webmvplayer;" frameBorder="0" scrolling="no" width="100%" height="400" frameborder="0" vsspace="0" hspace="0" marginwidth="0" marginheight="0" ></iframe>
+</div>
+<script>
+	//mvplay("",w,h);
+	//console.log(w+'------'+h);
+	//$('iframe').css({'width':w,'height':h});
+	$('iframe').css({'width':'100%','height':'100%'});
+</script>
+</body>
+</html>

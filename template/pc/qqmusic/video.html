@@ -1,0 +1,88 @@
+{include file="public/base_head" /}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta name="keywords" content="{$Think.config.webname},y.lmwljz.com">
+<meta name="description" itemprop="description"  content="【{$Think.config.webname}】最新最全的在线正版音乐网站，本站为您免费提供最全的在线音乐试听下载，以及全球海量电台和MV播放服务、最新音乐播放器下载。音乐总有新玩法">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="email=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="applicable-device" content="mobile">
+<meta name="baidu-site-verification" content="UtTQyEGNH4">
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript" src="__BAESDIR__/ckplayer/ckplayer.js?v=1.4" charset="UTF-8"></script>
+<title>{$list.title}{if condition="$list['albumdesc']"}_{$list.albumdesc}{/if} - MV在线播放_{$Think.config.webname}</title>
+<script src="//qzonestyle.gtimg.cn/open/qcloud/video/h5/h5connect.js" charset="utf-8"></script>
+<style>
+body{border:0px; padding:0px; margin:0px}
+div{margin:0px auto;}
+#video{width:100%;height:100%;margin: 0px auto;}
+</style>
+</head>
+
+<body>
+<div id="video"></div>
+
+<script>
+
+{if condition="$list['ismobile']"}
+	var w = $(window).width();
+	var h = $(window).height();
+	$('#video').css({'width':w,'height':h});
+	{if condition="$ismp4"}
+	var option = {"width":w,"height":h,"auto_play":1,"third_video":{
+        "urls":{30:"{$list.playurl}"}
+        }
+    }
+	{else /}
+	var option = {"width":w,"height":h,"auto_play":1,"third_video":{
+        "urls":{230:"{$list.playurl}"}
+        }
+    }
+	{/if}
+	var player = new qcVideo.Player("video", option);
+{else /}
+	{if condition="$ismp4"}
+		var w = $(window).width();
+		var h = $(window).height();
+		$('#video').css({'width':w,'height':h});
+		var option = {"width":w,"height":h,"auto_play":1,"third_video":{
+			"urls":{
+				   40:"{$list.playurl}"
+				}
+			}
+		}
+		var player = new qcVideo.Player("video", option);
+	{else /}
+		var videoObject = {
+			container: '#video', //容器的ID或className
+			variable: 'player',//播放函数名称
+			poster:'{$list.albumimg}',//封面图片
+			mobileCkControls:true,//是否在移动端（包括ios）环境中显示控制栏
+			mobileAutoFull:true,//在移动端播放后是否按系统设置的全屏播放
+			h5container:'#videocontainer',//h5环境中使用自定义容器
+			autoplay: true, //是否自动播放
+			//live:true,//是否是直播视频，true=直播，false=点播
+			html5m3u8:true,//是否在pc端环境使用hls播放m3u8
+			video: [//视频地址列表形式
+				['{$list.playurl}', 'video/mp4', '高清', 0]
+			]
+		};
+		var player = new ckplayer(videoObject);
+	{/if}
+{/if}
+	
+</script>
+
+
+<!-- <script type="text/javascript">
+	//player.resize(w,h);
+	//console.log(w+'------'+h);
+	//https://cloud.tencent.com/document/api/267/5706#definition
+</script> -->
+</body>
+</html>

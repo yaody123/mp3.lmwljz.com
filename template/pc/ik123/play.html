@@ -1,0 +1,201 @@
+{include file="public/base_head" /}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>【懂我音乐】{$title}_{$list.title} - {$Think.config.title}_lmwljz.com</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{:modified('/css/mplayer.css')}">
+<link href="{:modified('/css/play.css')}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/play/js/jquery.min.js"></script>
+{include file="public/ik123_vsid" /}
+<style>
+.footerWrapper {width: 100%;position: absolute;bottom: 0px;}
+.header{background: #fff}
+.content_box {overflow-y: none;}
+.audio_extinfo{max-width:560px;}
+
+.audio-module .controls-bar {margin-left: 170px;}
+.audio-module .controls-right{margin-left: 560px;}
+.audio_title {padding-top: 50px;}
+.audio_extinfo .song_info {text-align: left;}
+.rotate-container{margin: 15px auto;}
+.audio_extinfo,.content_box{overflow-y:inherit;}
+
+.audio-module .player-module{width:580px;}
+.audio-module .controls-left .icon-playbar-prev{margin-left:0px;}
+.audio-module .controls-right, .audio-module .controls-right .mode-volume-list{width:20px;}
+.audio-module .controls-left .icon-playbar-pause, .audio-module .controls-left .icon-playbar-play{margin-left:47px;}
+
+.jp-state-muted .icon-playbar-maxvox{background-position: -160px -195px;}
+.jp-state-muted .icon-playbar-maxvox:hover{background-position: -144px -195px}
+</style>
+</head>
+
+<body>
+<div style="background:#fff;">{include file="public/header" /}</div>
+<div class="play_box">
+	<div class="content_box">
+		<div class="content_box_bg" style="background-image:url(__PUBLIC__/images/play/logo.png);"></div>
+		<div class="audio_title"><h5>{$list.title}</h5></div>
+		<div class="rotate-container" style="background-image:url(__PUBLIC__/images/play/logo.png);"></div>
+		<div class="audio_extinfo">
+			<div class="song_info">
+				<p>歌曲：{$list.title}<br>来源：<a href="http://www.ik123.com/mp3-dj/ik123_{$list['ik_id']}.html" target="_blank">ik123 · 深港DJ俱乐部</a><br><br>
+				<hr>更多关注 【林梦网络】 <a href="http://y.lmwljz.com" target="_blank">lmwljz.com</a><br>QQ：1415336788<br>如有侵权，请联系删除！<br>
+				</p>
+			</div>
+			<!-- <fieldset><legend>下载</legend> -->
+			<div style="text-align: left;margin-top:15px;" class="download-url">
+				<button class="layui-btn layui-btn-warm download ondown"><a href="javascript:;" onclick="dwyy_download('{$list['id']}','ik123')">免费下载</a></button>
+			</div>
+			<!-- </fieldset> -->
+		</div>
+	</div>
+</div>
+<!--*********-->
+<div class="audio-module playerbg jp-audio" id="jp_container_1"  role="application" aria-label="media player" style="position: absolute;bottom:0px;">
+	<div class="module-bg"></div>
+	<div class="player-module jp-type-playlist" >
+		<!--  模块左部分：上一首，播放，暂停，下一首  -->
+		<div class="controls-left">
+			<a class="icon icon-playbar-prev jp-previous prev_next"  data-id="{$list.prev_song}" title="上一曲"></a>
+			<a class="icon icon-playbar-play jp-play" id="toggle"></a>
+			<a class="icon icon-playbar-next jp-next prev_next"  data-id="{$list.next_song}"  title="下一曲"></a>
+		</div>
+		<!-- 模块中间部分：容器  -->
+		<div class="controls-bar">
+			<!-- 模块中间部分：上半部分：歌曲信息 -->
+			<div class="song-info">
+				<!-- 歌曲名 -->
+				<div class="like-song">
+					<div class="controls-songName" title=""><span class="songName" id="songName">&nbsp;{$list.title}</span></div>
+				</div>
+				<!-- 时长 -->
+				<div class="coding-duration jp-time-holder">
+					<span class="duration ie8" id="duration">
+					<i class="change-time jp-current-time" role="timer" aria-label="time">&nbsp;00</i> / 
+					<i class="all-time jp-duration"  role="timer" aria-label="duration">&nbsp;00</i></span>
+				</div>
+			</div>
+			<!-- 模块中间部分：下半部分：播放控制条容器 -->
+			<div class="bar" id="bar">
+				<!-- 播放进度背景（自适应） -->
+				<div class="bg" id="progress_bg">
+					<span class="icon icon-playbar-bgleft" id="bg_left"></span>
+					<span class="bg-middle barBG" id="bg_middle"></span>
+					<span class="icon icon-playbar-bgright" id="bg_right"></span>
+				</div>
+				<!-- 播放进度条（自适应） -->
+				<div class="progress-bar jp-progress jp-seek-bar1" id="progress_bar">
+					<span class="icon icon-playbar-progressleft" id="progress_left"></span>
+					<div class="progress-middle " id="progress_middle">
+						<span class="progress barProgress jp-play-bar" id="progress"></span>
+					</div>
+				</div>
+				<!-- 播放定位头（自适应） -->
+				<div class="drag-playhead jp-seek-bar" id="drag_playhead1">
+					<span class="icon icon-playbar-playhead" id="playhead"></span>
+				</div>
+			</div>
+		</div>
+		<!-- 模块右部分：容器 -->
+		<div class="controls-right">
+			<!-- 模块右部分： 音量控制面板 -->
+			<div class="mode-volume-list">
+				<!-- 音量开关控制按钮 -->
+				<div class="volume-icon" id="volume"><span class="icon icon-playbar-maxvox" id="volume_icon" data-volume='0'></span></div>
+				<!-- 音量控制面板 -->
+				<div class="volume-panel" id="volume_panel">
+					<div class="volume-control" id="volume_control">
+						<span class="icon icon-playbar-progressbottom" id="volume_bottom"></span>
+						<div class="volume-bar" id="volume_bar">
+							<span class="volume-progress volumeProgress" id="volume_progress" style="top: 32px;"></span>
+						</div>
+						<div class="volume-head" id="volume_head">
+							<span class="icon icon-playbar-volumehead" id="volumehead" style="top: 33.2px;"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div  class="dwpayer"><div id="lm_player" class="jp-jplayer"></div></div>
+</div>
+<!--*********-->
+
+<script type="text/javascript" src="{:modified('/play/js/lmwljz.myplayer.js')}"></script>
+<script type="text/javascript" src="{:modified('/play/js/lmwljz.common.js')}"></script>
+<script src="{:modified('/js/common.js')}"></script>
+
+<script>
+	var timeshow,timetotal;
+    var ready     = false;
+	var next_song = "{$list.next_song}";
+	var medias    = "{$list.m4a}";
+
+    $("#lm_player").jPlayer({
+        ready: function (event) {
+            ready = true;
+            $(this).jPlayer("setMedia", {"m4a":medias.replace('#vsid#',VW_VSID)}).jPlayer("play",2);
+        },
+        pause: function() { /*$(this).jPlayer("clearMedia");*/ },
+        error: function(event) {
+            /*if(ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
+              	//$(this).jPlayer("setMedia", stream).jPlayer("play");
+				//$(this).jPlayer("play",Math.floor(stream.status.currentTime));
+            }*/
+        },
+		ended:function(){
+			window.location.href= "{:url('play',['type'=>$list['type']])}?id="+next_song;
+		},
+        swfPath: "__PUBLIC__/play/js",
+        supplied: "m4a",
+        preload: "none",
+        wmode: "window",
+        //solution:"flash,html",
+        volume: 1, //默认音量
+        useStateClassSkin: true,
+        autoBlur: false,
+        keyEnabled: true,
+        smoothPlayBar:true
+    });
+
+	$('.prev_next').click(function(){
+        var id = $(this).data('id');
+		if(id){
+			window.location.href= "{:url('play',['type'=>$list['type']])}?id="+id;
+		}
+	});
+
+	//静音
+	$('#volume_icon').click(function(){
+		var v = $(this).data('volume');
+		if(v){
+			$("#lm_player").jPlayer("unmute");//恢复
+			$(this).data('volume',0);
+		}else{
+			$("#lm_player").jPlayer("mute");
+			$(this).data('volume',1);
+		}        
+	});
+
+	/*$('.jp-current-time').on('DOMNodeInserted',function(){
+        timeshow = $('.jp-current-time').text();
+        if(!timetotal){
+            timetotal = $(".jp-duration").text();//总时长
+		}
+		//console.log(timetotal+'---'+timeshow);
+		if(timeshow == timetotal && timeshow){
+		    if(next_song){
+                window.location.href= "{:url('play')}?id="+next_song;
+			}
+		}
+    });*/
+
+</script>
+
+
+</body>
+</html>

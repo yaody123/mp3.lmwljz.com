@@ -1,0 +1,51 @@
+{include file="public/base_head" /}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>在线下载【{$list.title}】 - {$Think.config.webname} - {$Think.config.title}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="__PUBLIC__/css/play.css">
+</head>
+
+<body>
+<div class="play_box">
+	<h3 style="margin: 10px auto;margin-top:10%; height: 220px; width: 500px;line-height: 120px; text-align: center; border: 2px dashed #3F51B5;background: #ffce3a;">【{$list.title}】<!--</h3>-->
+	<!--<h3 style="margin: 10% auto; height: 100px; width: 500px; text-align: center; border: 1px dashed #f30909;">-->
+		<a onclick="javascript:downloads('{$list.hash}');" style="margin: 0px auto; background: #4cae4c;margin-top: 30px;display: block;height: 30px;line-height: 30px;width:100px; text-align: center;border-radius:8px;">点击下载</a>
+	</h3>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/play/js/jquery.min.js"></script>
+<script type="text/javascript">
+function downloads(id){
+	if(!id){return false;}
+	$.ajax({
+		type: 'post',
+		timeout: 30000,
+		url: 'index',
+		data: {'mid':id,'key':"{$token}",'type':'kugou'},
+		dataType:'json',
+		async:false,
+		success: function(data){
+			if(data.code==1){
+				window.open(data.data.url,'_self');
+				//60秒后关闭
+				setTimeout(function(){
+					window.close();
+				},2000);
+				
+			}else{
+				alert(data.msg);
+			}
+		},
+		error: function() {
+			alert('貌似网络开小差了');
+		}
+	});
+};
+</script>
+
+</body>
+</html>

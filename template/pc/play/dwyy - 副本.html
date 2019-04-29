@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>播放器 - {$Think.config.webname} - 懂你所听</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="{:modified('/css/play.css')}" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+	//if(top==self)top.location="http://y.lmwljz.com";
+    var playpath = "__PUBLIC__/play/js";
+    var autoPlay = true; //是否自动播放
+	var access_token = "{$token}";
+	var lmtoken  = "{:session(lmtoken)}";
+</script>
+</head>
+
+<body>
+
+<div class="audio-module playerbg jp-audio" id="jp_container_1"  role="application" aria-label="media player" style="bottom:inherit;">
+	<div class="module-bg"></div>
+	<div class="player-module jp-type-playlist" >
+		<!--  模块左部分：上一首，播放，暂停，下一首  -->
+		<div class="controls-left">
+			<a class="icon icon-playbar-prev jp-previous" id="prev"></a>
+			<a class="icon icon-playbar-play jp-play" id="toggle"></a>
+			<a class="icon icon-playbar-next jp-next" id="next"></a>
+		</div>
+		<!-- 专辑封面  -->
+		<div class="bar-albumImg"><a target="_blank" href="javascript:;"><img src="__PUBLIC__/images/play/logo.png"></a></div>
+		<!-- 模块中间部分：容器  -->
+		<div class="controls-bar">
+			<!-- 模块中间部分：上半部分：歌曲信息 -->
+			<div class="song-info">
+				<!-- 歌曲名 -->
+				<div class="like-song">
+					<div class="controls-songName" title=""><span class="songName" id="songName">&nbsp;歌曲</span></div>
+					<pre class="songName" id="songNameTemp" style="">&nbsp;歌曲</pre>
+				</div>
+				<!-- 时长 -->
+				<div class="coding-duration jp-time-holder">
+					<span class="duration ie8" id="duration">
+					<i class="change-time jp-current-time" role="timer" aria-label="time">&nbsp;</i> / 
+					<i class="all-time jp-duration"  role="timer" aria-label="duration">&nbsp;</i></span>
+				</div>
+			</div>
+			<!-- 模块中间部分：下半部分：播放控制条容器 -->
+			<div class="bar" id="bar">
+				<!-- 播放进度背景（自适应） -->
+				<div class="bg" id="progress_bg">
+					<span class="icon icon-playbar-bgleft" id="bg_left"></span>
+					<span class="bg-middle barBG" id="bg_middle"></span>
+					<span class="icon icon-playbar-bgright" id="bg_right"></span>
+				</div>
+				<!-- 播放进度条（自适应） -->
+				<div class="progress-bar jp-progress" id="progress_bar">
+					<span class="icon icon-playbar-progressleft" id="progress_left"></span>
+					<div class="progress-middle " id="progress_middle">
+						<span class="progress barProgress jp-play-bar" id="progress"></span>
+					</div>
+				</div>
+				<!-- 播放定位头（自适应） -->
+				<div class="drag-playhead jp-seek-bar" id="drag_playhead">
+					<span class="icon icon-playbar-playhead" id="playhead"></span>
+				</div>
+			</div>
+		</div>
+		<!-- 模块右部分：容器 -->
+		<div class="controls-right">
+			<!-- 模块右部分： 音量控制面板 -->
+			<div class="mode-volume-list">
+				<!-- 音量开关控制按钮 -->
+				<div class="volume-icon" id="volume">
+					<span class="icon icon-playbar-maxvox" id="volume_icon"></span>
+				</div>
+				<!-- 音量控制面板 -->
+				<div class="volume-panel" id="volume_panel">
+					<div class="volume-control" id="volume_control">
+						<span class="icon icon-playbar-progressbottom" id="volume_bottom"></span>
+						<div class="volume-bar" id="volume_bar">
+							<span class="volume-progress volumeProgress" id="volume_progress" style="top: 32px;"></span>
+						</div>
+						<div class="volume-head" id="volume_head">
+							<span class="icon icon-playbar-volumehead" id="volumehead" style="top: 33.2px;"></span>
+						</div>
+					</div>
+				</div>
+				<div class="play_tips" style="display: block; opacity: 0;">已添加到播放列表</div>
+				<!-- 播放模式 -->
+				<a class="icon icon-playbar-cycle jp-shuffle"></a>
+				<!-- 下载 -->
+				<a href="javascript:;" class="icon icon-playbar-download" id="pb_download"></a>
+				<!-- 分享 -->
+				<a href="javascript:;" class="icon icon-playbar-share" id="pb_share"></a>
+				<!--<a class="icon list" id="list" href="javascript:musicplaylist('#mod-playlist');" hidefocus="true"><span class="list-count" id="list_count">1</span></a>-->
+				<div class="list">
+					<select name="list">
+						<option value="qwdqw">asdasdas</option>
+					</select><span class="list-count1" id="list_count">0</span>
+				</div>
+			</div>
+		</div>
+		<div class="mod-playlist" id="mod-playlists" data-hide="true" style="bottom:none;">
+			<div class="song-box">
+
+				<div class="box-header">
+					<div class="title" id="playlist_title">播放队列/<span>1</span></div>
+					<div class="action-box fr">
+						<span class="icon list-menu-icon-close closePlayList" title="关闭播放队列" id="closePlayList" style="float: right;"></span>
+					</div>
+				</div>
+
+				<div id="musicbox" class="musicbox">
+					<div class="songjsAction" style="overflow: hidden; padding: 0px; width: 470px;">
+						<div class="jspContainer" style="width: 470px; height: 360px;">
+							<div class="jspPane" style="top: 0px; left: 0px; width: 470px;">
+								<!--列表-->
+								<div class="musiclist jp-playlist">
+									<ul id="playul">
+										<li class="active">
+											<div class="musiclist-item clearfix">
+												<span class="musiclist-number">1</span>
+												<div class="musiclist-name">
+													<span class="musiclist-songname-txt" title="今夜的我好寂寞">&nbsp;今夜的我好寂寞</span>
+													<div class="mod-list-menu">
+														<a href="javascript:;" class="icon list-menu-item icon-playbar-download list-action-down"<i class="icon list-menu-icon-down"></i><span class="icon_txt">下载</span></a>
+														<a href="javascript:;" class="icon list-menu-item icon-playbar-share list-action-share"><i class="icon list-menn-icon-share"></i><span class="icon_txt">分享</span></a>
+														<a href="javascript:;" class="icon list-menu-item list-menu-icon-del list-action-del"><i class="icon list-menu-icon-add"></i><span class="icon_txt">删除</span></a>
+													</div>
+												</div>
+												<div class="musiclist-artist">安东阳</div>
+												<div class="musiclist-time">04:43</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<!--暂无结构-->
+								<div id="noSongList" class="noSongList" style="display: none"><p class="noSongListTip">队列中还没有歌曲</p><p class="addSongLink">去<a target="_blank" href="/" class="gotoIndex">首页</a>添加歌曲</p></div>
+								<!--暂无结构-->
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<form action="{:url('Index/download/getinfo')}" method="post" target="_blank"><input name="download" value="0" type="hidden"></form>
+</div>
+
+<div  class="dwpayer">
+	<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/play/js/jquery.min.js"></script>
+<script type="text/javascript" src="{:url('lmwljzlist','','js')}"></script>
+<script type="text/javascript" src="{:modified('/play/js/lmwljz.myplayer.js')}"></script>
+<script type="text/javascript" src="{:modified('/play/js/lmwljz.dwyylist.js')}"></script>
+<script type="text/javascript" src="{:modified('/play/js/dowo.myplayer.js')}"></script>
+<script>
+	$(function () {
+		$("#pb_download").click(function(){
+			var id = $('input[name=download]').val();
+			if(id){$('form').submit();}
+		});
+
+		//默认列表循环
+		setTimeout(function(){
+			$('.jp-repeat').click();
+			$('.mod-playlist .musicbox .musiclist-item .musiclist-name .mod-list-menu').css({'display':'none'});
+		},500);
+
+        //控制音乐列表右上角关闭按钮交互
+        $("#closePlayList").click(function () {
+            // $(this).parent().parent().parent().parent().attr('style','');
+            $("#mod-playlist").attr('style','');
+        });
+
+    });
+
+    function musicplaylist(h){
+        var h = $(h);
+        if(h.css('bottom') === '80px'){
+            $('#closePlayList').click();
+            //h.attr('style','');
+        }else{
+            h.attr('style','bottom:80px;');
+        }
+    }
+
+
+
+</script>
+
+</body>
+</html>

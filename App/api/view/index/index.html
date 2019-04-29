@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{$list.topinfo.ListName} - 懂我音乐API - {$Think.config.webname}</title>
+    <meta name="description" content="{$Think.config.webname}API
+1、三站合一， 支持 QQ/酷狗/百度音乐资源免费获取，MV在线播放；
+2、请求方式：GET/POST
+3、参数说明：
+API：api.lmwljz.com
+本API 仅供学习研究，如有侵权联系删除">
+    <meta name="keywords" content="{$Think.config.webname},{$Think.config.webname}API,三站合一, 支持 QQ/酷狗/百度音乐资源免费获取，MV在线播放,api.lmwljz.com,mp3.lmwljz.com">
+    <meta name="viewport"  content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" data-react-helmet="true">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <style type="text/css">object, embed {
+        -webkit-animation-duration: .001s;
+        -webkit-animation-name: playerInserted;
+        -ms-animation-duration: .001s;
+        -ms-animation-name: playerInserted;
+        -o-animation-duration: .001s;
+        -o-animation-name: playerInserted;
+        animation-duration: .001s;
+        animation-name: playerInserted;
+    }
+
+    @-webkit-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @-ms-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @-o-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }</style>
+
+    <link rel="stylesheet" href="__BAESDIR__/css/style.css" data-react-helmet="true">
+    <style type="text/css" data-react-helmet="true">#s-1711911666 pre {
+        border: 1px solid silver;
+    }
+    #s-1711911666 blockquote.default {
+        border-left: 5px solid #D0E3F0;
+        margin: 8px 0;
+        padding: 8px 16px;
+        background-color: #F0F7FD;
+        color: #0382AD;
+    }
+    .article{width: 480px;margin: 15px auto;max-width: 96%;}
+    .infoss p{line-height: 24px; margin-bottom: 0px;}
+    .qqtop_pic{min-width:1000px;width: 1000px!important;margin: 0px auto;}
+    .qqtop_pic img{width:100%;}
+    .songimg img{width:44px;height:44px;}
+    </style>
+</head>
+
+<body>
+<div class="main article">
+    <div class="article-body kancloud-markdown-body">
+        <div id="s-1711911666" class="infoss">
+            <p style="margin-bottom: 20px; text-align: center">
+                <img src="http://mp3.lmwljz.com/static/index/images/logo.png"alt="2018-12-28/logo.png">
+            </p>
+        </div>
+    </div>
+    <div class="article-foot"></div>
+</div>
+<div class="aplayer-wrap qqtop_pic">
+    <div id="dwyyplay"></div>
+</div>
+<div class="main article">
+    <div class="article-body kancloud-markdown-body">
+        <p style="font-weight: bolder; font-size: 18px;">
+            <a href="{$url}" target="_blank">API文档</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="//mp3.lmwljz.com/" target="_blank">在线音乐[MV]</a>
+        </p>
+        <p><script src="{:url('error/tongji')}"></script></p>
+        <div class="infoss">
+            <p>1、三站合一， 支持 QQ/酷狗/百度音乐资源免费获取，MV在线播放；</p>
+            <p>2、请求方式：GET/POST</p>
+            <p> 3、参数说明：</p>
+            <p>&nbsp;&nbsp;1). info=qq,001asRbH0emhcF,url （分别三个参数，以半角度“,”好分隔）</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;渠道名：qq|kugou|baidu</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;歌曲ID：001asRbH0emhcF</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;类 别 ：[url]播放地址；[pic]专辑图；[img]歌曲图片；[lyric]歌词</p>
+            <p>&nbsp;&nbsp;2). key=你的token</p>
+            <p>4、返回说明</p>
+            <p>&nbsp;&nbsp;1).格式：json</p>
+            <p>&nbsp;&nbsp; 2).数据：code=1 成功 否则失败</p>
+            <p> 5、请求协议 HTTP</p>
+            <p>API：<a href="http://api.lmwljz.com/" target="_blank">api.lmwljz.com</a></p>
+            <p>  本API 仅供学习研究，如有侵权联系删除</p>
+        </div>
+
+    </div>
+    <div class="article-foot"></div>
+</div>
+
+<script src="//mp3.lmwljz.com/static/index/js/jquery.min.js"></script>
+<script src="//mp3.lmwljz.com/static/index/aplayer/color-thief.js"></script>
+<script src="//mp3.lmwljz.com/static/index/aplayer/APlayer.min.js"></script>
+
+<link href="//mp3.lmwljz.com/static/index/aplayer/APlayer.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    var audio ={$list.audio|json_encode=###};
+    var wplay = new APlayer({
+        container: document.getElementById('dwyyplay'),
+        fixed:true,
+        theme: '#169af3',
+        autoplay:false,
+        listFolded:true,//列表折叠
+        lrcType: 3,
+        audio: audio
+    });
+    //wplay.play();
+    //监听播放
+    wplay.on('play', function () {
+        var i = wplay.list.index;
+        console.log('正在播放:'+wplay.list.audios[i]['name']);
+    });
+    wplay.switchAudio("{:rand(0,99)}");
+    setTimeout(
+        function(){
+            //wplay.play();
+            //$('#dwyyplay .aplayer-time .aplayer-icon-play').click()
+            $('.aplayer-pic').click();
+        }
+        ,800);
+
+</script>
+
+
+</body>
+</html>

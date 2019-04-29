@@ -1,0 +1,50 @@
+{include file="public/base_head" /}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$title} - {$Think.config.title}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="__PUBLIC__/css/mplayer.css">
+</head>
+
+<body>
+<div class="play_box">	
+	{if condition="$list"}
+
+	<div class="content_box">
+		<div class="content_box_bg" style="background-image:url({$list.img});"></div>
+		<div class="audio_title"><h5>{$list.audio_name}</h5></div>
+		<div class="rotate-container" style="background-image:url({$list.img});"></div>
+		<div class="audio_extinfo">
+			<div class="song_info">
+				<p>
+					歌曲：{$list.song_name}<br>
+					歌手：{$list.author_name}<br>
+					<!--音质：{$list.bitrate}bit / {$list.filesize}<br>-->
+					专辑：{$list.album_name}
+				</p>
+			</div>
+			<div class="lyrics">
+				{if condition="$list['lyrics']"}
+				<ul>
+					<li>歌词</li>
+					{volist name="list.lyrics" id="v"}
+					<li>[{$v['0']}] {$v['1']}</li>
+					{/volist}
+				</ul>
+				{/if}
+			</div>
+		</div>
+		
+		<!--<video controls="" autoplay="auto" name="media"><source src="" type="audio/mpeg"></video>-->
+		<audio src="{$list.play_url}" loop="loop" autoplay="autoplay">
+			Your browser does not support the audio tag.
+		</audio>
+	</div>
+	{/if}
+</div>
+
+</body>
+</html>

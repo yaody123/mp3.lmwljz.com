@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>登陆 - {$Think.config.webname}</title>
+<link rel="stylesheet" href="__PUBLIC__/css/login.css">
+
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script>
+	var qq_appid  = "{$Think.config.qq_appid}";
+	var qq_appkey = "{$Think.config.qq_appkey}";
+	var qq_redirect_uri = "{$Think.config.qq_redirect_uri}"
+</script>
+<script src="__PUBLIC__/js/common.js"></script>
+
+</head>
+
+<body>
+<div class="kg_popup kg_popup_login" id="KgPopupLoginBox" style="display: block; z-index: 101; margin:12% auto;position: relative;">
+	<div class="kg_popup_ct">
+		<a class="kg_popup_close" id="KgPopupLoginCloseBtn"><i></i></a>
+		<div class="kg_popup_hd">
+			<h4 class="kg_popup_hd_tl">登陆{$Think.config.webname}</h4>
+			<div class="kg_popup_hd_l"></div>
+			<div class="kg_popup_hd_r"></div>
+		</div>
+		
+		<div class="kg_popup_bd">
+			<div class="kg_popup_notice kg_popup_notice_warn" id="KgPopupLoginNoticeArea" style="visibility:hidden;"><i class="kg_popup_notice_icon"></i><span class="kg_popup_notice_txt">帐号或密码错误</span></div>
+			<form id="KgPopupLoginForm">
+				<input type="hidden" name="ticket" id="TcaptchaTicket">
+				<div class="kg_popup_txt_area">
+					<div class="kg_popup_txt_box kg_popup_txt_box_username">
+						<label class="kg_popup_txt_tl" for="KgPopupUserName">帐号：</label>
+						<input id="KgPopupUserName" name="UserName" type="text" class="kg_popup_txt_ipt" placeholder="用户名/手机/邮箱">
+					</div>
+				</div>
+				<div class="kg_popup_txt_area">
+					<div class="kg_popup_txt_box kg_popup_txt_box_password">
+						<label class="kg_popup_txt_tl" for="KgPopupUserPwd">密码：</label>
+						<input id="KgPopupUserPwd" name="UserPwd" type="password" placeholder="请输入密码" class="kg_popup_txt_ipt">
+						<!----><a href="javascript:;" class="kg_popup_forget_pwd" target="_blank">忘记密码</a>
+					</div>
+				</div>
+				<div class="kg_popup_txt_area" id="KgPopupCodeArea" style="display:none">
+					<div class="kg_popup_txt_box kg_popup_txt_box_code">
+						<label class="kg_popup_txt_tl" for="KgPopupCheckCode">验证码：</label>
+						<input id="KgPopupCheckCode" name="CheckCode" type="text" class="kg_popup_txt_ipt">
+					</div>
+					<a class="kg_popup_code_area" href="https://login-user.kugou.com/login/?appid=1014&amp;ref=http://www.kugou.com/reg/web/&amp;redirect_uri=http://static.kugou.com/common/html/login/regok.html&amp;callback=UsLoginCallback#" title="看不清，换一张" id="kg_div_code"></a>
+					<span class="kg_popup_changeone"><a href="javascript:getCodeImg('KgPopupVerifyCode');" title="换一张" id="KgPopupChangeOne">换一张</a></span>
+				</div>
+				<div class="kg_popup_tool_area kg_popup_bottom10">
+					<div class="kg_popup_tool_lt">
+						<input class="kg_popup_checkbox" type="checkbox" name="autoLogin" id="autoLogin" checked="">
+						<label for="autoLogin">下次自动登录</label>
+					</div>
+					<div class="kg_popup_tool_rt"><a href="{:url('reguser')}" class="kg_popup_now_reg" target="_blank">立即注册</a></div>
+				</div>
+				<div class="kg_popup_txt_area">
+					<div class="kg_popup_login_box" id="kg_popup_login_btn_box">
+						<p class="empty_box" id="empty_box"></p>
+						<input type="button" class="kg_popup_login_btn" id="KgPopupLoginBtn" value="登录">
+					</div>
+				</div>
+				<div class="kg_popup_tool_area position_absole">
+					<div class="kg_popup_tool_lt">
+						<div class="kg_popup_thirdpart">
+							其他方式登录：<a href="javascript:connectLogin('Sina')" class="kg_popup_thirdpart_icon kg_popup_thirdpart_weibo" style="display:none" title="使用新浪微博帐号登录">使用新浪微博帐号登录</a>
+							
+							<a href="javascript:connectLogin('RenRen');" class="kg_popup_thirdpart_icon kg_popup_thirdpart_renren" style="display:none" title="使用人人帐号登录">使用人人帐号登录</a>
+							<a href="javascript:connectLogin('QQWeiBo');" class="kg_popup_thirdpart_icon kg_popup_thirdpart_txweibo" style="display:none" title="使用腾讯微博帐号登录">使用腾讯微博帐号登录</a>
+							<a href="javascript:connectLogin('qzone')" class="kg_popup_thirdpart_icon kg_popup_thirdpart_qq" title="使用QQ号登录">使用QQ号登录</a>
+							<a href="javascript:connectLogin('weixin');" class="kg_popup_thirdpart_icon kg_popup_thirdpart_weixin" title="使用微信扫描二维码登录">使用微信扫描二维码登录</a>
+						</div>
+					</div>
+				</div>
+				<div class="kg_popup_tool_area kg_popup_user_info">
+					<a class="userProtocol" href="javascript:;" target="_blank">用户协议</a>
+					<a class="userPrivacy" href="javascript:;" target="_blank">隐私政策</a>
+				</div>
+			</form>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div id="KgPopupLoginBoxBg" style="position: absolute; display: block; left: 0px; top: 0px; width: 100%; background: rgb(0, 0, 0); opacity: 0.6; z-index: 100; height: 949px;"></div><!---->
+<!--<div id="KgShadowLayer" style="position: absolute; display: none; left: 0px; top: 0px; width: 100%; height: 100%; background: rgb(0, 0, 0); opacity: 0.6; z-index: 1002;"></div>-->
+</body>
+
+</html>

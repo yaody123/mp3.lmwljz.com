@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{$title} - {$Think.config.webname} - 懂你所听</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<script type="text/javascript" src="__PUBLIC__/play/js/jquery.min.js"></script>
+</head>
+
+<body>
+<div>asdasdas
+	<a href="javascript:;" id="ajaxs">请求啊</a>
+</div>
+
+</body>
+
+<script>
+$(function () {
+	$('#ajaxs').click(function(){
+		$.ajax({
+		  type: 'post',
+		  timeout: 10000, // 超时时间 10 秒
+		  headers: {
+			  'access-token':'{$token.token}111',
+			  'accept':'{$token.accept}',
+
+			  //'Referer':'www.lwmljz.com'
+			  //'Origin':'www.lwmljz.com'
+		  },
+		  url: '',
+		  data: {'id':'12121'},
+		  success: function(data) {
+			   console.log(data);
+		  },
+		  error: function(err) {
+			  console.log(err);
+		  },
+		  complete: function(XMLHttpRequest, status) { //请求完成后最终执行参数　
+		  }
+	  });
+	});
+	
+})
+</script>
+</html>

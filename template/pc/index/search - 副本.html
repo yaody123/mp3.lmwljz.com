@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)http://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=ok%E6%AD%8C%E6%9B%B2 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit|ie-comp|ie-stand"> 
+<title>音乐搜索 - {$Think.config.title}</title>
+<link href="/favicon.ico" rel="shortcut icon">
+<link rel="stylesheet" href="{:modified('/css/rankPage.min.css')}" type="text/css">
+<link rel="stylesheet" href="{:modified('/css/search.css')}">
+<!-- <script src="__PUBLIC__/js/collect.js"></script> -->
+<script>
+	var apmCollectData = apmCollectData || [];
+	var getkeyword = "{$keyword}";
+	var lmtoken = "{$token}";
+</script>
+<style type="text/css">
+	object,embed{-webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;-ms-animation-duration:.001s;-ms-animation-name:playerInserted;-o-animation-duration:.001s;-o-animation-name:playerInserted;animation-duration:.001s;animation-name:playerInserted;}
+	@-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}
+	@-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}
+	@-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}
+	@keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}
+</style>
+</head>
+<body>
+    {include file="public/header" /}
+
+	<!--<div class="search_header">
+        <div class="search_wrapper content_search">
+    		<div class="search_input"><input type="text"><div class="searh_btn"><i class="search_icon"></i><span>搜索</span></div></div>
+            <div class="search_recommend content_search_recommend hide" style="display: none;"></div>
+            <div class="search_histroy content_search_histroy hide" style="display: none;"></div>
+        </div>
+	</div>-->
+
+	<div class="search_content">
+		<ul class="search_tab clearfix">
+			<li class="active" data-type="song"><a id="song" href="javascript:;">单曲</a></li>
+			<!-- <li data-type="special"><a id="special" href="javascript:;">歌单</a></li>
+			<li data-type="mv"><a id="mv" href="javascript:;">MV</a></li> -->
+		</ul>
+
+		<div class="search_song" id="search_song" style="display: block;">
+			<div class="song_list_header">
+                  <div class="similar_singer" style="display: none;">
+                      <a href="{:url('search')}" class="singer_img" target="_blank"><img src="__PUBLIC__/images/singer.jpg" alt=""></a>
+                      <p class="singer_name"><a href="{:url('search')}">周杰伦</a></p>
+                      <p class="singer_info"><span class="search_song_num"><i>204</i>单曲</span><span class="search_mv_num"><i>301</i>MV</span></p>
+                  </div>    
+                  <div class="action_area">
+                      <p class="search_key_word">搜索到<i>“{$keyword}”</i></p><p class="search_tips">相关的歌曲</p>
+                      <a class="play_all" href="javascript:;"><span><i class="search_icon"></i>播放</span></a>
+                  </div>
+            </div>
+			<div class="song_list">
+                <ul class="list_header clearfix">
+                    <li class="width_f_li song_name_li"><span class="search_icon checkall"></span>歌曲名</li>
+                    <li class="width_s_li">专辑</li>
+                    <li class="width_t_li">时长</li>
+                </ul>
+                <ul class="list_content clearfix" id="list_content1526178889680">
+					{if condition="$list['status']"}
+					{volist name="list.data.lists" id="v"}
+					<li class="clearfix">
+						<div class="width_f_li clearfix">
+							<span class="search_icon checkbox"></span>
+							<a class="song_name" title="{$v.FileName}" href="{:url('dwplay/index',array('id'=>$v['FileHash']))}" target="_blank">{$v.FileName}</a>
+						</div>
+						<div class="width_s_li">
+							<a class="album_name" title="{$v.AlbumName}" target="_blank" href="{$list.albumurl}/{$v.AlbumID}.html">{$v.AlbumName}</a>&nbsp;
+						</div>
+						<div class="width_t_li">{$v.Duration|Duration=###}</div>
+						<div class="play-item">
+							<span class="common_icon icon_play"  onclick="mp_play('{$v.FileHash}')"></span>
+							<span class="common_icon icon_download" onclick="mp_download('{$v.FileHash}')"></span>
+							<span class="common_icon icon_share"></span>
+						</div>
+					</li>
+					{/volist}
+					{/if}
+				</ul>           
+            </div>
+		</div>
+
+		<div class="fans_login"></div>
+		<div class="pc_temp_nvg">
+			<span id="mypage">
+			{$page}
+			</span>
+		</div>
+		
+        <!--<div class="loading" id="before_page" style="display: none;">加载中...</div>
+        <div class="downlaod" id="downlaod" style="display: block;">查看更多内容，请下载酷狗客户端 <span><a target="_blank" onclick="_hmt.push([&#39;_trackEvent&#39;, &#39;searchsoftware&#39;, &#39;searchdownload&#39;, &#39;searchkugou&#39;]);" href="javascript:;">立即下载</a></span></div>-->
+	</div>
+{include file="public/footer" /}
+<script src="{:modified('/js/common.js')}"></script>
+
+
+<!-- <script type="text/javascript" src="__PUBLIC__/js/background-blur.js"></script> -->
+
+<script>
+	var apmCollectData = apmCollectData || [];
+
+	/*待选搜索
+	$(".search_recommend").on('click','dl dd',function(){
+		var title = $(this).attr('title');
+		$("input[name='keyword']").val(title);
+		$('form').submit();
+		//console.log();
+	});*/
+</script>
+</body>
+</html>

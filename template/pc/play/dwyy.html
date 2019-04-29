@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{$title}_播放器 - {$Think.config.webname} - 懂你所听</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="{:modified('/css/play.css')}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{:modified('/layui/css/layui.css')}"  media="all">
+<style>
+.musiclist select{width:140px;}
+.layui-form-select dl dd, .layui-form-select dl dt{width: 172px; text-overflow: ellipsis;}
+</style>
+<script type="text/javascript">
+	//if(top==self)top.location="http://y.lmwljz.com";
+    var playpath = "__PUBLIC__/play/js";
+    var autoPlay = true; //是否自动播放
+	var access_token = "{$token}";
+	var lmtoken  = "{:session('lmtoken')}";
+</script>
+</head>
+
+<body>
+
+<div class="audio-module playerbg jp-audio" id="jp_container_1"  role="application" aria-label="media player" style="bottom:inherit;">
+	<div class="module-bg"></div>
+	<div class="player-module jp-type-playlist" >
+		<!--  模块左部分：上一首，播放，暂停，下一首  -->
+		<div class="controls-left">
+			<a class="icon icon-playbar-prev jp-previous" id="prev"></a>
+			<a class="icon icon-playbar-play jp-play" id="toggle"></a>
+			<a class="icon icon-playbar-next jp-next" id="next"></a>
+		</div>
+		<!-- 专辑封面  -->
+		<div class="bar-albumImg"><a target="_blank" href="javascript:;"><img src="{$media.img}"></a></div>
+		<!-- 模块中间部分：容器  -->
+		<div class="controls-bar">
+			<!-- 模块中间部分：上半部分：歌曲信息 -->
+			<div class="song-info">
+				<!-- 歌曲名 -->
+				<div class="like-song">
+					<div class="controls-songName" title=""><span class="songName" id="songName">&nbsp;{$media.audio_name}</span></div>
+				</div>
+				<!-- 时长 -->
+				<div class="coding-duration jp-time-holder">
+					<span class="duration ie8" id="duration">
+					<i class="change-time jp-current-time" role="timer" aria-label="time">&nbsp;00</i> / 
+					<i class="all-time jp-duration"  role="timer" aria-label="duration">&nbsp;{$media.timelength}</i></span>
+				</div>
+			</div>
+			<!-- 模块中间部分：下半部分：播放控制条容器 -->
+			<div class="bar" id="bar">
+				<!-- 播放进度背景（自适应） -->
+				<div class="bg jp-seek-bar" id="progress_bg">
+					<span class="icon icon-playbar-bgleft" id="bg_left"></span>
+					<span class="bg-middle barBG" id="bg_middle"></span>
+					<span class="icon icon-playbar-bgright" id="bg_right"></span>
+				</div>
+				<!-- 播放进度条（自适应） -->
+				<div class="progress-bar jp-progress jp-seek-bar" id="progress_bar">
+					<span class="icon icon-playbar-progressleft" id="progress_left"></span>
+					<div class="progress-middle " id="progress_middle">
+						<span class="progress barProgress jp-play-bar" id="progress"></span>
+					</div>
+				</div>
+				<!-- 播放定位头（自适应） -->
+				<div class="drag-playhead jp-seek-bar" id="drag_playhead">
+					<span class="icon icon-playbar-playhead" id="playhead"></span>
+				</div>
+			</div>
+		</div>
+		<!-- 模块右部分：容器 -->
+		<div class="controls-right">
+			<!-- 模块右部分： 音量控制面板 -->
+			<div class="mode-volume-list">
+				<!-- 音量开关控制按钮 -->
+				<div class="volume-icon" id="volume"><span class="icon icon-playbar-maxvox" id="volume_icon"></span></div>
+				<!-- 音量控制面板 -->
+				<div class="volume-panel" id="volume_panel">
+					<div class="volume-control" id="volume_control">
+						<span class="icon icon-playbar-progressbottom" id="volume_bottom"></span>
+						<div class="volume-bar" id="volume_bar">
+							<span class="volume-progress volumeProgress" id="volume_progress" style="top: 32px;"></span>
+						</div>
+						<div class="volume-head" id="volume_head">
+							<span class="icon icon-playbar-volumehead" id="volumehead" style="top: 33.2px;"></span>
+						</div>
+					</div>
+				</div>
+				<!-- 播放模式 -->
+				<a class="icon icon-playbar-cycle jp-shuffle"></a>
+				<!-- 下载 -->
+				<a href="javascript:;" class="icon icon-playbar-download" id="pb_download"></a>
+				<!-- 分享 -->
+				<a href="javascript:;" class="icon icon-playbar-share" id="pb_share"></a>
+				<!--<a class="icon list" id="list" href="javascript:musicplaylist('#mod-playlist');" hidefocus="true"><span class="list-count" id="list_count">1</span></a>-->
+				<div class="list musiclist">
+					<!---->
+					<form class="layui-form" lay-filter="component-form-element">
+					<div class="layui-form-item" style="width:210px;float: left;margin-bottom:0px;">
+						<div class="layui-input-block" style="margin-left:0px;min-height:34px;height:34px;">
+						  <select name="list" lay-filter="aihao" class="change_list">
+							{foreach name="list" id="v" key='k'}
+								<option value="{$v.h}" title='{$v.title}'>{$k+1}.{$v.title}</option>
+							{/foreach}
+						  </select>
+						</div>
+					</div>
+					</form>
+					<!---->
+				</div>
+			</div>
+		</div>
+	</div>
+	<form action="{:url('Index/download/getinfo')}" method="post" target="_blank"><input name="download" value="{$media.id}" type="hidden"></form>
+</div>
+
+<div  class="dwpayer">
+	<div id="lm_player" class="jp-jplayer"></div>
+</div>
+<!---->
+
+<!---->
+<script type="text/javascript" src="__PUBLIC__/play/js/jquery.min.js"></script>
+<script type="text/javascript" src="{:modified('/play/js/lmwljz.myplayer.js')}"></script>
+<script src="{:modified('/layui/layui.js')}"></script>
+<script>
+	$(function () {
+		$("#pb_download").click(function(){
+			var id = $('input[name=download]').val();
+			if(id){$('form').submit();}
+		});
+    });
+
+/****************/
+	var pindex = 0; /*播放编号*/
+	var timeshow,timetotal;
+	var totalList= {$list|count}; //$('#panelSongsList>li').length;/*总条数*/
+    var stream   = {$media.media|json_encode},
+        ready    = false;
+
+    $("#lm_player").jPlayer({
+        ready: function (event) {
+            ready = true;
+            //$(this).jPlayer("setMedia", stream).jPlayer("play");
+          	$(this).jPlayer("setMedia", stream);
+          	setTimeout(function(){$("#lm_player").jPlayer("play");},1200);
+        },
+        pause: function() { /*$(this).jPlayer("clearMedia");*/ },
+        error: function(event) {
+            /*if(ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
+              	//$(this).jPlayer("setMedia", stream).jPlayer("play");
+				//$(this).jPlayer("play",Math.floor(stream.status.currentTime));
+            }*/
+        },
+        swfPath: "__PUBLIC__/play/js",
+        supplied: "m4a",
+        preload: "none",
+        wmode: "window",
+        //solution:"flash,html",
+        volume: 1, //默认音量
+        useStateClassSkin: true,
+        autoBlur: false,
+        keyEnabled: true,
+        smoothPlayBar:true
+    });
+
+	//播放
+    $('.musiclist select,.change_list').change(function(){
+        pindex  = $(this).find('option:checked').index();//播放条目编号
+        playindex($(this).val());
+    });
+
+    //上一曲
+	$('#prev').click(function(){
+        pindex = pindex - 1;
+        timetotal  = '';
+        playindex($('select>option').eq(pindex).val());
+		selected();
+	});
+
+	//下一曲
+	$('#next').click(function(){
+        if(pindex+1<=(totalList-1)){
+            pindex = pindex + 1;
+            timetotal  = '';
+            playindex($('select>option').eq(pindex).val());
+			selected();
+		}else{
+            alert('已经是最后一首了');
+		}
+	});
+
+	//静音
+	$('#volume_icon').click(function(){
+        //$("#lm_player").jPlayer("muted");//恢复
+        $("#lm_player").jPlayer("unmute");
+
+	});
+
+	//下载
+	$('.download,.lm_down').click(function(){
+	    var id = $(this).parent().data('hash');
+	    if(!id){
+            id = $("#lm_player").data('jPlayer').status.media.hash;
+		}
+        lmdown(id);
+	});
+
+	$('.jp-current-time').on('DOMNodeInserted',function(){
+        timeshow = $('.jp-current-time').text();
+        if(!timetotal){
+            timetotal = $(".jp-duration").text();//总时长
+		}
+		//console.log(timetotal+'---'+timeshow);
+		if(timeshow == timetotal && timeshow){
+            pindex = pindex+1;
+            /*列表循环*/
+		    if(pindex == totalList){
+                pindex = 0;
+			}
+            var timetotal;
+            playindex($('select>option').eq(pindex).val());
+			selected();
+		}
+    });
+
+	//随机切换
+	$('.jp-shuffle').click(function(){
+	    console.log('111');
+	    var sellist = $('.musiclist select');
+
+        sellist.sort(function() {
+            return 0.5 - Math.random();
+        });
+
+        var playlist = [];
+        var data_json= {$list|json_encode};
+        $.each( data_json, function(i) {
+            playlist[i] = data_json[i];
+        });
+        console.log(playlist);
+	});
+
+	function lmdown(id){
+        if (event.stopPropagation){event.stopPropagation();}else{event.cancelBubble = true;}
+	    if(!id){
+	        return false;
+		}
+        var key  = "{:session('lmtoken')}";
+        $.ajax({
+            type: 'post',
+            timeout: 30000,
+            //headers: {'lmtoken':'{$token}'},
+            url: '/index/download',
+            data: {'id':id,'key':key},
+            dataType:"json",
+            async:false,
+            success: function(data){
+                if(data.code==1){
+                    console.log(data.data.url);
+                    window.open(data.data.url,'_self');
+                }else{
+                    alert(data.msg);
+                }
+                //+JSON.stringify(data)
+            },
+            error: function() {
+                alert('貌似网络开小差了');
+            }
+        });
+	}
+
+	function playindex(id) {
+	    if(!id)return;
+        var name = $('select>option').eq(pindex).text();
+        if(name){
+            name = name.split("-");
+            name = name['1'];
+		}
+        $.ajax({
+            type: 'post',
+            timeout: 30000, /*超时时间 30 秒*/
+            headers: {'lmtoken':'{$token}'},
+            url: '/index/dwplay/playinfo',
+            data: {'id':id,'from':1,'name':name},
+            async:false,
+            success: function(data){
+                if(data){
+                    stream = data.data;
+					$('.bar-albumImg').find('img').attr('src',stream.img);
+                    $('#songName').text(stream.audio_name);
+                    $("#lm_player").jPlayer("setMedia", stream);
+                    $('input[name=download]').val(stream.id);
+                    var interval =window.setInterval(function () {
+                        var t = $('.jp-current-time').text();
+                        if(t && t == '00:00'){
+                            $("#lm_player").jPlayer("play");
+							//console.log();
+                            clearInterval(interval);
+						}
+                    },500);
+                }else{
+                    alert('试听歌曲资源正在路上');//+JSON.stringify(data)
+				}
+            },
+            error: function() {
+                alert('貌似网络开小差了');
+            }
+        });
+    }
+
+	//高亮显示条目
+	function selected(){
+		$(".musiclist select").find('option').removeAttr('selected');
+		$(".musiclist select").find('option').eq(pindex).attr("selected", true);
+	}
+
+layui.use('form', function(){
+  var form = layui.form,layer = layui.layer;
+	 form.on('select(aihao)', function(data){
+		var gid = data.value;
+		pindex  = $(".layui-form-item dl dd[lay-value="+gid+"]").index();
+		//console.log(inde);
+		playindex(gid);
+
+	});
+});
+
+</script>
+
+</body>
+</html>

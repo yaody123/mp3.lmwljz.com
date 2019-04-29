@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{$title}_{$Think.config.webname} - 懂你所听</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="email=no">
+	<meta name="format-detection" content="address=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="applicable-device" content="mobile">
+    <link rel="stylesheet" href="{:modified('/css/common.css','mobile')}">
+</head>
+<body>
+{include file="public/header" /}
+<div class="bd rank-list">
+	<ul class="panel-img-list">
+	{if condition="$list"}
+		{foreach  name="list" item="v" key="k"}
+		<li>
+			<a href="{:url('listrank',['id'=>$k])}">
+				<div class="panel-img-left"><img _src="{$v.img}" src="{$v.img}" _def="__PUBLIC_MOBILE__/images/default.png" loading="1"></div>
+				<div class="panel-img-content"><p>{$v.name}</p></div>
+				<div class="panel-img-right"><i class="panel-img-arrow"></i></div>
+			</a>
+		</li>
+		{/foreach}
+	{/if}
+	</ul>
+</div>
+<script type="text/javascript" charset="UTF-8" src="{:url('Index/index/statistics','','js')}"></script>
+</body>
+</html>

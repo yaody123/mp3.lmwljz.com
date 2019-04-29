@@ -1,0 +1,83 @@
+{include file="public/base_head" /}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="http://qzs.qq.com/tencentvideo_v1/js/tvp/tvp.player.js" charset="utf-8"></script>
+<title>{$list.title}{if condition="$list['albumdesc']"}_{$list.albumdesc}{/if} - MV在线播放_{$Think.config.webname}</title>
+<style>
+body{border:0px; padding:0px; margin:0px}
+div{margin:0px auto;}
+</style>
+</head>
+
+<body>
+
+<div id="videoCon" class="video" style="margin: 0px auto;"></div>
+
+
+<script>
+$(function(){
+    var video = new tvp.VideoInfo();
+    video.setVid("{$list.mvid}");//视频vid
+    var player = new tvp.Player('100%', '100%');//视频高宽
+    player.setCurVideo(video);
+    player.addParam("autoplay","1");//是否自动播放，1为自动播放，0为不自动播放
+	player.addParam("wmode","opaque");
+	player.addParam("showend",0);//结束画面是否有广告画面，或者是该视频本身结束
+	player.addParam("adplay",0);  
+	player.addParam("wmode","transparent");
+    player.addParam("pic","{$list.albumimg}");//默认图片地址
+    //player.addParam("flashskin", "http://imgcache.qq.com/minivideo_v1/vd/res/skins/TencentPlayerMiniSkin.swf");//是否调用精简皮肤，不使用则删掉此行代码
+    player.write("videoCon");
+
+});
+
+
+function keysoso(wd){
+	if(wd=='' || wd==null){
+		return;
+	}
+
+	//http://unionsug.baidu.com/su?wd=a&p=3&cb=BaiduSuggestion.callbacks.give1528340794246&t=1528340971026
+	$.ajax({
+	   url:"http://unionsug.baidu.com/su",
+	   data:{'wd':wd,'p':'3','cb':'Callback_lmwljz'},
+	   dataType:"jsonp",
+	   jsonpCallback:"Callback_lmwljz",
+	   success:function(data){
+		   console.log(data.s);
+			var str = '',len = 0, html= '';
+			str = data.s;
+			len = str.length;
+			for(i=0;i<len;i++){
+				html += i+':'+str[i]+' ';
+			}
+			console.log(html);
+			//alert(html);
+
+	   },
+		error:function(data){
+			console.log(data);
+			alert('请求失败');
+	   }
+	}); 
+
+}
+
+
+
+function isWeiXin(){ 
+	var ua = window.navigator.userAgent.toLowerCase(); 
+	if(ua.match(/MicroMessenger/i) == 'micromessenger'){ 
+		return true; 
+	}else{ 
+		return false; 
+	} 
+}
+</script>
+
+</body>
+</html>

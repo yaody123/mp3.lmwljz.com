@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!-- saved from url=(0118)http://www.kugou.com/share/8FuOX11rvV2.html?album_id=0&id=8FuOX11rvV2#hash=4DC9D90C68686419F860F3BF8F961161&album_id=0 -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{$list.song_name}__高音质在线试听_流浪歌词</title>
+<meta name="keywords" content="  {$list.author_name} ">
+<meta name="description" content="最新最全的在线正版音乐网站，本站为您免费提供最全的在线音乐试听下载，以及全球海量电台和MV播放服务、最新音乐播放器">
+<link href="/favicon.ico" rel="shortcut icon">
+<link rel="stylesheet" href="__PUBLIC__/css/play.css">
+<!--<link rel="dns-prefetch" href="http://fs.w.kugou.com/">
+<link rel="dns-prefetch" href="http://login-user.kugou.com/">
+<script charset="UTF-8" src="__PUBLIC__/js/kguser_min.js"></script> 
+<script src="__PUBLIC__/js/collect.js"></script>
+<script charset="UTF-8" src="__PUBLIC__/js/playbyAudio.js"></script>-->
+
+<script>
+	//页面歌曲信息
+	var dataFromSmarty = [{"hash":"{$list.hash}","author_name":"{$list.author_name}","song_name":"{$list.song_name}","audio_name":"{$list.audio_name}","album_id":{$list.album_id},"timelength":"{$list.timelength}","sharetime":0}],//当前页面歌曲信息
+	playType = "single";//当前播放
+
+</script>
+</head>
+<body>
+    <div class="mainPage" style="height: 949px;">
+        <div class="header">
+            <h1 class="logo"><a href="/"><img src="__PUBLIC__/images/logo.png" alt=""></a></h1>
+            <div class="search_wrapper top_search">
+                <div class="search_input"><input type="text"><div class="searh_btn"><i class="search_icon"></i><span>搜索</span></div></div>
+                <div class="search_recommend top_search_recommend"></div>
+                <div class="search_histroy top_search_histroy"></div>
+            </div>
+            <div class="topNav fr">
+                <ul>
+                    <li><a target="_blank" href="javascript:;">客服中心</a></li>
+                    <li><a target="_blank" href="javascript:;">会员中心 </a></li>
+                </ul>
+                <div class="login_area">
+                    <div id="login_in" class="clearfix"><a class="login_btn" id="login_btn">登录</a><a target="_blank" href="javascript:;" class="regin_btn" id="regin_btn">注册</a></div>
+                    <div id="login_out" class="clearfix">
+                        <img class="user_img" src="http://www.kugou.com/share/8FuOX11rvV2.html?album_id=0&amp;id=8FuOX11rvV2">
+                        <span class="user_name"></span>
+                    </div>
+                    <div id="user_menu" class="user_menu">
+                        <div class="topArrow1"></div>
+                        <div class="topArrow2"></div>
+                        <ul>
+                            <li><a target="_blank" href="javascript:;"><span class="user_icon1"></span>个人帐号</a></li>
+                            <li><a href="javascript:;"><span class="user_icon2"></span>退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navWrap">
+            <div class="nav">
+                <ul class="homeNav">
+                    <li><a class="normal" href="/">首页</a></li>
+                    <li><a class="normal" href="javascript:;">榜单</a></li>
+                    <li class="more" id="more"><a href="javascript:;" class="icon icon-nav6" id="showMore">更多</a>
+                    </li>
+                </ul>
+                <ul class="secondMenu" id="secondMenu">
+                    <li><a href="javascript:;">电台</a></li>
+                    <li><a href="javascript:;">MV</a></li>
+                    <li><a href="javascript:;">歌单</a></li>
+                    <li><a href="javascript:;">歌手</a></li>
+                </ul>
+                <ul class="subNav">
+                    <li><a target="_blank" href="javascript:;" class="icon icon-nav1">音乐直播</a></li>
+                    <li><a target="_blank" href="javascript:;" class="icon icon-nav2">酷狗LIVE</a></li>
+                    <li><a target="_blank" href="javascript:;" class="icon icon-nav3">音乐人</a></li>
+                    <li><a target="_blank" href="javascript:;" class="icon icon-nav5">商城</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content" style="height: 816px;">
+            <div class="singerContent clearfix" style="margin-top: 100px;">
+                <div class="album fl">
+                    <div class="albumImg"><img src="{$list.img}"></div>
+                    <div class="btnArea2 clearfix">
+                        <a class="btnDownloadClient1" id="pb_download_mp3"></a>
+                    </div>
+                    <div class="fangxinAd clearfix" style="display: block;">
+                        <img class="singerImg" src="__PUBLIC__/images/c8c4896146d0d633b235643abb217aba.jpg_100x100.jpg">
+                        <div class="singerInfo clearfix">
+                            <div class="singerName" title="{$list.author_name}"></div>
+                            <div class="singingName">{$list.song_name}</div>
+                            <div class="goto"><a href="javascript:;">去现场</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="songContent fl">
+                    <div class="songName clearfix" title=""><span class="audioName" title="{$list.song_name}">{$list.song_name}</span> 
+                        <a target="_blank" style="" href="javascript:;" class="icon btnMv"></a>
+                    </div>
+                    <div class="songDetail clearfix">
+                        <p class="albumName fl" style="display:none">
+                            <span class="fontColor">专辑：</span>
+                            <a target="_blank" href="javascript:;" title="">未知专辑</a>
+                        </p>
+                        <p class="singerName fl" style="" title="{$list.author_name}"><span class="fontColor">歌手：</span><a target="_blank" href="#" title="{$list.author_name}">{$list.author_name}</a></p>
+                    </div>
+                    <div class="displayNone"> 
+                       
+                    </div>
+                    <div class="songWordContent songWordContentM jspScrollable" style="height: 410px; overflow: hidden; padding: 0px; width: 460px;" tabindex="0"><div class="jspContainer" style="width: 460px; height: 410px;"><div class="jspPane" style="padding: 0px; top: -306px; width: 448px;">
+					<!--<p class="ie8FontColor">卢焱 - 流浪</p>>-->
+					{if condition="$list['lyrics']"}
+						{volist name="list.lyrics" id="v"}
+							<p class="ie8FontColor">{$v['1']}</p>
+						{/volist}
+					{/if}
+					</div>
+					<div class="jspVerticalBar"><div class="jspCap jspCapTop"></div><div class="jspTrack" style="height: 410px;"><div class="jspDrag" style="height: 124px;"><div class="jspDragTop"></div><div class="jspDragBottom"></div></div></div><div class="jspCap jspCapBottom"></div></div></div></div>
+                </div>
+            </div>
+            <div class="blurBgMask"></div>
+            <div id="blurBg" style="background-image: url(&quot;{$list.img}&quot;);"></div>
+        </div>
+
+        <!--加载flash播放插件-->
+        <audio class="music" id="myAudio" src="{$list.play_url}" preload="auto" __idm_id__="{$list.video_id}">
+            <!-- <p class="myAudiohide">你的浏览器不支持<code>audio</code>标签.</p> -->
+        </audio>
+        <!-- 播放条 -->
+        <div class="audio-module playerbg" id="audioModule">
+            <div class="module-bg"></div>
+            <div class="player-module">
+                <!--  模块左部分：上一首，播放，暂停，下一首  -->
+                <div class="controls-left">
+                    <a class="icon icon-playbar-prev" id="prev"></a>
+                    <a class="icon icon-playbar-pause" id="toggle"></a>
+                    <a class="icon icon-playbar-next" id="next"></a>
+                </div>
+                <!-- 专辑封面  -->
+                <div class="bar-albumImg"><img src="{$list.img}"></div>
+                <!-- 模块中间部分：容器  -->
+                <div class="controls-bar">
+                    <!-- 模块中间部分：上半部分：歌曲信息 -->
+                    <div class="song-info">
+                        <!-- 歌曲名 -->
+                        <div class="like-song">
+                            <div class="controls-songName" title=""><span class="songName" id="songName">{$list.song_name}</span></div>
+                            <pre class="songName" id="songNameTemp" title="{$list.song_name}" style="">{$list.song_name}</pre>
+                        </div>
+                        <!-- 时长 -->
+                        <div class="coding-duration">
+                            <span class="duration ie8" id="duration"><i class="change-time">00:00</i> / <i class="all-time">{$list.times}</i></span>
+                        </div>
+                    </div>
+                    <!-- 模块中间部分：下半部分：播放控制条容器 -->
+                    <div class="bar" id="bar">
+                        <!-- 播放进度背景（自适应） -->
+                        <div class="bg" id="progress_bg">
+                            <span class="icon icon-playbar-bgleft" id="bg_left"></span>
+                            <span class="bg-middle barBG" id="bg_middle"></span>
+                            <span class="icon icon-playbar-bgright" id="bg_right"></span>
+                        </div>
+                        <!-- 播放进度条（自适应） -->
+                        <div class="progress-bar" id="progress_bar">
+                            <span class="icon icon-playbar-progressleft" id="progress_left"></span>
+                            <div class="progress-middle" id="progress_middle">
+                                <span class="progress barProgress" id="progress" style="width: 16.65%;"></span>
+                            </div>
+                        </div>
+                        <!-- 播放定位头（自适应） -->
+                        <div class="drag-playhead" id="drag_playhead">
+                            <span class="icon icon-playbar-playhead" id="playhead"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 模块右部分：容器 -->
+                <div class="controls-right">
+                    <!-- 模块右部分： 音量控制面板 -->
+                    <div class="mode-volume-list">
+                        <!-- 音量开关控制按钮 -->
+                        <div class="volume-icon" id="volume">
+                            <span class="icon icon-playbar-maxvox" id="volume_icon"></span>
+                        </div>
+                        <!-- 音量控制面板 -->
+                        <div class="volume-panel" id="volume_panel">
+                            <div class="volume-control" id="volume_control">
+                                <span class="icon icon-playbar-progressbottom" id="volume_bottom"></span>
+                                <div class="volume-bar" id="volume_bar">
+                                    <span class="volume-progress volumeProgress" id="volume_progress" style="top: 32px;"></span>
+                                </div>
+                                <div class="volume-head" id="volume_head">
+                                    <span class="icon icon-playbar-volumehead" id="volumehead" style="top: 33.2px;"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="play_tips" style="display: block; opacity: 0;">已添加到播放列表</div>
+                        <!-- 播放模式 -->
+                        <a class="icon icon-playbar-cycle" id="mode"></a>
+                        <div class="mode-panel" id="mode_panel">
+                            <ul>
+                                <li>
+                                    <a class="loop mode-selected" id="loop" href="javascript:;" hidefocus="true">
+                                        <span class="icon icon-playbar-cycle active" id="loop_icon"></span>
+                                        <span class="loop-name" id="loop_name">列表循环</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="single " id="single" href="javascript:;" hidefocus="true">
+                                        <span class="icon  icon-playbar-singlecycle " id="single_icon"></span>
+                                        <span class="single-name" id="single_name">单曲循环</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="random" id="random" href="javascript:;" hidefocus="true">
+                                        <span class="icon icon-playbar-randomcycle" id="random_icon"></span>
+                                        <span class="random-name" id="random_name">随机播放</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 下载 -->
+                        <a href="javascript:;" class="icon icon-playbar-download" id="pb_download_mp3" ></a>
+                            <!-- 分享 -->
+                            <a href="javascript:;"  class="icon icon-playbar-share" id="pb_share"></a>
+
+                            <a class="icon list" id="list" href="javascript:;" hidefocus="true">
+                                <span class="list-count" id="list_count">1</span>
+                            </a>
+                    </div>
+                </div>
+                <div class="mod-playlist" id="mod-playlist" data-hide="true">
+                    <div class="song-box">
+                        <div class="box-header">
+                            <div class="title">播放队列/<span>1</span></div>
+                            <div class="action-box fr">
+                                <span class="icon list-menu-icon-del clear" title="清空"></span>
+                                <span class="line"></span>
+                                <span class="icon list-menu-icon-close closePlayList" title="关闭播放队列"></span>
+                            </div>
+                        </div>
+                        <div id="musicbox" class="musicbox ">
+                            <div class="songjsAction" style="overflow: hidden; padding: 0px; width: 470px;">
+									
+								<div class="jspContainer" style="width: 470px; height: 360px;">
+									<div class="jspPane" style="top: 0px; left: 0px; width: 470px;">
+										<div class="musiclist">
+											<li class="active">
+												<div class="musiclist-item clearfix">
+													<span class="musiclist-number">1</span>
+													<div class="musiclist-name">
+														<span class="musiclist-songname-txt" title="{$list.song_name}">{$list.song_name}</span>
+														<div class="mod-list-menu">
+															<a href="javascript:;" class="icon list-menu-item icon-playbar-download list-action-down" title="下载"><i class="icon list-menu-icon-down"></i><span class="icon_txt">下载</span></a>
+															<a href="javascript:;" class="icon list-menu-item icon-playbar-share list-action-share" title="分享"><i class="icon list-menn-icon-share"></i><span class="icon_txt">分享</span></a>
+															<a href="javascript:;" class="icon list-menu-item list-menu-icon-del list-action-del" title="删除歌曲"><i class="icon list-menu-icon-add"></i><span class="icon_txt">删除</span></a>
+														</div>
+													</div>
+													<div class="musiclist-artist" title="{$list.author_name}">{$list.author_name}</div>
+													<div class="musiclist-time">{$list.times}</div>
+												</div>
+											</li>
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="showHide-playbar">
+                <span class="showHide-bg"></span>
+                <span class="icon show-playbar-btn" id="showHide_playbar"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var flag = 0, //flash  是否加载完毕
+        flashObj;//本地页面的falsh 对象
+       
+    var kgPlay = {
+        // 是否支持audio
+        support_audio: function() {
+            return !!document.createElement('audio').canPlayType;
+        },
+        //获取flash对象
+        getFlashMovieObject: function(movieName) {
+            if (document[movieName]) {
+                return document[movieName];
+            } else if (navigator.appName.indexOf("Microsoft Internet") == -1) {
+                if (document.embeds && document.embeds[movieName]) {
+                    return document.embeds[movieName];
+                }
+            } else if (window[movieName]) {
+                return window[movieName];
+            } else {
+                return document.getElementById(movieName);
+            }
+        },
+        // firefox获取flash
+        getSWF: function(name) {
+            var e = document.getElementById(name);
+            return (navigator.appName.indexOf("Microsoft") != -1) ? e : e.getElementsByTagName("embed")[0];
+        }
+    };
+    //表示flash加载完成，并初始化
+    function flashloaded() {
+        if (navigator.userAgent.toLowerCase().indexOf("firefox") != -1) {
+            flashObj = kgPlay.getSWF("AudioPlayer3");
+        } else {
+            flashObj = kgPlay.getFlashMovieObject("AudioPlayer3");
+        }
+        flag = 1;
+    }
+    </script>
+    
+    <script data-embed="false" type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+    <script data-embed="false" type="text/javascript" src="__PUBLIC__/js/play_common.js"></script>
+	<script src="__PUBLIC__/js/common.js"></script>
+    <script type="text/javascript">
+        var apmCollectData = apmCollectData || [];
+        if (kgPlay.support_audio()) {
+            flag = 0;
+            flashloaded = null;
+            //删除flash
+            $("#fobj").remove();
+            var playbyAudio = document.createElement("script");
+            playbyAudio.charset = "UTF-8";
+            playbyAudio.src = "__PUBLIC__/js/playbyAudio.js?now="+new Date().getTime();
+            var byAudio = document.getElementsByTagName("script")[0];
+            byAudio.parentNode.insertBefore(playbyAudio, byAudio);
+        } else {
+            $(".myAudiohide").hide();
+            var playForFlash = document.createElement("script");
+            playForFlash.charset = "UTF-8";
+            playForFlash.src = "__PUBLIC__/js/playbyFlash.js?now="+new Date().getTime();
+            var byFlash = document.getElementsByTagName("script")[0];
+            byFlash.parentNode.insertBefore(playForFlash, byFlash);
+        }
+        /*var kguser = document.createElement("script");
+            kguser.charset = "UTF-8";
+            kguser.src = "http://login-user.kugou.com/v1/kguser_min.js?now="+new Date().getTime();
+            var kguserScript = document.getElementsByTagName("script")[0];
+            kguserScript.parentNode.insertBefore(kguser, kguserScript);
+		*/
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+<title>APlayer</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="author" content="maicong.me">
+<style>
+body{text-rendering: auto;}
+#evanyou-canvas { z-index: -1 !important;}
+.aplayer-wrap {max-width: 750px;margin: 20px auto;background-color: #fff;z-index: 1;}
+#aplayer1{margin:5px;}
+</style>
+<!-- <script src="__PUBLIC__/js/jquery-1.11.2.min.js"></script> -->
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="__PUBLIC__/js/json2.js"></script>
+<script src="__PUBLIC__/aplayer/color-thief.js"></script>
+<script src="__PUBLIC__/aplayer/APlayer.min.js"></script>
+<link href="__PUBLIC__/aplayer/APlayer.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="sousuo">
+	搜索：<input type="text" name="w">&nbsp;&nbsp;
+	条数：<input type="text" name="n" value="10" ><br>
+	来源：<input type="radio" name="type" value="qq" checked>QQ音乐&nbsp;
+	<input type="radio" name="type" value="kugou">酷狗音乐&nbsp;
+	<input type="radio" name="type" value="baidu">百度音乐<br>
+	
+	<button type="button" class="submit">搜索</button>
+</div>
+<div class="aplayer-wrap">
+    <div id="aplayer1"></div>
+</div>
+<div class="aplayer-wrap">
+    <div id="listajax"></div>
+</div>
+<div id="aplayer0"></div>
+
+<script>
+
+var audio= [];
+var w    = "{$list.w}";
+var type = "{$list.type}";
+var n    = "{$list.n}";
+var ap2;
+$(function(){
+	$(".submit").click(function(){
+		var w    = $("input[name='w']").val();
+		var type = $("input[name='type']:checked").val();
+		var n    = $("input[name='n']").val();
+		if(w=='' || !w){
+			alert('请输入歌曲或歌手');
+			return;
+		}
+		$.ajax({
+			type: 'post',
+			timeout: 30000,
+			//headers: {'lmtoken':'{$token}'},
+			url: "{:url('api')}",
+			data: {w:w,type:type,n:n},
+			dataType:"json",
+			async:false,
+			success: function(res){
+				if(res.status==1){
+					var index;
+					if(res.data.length>0){
+						$.each(res.data,function(i,n){
+							audio.push({'lrc':n.lyrics,'name':n.title,'cover':n.songimg,'url':n.url,'artist':n.author});
+						});
+						//console.log(audio);
+						
+						//audio = audio.push(index);
+						/*if(ap2){
+							var list = JSON.stringify(audio);
+							console.log(list);
+							console.log(JSON.parse(list));
+							ap2.list.add = JSON.parse(list);
+						}else{
+							listajax();
+						}*/
+						aplayer0();
+					}
+				}else{
+					alert(res.msg);
+				}
+				//+JSON.stringify(data)
+			},
+			error: function() {
+				alert('貌似网络开小差了');
+			}
+		});
+	});
+
+
+	/*$.ajax({
+        //type: 'post',
+        timeout: 30000,
+        //headers: {'lmtoken':'{$token}'},
+        url: "{:url('api')}",
+        data: {w:w,type:type,n:n},
+        dataType:"json",
+        async:false,
+        success: function(res){
+            if(res.status==1){
+                if(res.data.length>0){
+					$.each(res.data,function(i,n){
+						audio[i] = {'lrc':n.lyrics,'name':n.title,'cover':n.songimg,'url':n.url,'artist':n.author};
+					});
+					aplayer1();
+					//aplayer0()
+					ap1.on('play', function () {
+						console.log('player');
+					});
+					ap1.on('ended', function () {
+						console.log('player ended');
+					});
+				}
+            }else{
+				alert(res.msg);
+			}
+            //+JSON.stringify(data)
+        },
+        error: function() {
+            alert('貌似网络开小差了');
+        }
+    });*/
+});
+
+//ajax模式
+function listajax(){
+	ap2 = new APlayer({
+		container: document.getElementById('listajax'),
+		//fixed:true,
+		theme: '#505d6b',
+		autoplay:true,
+		lrcType: 3,
+		audio: audio
+	});
+}
+
+
+
+
+//迷你模式
+function aplayer0(){
+    window.ap0 = new APlayer({
+        container: document.getElementById('aplayer0'),
+		fixed:true,
+        theme: '#505d6b',
+		autoplay:false,
+        lrcType: 3,
+        audio: audio
+    });
+	ap0.on('play', function () {
+		console.log('play');
+	});
+}
+
+//正常模式
+function aplayer1(){
+    window.ap1 = new APlayer({
+        container: document.getElementById('aplayer1'),
+        theme: '#505d6b',
+		autoplay:true,
+        lrcType: 3,//kugou=3
+		listMaxHeight:'500px',
+        audio: audio
+    });
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

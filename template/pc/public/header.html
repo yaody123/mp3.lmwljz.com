@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="{:modified('/css/header.css')}">
+<link rel="stylesheet" href="{:modified('/layui/css/layui.css')}"  media="all">
+
+<style>
+.layui-input-block .layui-input{height:34px;border-bottom: none;border-top: none;border-left: none;}
+.layui-form-select dl dd.layui-this{background-color:#169af3}
+</style>
+<div class="header">
+    <h1 class="logo"><a href="/"></a></h1>
+    <div class="search_wrapper top_search">
+        <div class="search_input">
+			<form action="{:url('index/search')}" method="GET" id="search_index" class="layui-form" lay-filter="component-form-element">
+				<!---->
+				<div class="layui-form-item" style="width:68px;float: left;margin-bottom:0px;">
+					<!-- <label class="layui-form-label">类别</label> -->
+					<div class="layui-input-block" style="margin-left:0px;min-height:34px;height:34px;">
+					  <select name="type" lay-filter="aihao">
+						<option value="kugou" {if condition="$param['search']['type'] eq 'kugou'"}selected{/if}>酷狗</option>
+						<option value="qq" {if condition="$param['search']['type'] eq 'qq'"}selected{/if}>腾讯</option>
+						<option value="baidu" {if condition="$param['search']['type'] eq 'baidu'"}selected{/if}>百度</option>
+					  </select>
+					</div>
+				</div>
+				<!---->
+				<input type="text" class="inputs" name="keyword" value="{$keyword}">
+				<div class="searh_btn">
+					<i class="search_icon"></i><span>搜索</span>
+				</div>
+			</form>
+		</div>
+        <div class="search_recommend top_search_recommend"></div>
+        <div class="search_histroy top_search_histroy"></div>
+    </div>
+    <div class="topNav fr">
+        <ul>
+            <li><a target="_blank" href="javascript:;">客服中心</a></li>
+            <li><a target="_blank" href="javascript:;">招贤纳士</a></li>
+            <li><a target="_blank" href="{:url('member/index')}">会员中心 </a></li>
+        </ul>
+        <div class="login_area">
+            {if condition="$user_info"}
+            <div id="login_out" class="clearfix" style="display: block;">
+                <img id="user_img" class="user_img" src="{$user_info.avatar}">
+                <span id="user_name" class="user_name">{$user_info.nickname}</span>
+            </div>
+            {else /}
+                <div id="login_in" class="clearfix"><a href="{:url('Login/index')}" class="login_btn" id="login_btn1">登录</a><a target="_blank" href="{:url('Login/reguser')}" class="regin_btn" id="regin_btn">注册</a></div>
+            {/if}
+            <div id="user_menu" class="user_menu">
+                <div class="topArrow1"></div>
+                <div class="topArrow2"></div>
+                <ul>
+                    <li><a target="_blank" href="javascript:;"><span class="user_icon1"></span>个人帐号</a></li>
+                    <li><a href="{:url('Login/logout')}"><span class="user_icon2"></span>退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navWrap">
+    <div class="nav">
+        <ul class="homeNav">
+            <li><a class="normal {if condition="$action eq 'index' && $model eq 'Index'"}active{/if}" href="/">首页</a></li>
+            <li><a class="normal {if condition="$action eq 'rank' && $model eq 'Index'"}active{/if}" href="{:url('index/rank')}">酷狗榜单</a></li>
+            <li><a class="normal {if condition="$model eq 'Qqmusic'"}active{/if}" href="{:url('Qqmusic/index')}">QQ巅峰榜单</a></li>
+			<li><a class="normal {if condition="$model eq 'Ik123' && $action eq 'index'"}active{/if}" href="{:url('ik123/index')}">深港DJ俱乐部</a></li>
+			<li><a class="normal" href="{:url('index/rank',array('id'=>23784))}">网络红歌</a></li>
+            <li class="more" id="more"><a href="#" class="iconMore" id="showMore">更多</a></li>
+			
+        </ul>
+        <ul class="secondMenu" id="secondMenu">
+            <li><a href="javascript:;">电台</a></li>
+            <li><a href="javascript:;">MV</a></li>
+            <li><a href="javascript:;">歌单</a></li>
+            <li><a href="javascript:;">歌手</a></li>
+        </ul>
+        <ul class="subNav">
+            <li><a target="_blank" href="javascript:;" class="icon icon-nav1">音乐直播</a></li>
+            <li><a target="_blank" href="javascript:;" class="icon icon-nav2">酷狗LIVE</a></li>
+            <li><a target="_blank" href="javascript:;" class="icon icon-nav3">音乐人</a></li>
+            <li><a target="_blank" href="javascript:;" class="icon icon-nav5">商城</a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+	var lmwldwyy = {'down_url':'/index/download','token':'{$token}'};
+</script>

@@ -1,0 +1,184 @@
+<!-- 侧栏 -->
+<div class="pc_temp_side">
+    <!-- 热门榜单 -->
+    <div class="pc_rank_sidebar pc_rank_sidebar_first pc_rank_sidebar_collapse">
+	{if condition="$param['menu']"}
+		{volist name="param.menu" id="v"}
+        <h3 data-index="0">
+            <a href="javascript:;" hidefocus="true" title="{$v.name}">{$v.name} <i class="pc_temp_arrow"></i></a>
+        </h3>
+        <ul>
+			{foreach  name="v.list" item="i" key="k"}
+            <li>
+                <a title="{$i}" hidefocus="true" href="{:url('rank',array('id'=>$k))}" class='{if condition="$param['id'] eq $k"}current{else /}link_ads{/if}'>
+                    <span style="background-image:url(__PUBLIC__/images/topicon/{$k}.png);"></span>
+                    {$i}
+                    <img height="18" width="50" class="link_ads" src="__PUBLIC__/images/blank.gif" style="background-image:url(__PUBLIC__/images/topicon/hot.png);">
+                </a>
+            </li>
+			{/foreach}
+        </ul>
+		{/volist}
+	{/if}
+    </div>
+				
+			<!--
+            <li>
+                <a title="酷狗TOP500" class="current" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-8888.html?from=rank" onclick="sdnClick(12013)">
+                    <span style="background-image:url(http://imge.kugou.com/temppic/20130807/20130807185450567609.png);"></span>
+                    酷狗TOP500
+                    <img height="18" width="50" class="link_ads" src="__PUBLIC__/images/blank.gif" style="background-image:url(http://imge.kugou.com/commendpic/20170907/20170907172623922000.png);">
+                </a>
+            </li>
+			<li>
+				<a title="网络红歌榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-23784.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://www2.kugou.com/k8/static/images/wlhg.png);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://www2.kugou.com/k8/static/images/wlhg.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					网络红歌榜
+				</a>
+			</li>
+			<li>
+				<a title="DJ热歌榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-24971.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20160119/20160119110054378246.jpg);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20160119/20160119110054378246.jpg&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					DJ热歌榜
+				</a>
+			</li>
+			<li>
+				<a title="华语新歌榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-31308.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20171120/20171120102326715438.jpg);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20171120/20171120102326715438.jpg&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					华语新歌榜
+				</a>
+			</li>
+			<li>
+				<a title="欧美新歌榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-31310.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20171120/20171120102536373818.jpg);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20171120/20171120102536373818.jpg&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					欧美新歌榜
+				</a>
+			</li>
+			<li>
+				<a title="韩国新歌榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-31311.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20171120/20171120102907761563.jpg);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20171120/20171120102907761563.jpg&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					韩国新歌榜
+				</a>
+			</li>
+			<li>
+				<a title="日本新歌榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-31312.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20171120/20171120103030215744.jpg);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20171120/20171120103030215744.jpg&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					日本新歌榜
+				</a>
+			</li>
+			<li>
+				<a title="创造101榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-32634.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20180420/20180420154851242485.jpg);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20180420/20180420154851242485.jpg&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					创造101榜
+					<img height="18" width="50" class="link_ads" src="__PUBLIC__/images/blank.gif" style="background-image:url(http://imge.kugou.com/commendpic/20180420/20180420155947963689.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/commendpic/20180420/20180420155947963689.png&#39;, sizingMethod=&#39;crop&#39;);">
+				</a>
+			</li>
+			<li>
+				<a title="嗨，唱起来！榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-32692.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20180427/20180427144715470197.jpg);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20180427/20180427144715470197.jpg&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					嗨，唱起来！榜
+					<img height="18" width="50" class="link_ads" src="__PUBLIC__/images/blank.gif" style="background-image:url(http://imge.kugou.com/commendpic/20180427/20180427181923392729.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/commendpic/20180427/20180427181923392729.png&#39;, sizingMethod=&#39;crop&#39;);"></a>
+			</li>
+			<li>
+				<a title="2018跨界歌王榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-32754.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20180504/20180504194011970410.jpg);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20180504/20180504194011970410.jpg&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					2018跨界歌王榜
+					<img height="18" width="50" class="link_ads" src="__PUBLIC__/images/blank.gif" style="background-image:url(http://imge.kugou.com/commendpic/20180504/20180504194301264650.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/commendpic/20180504/20180504194301264650.png&#39;, sizingMethod=&#39;crop&#39;);"></a>
+			</li>
+			<li>
+				<a title="腾讯音乐人原创榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-30972.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20170913/20170913193636466991.jpg);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20170913/20170913193636466991.jpg&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					腾讯音乐人原创榜
+				</a>
+			</li>
+			<li>
+				<a title="粤语新歌榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-31313.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20171120/20171120103438764503.jpg);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20171120/20171120103438764503.jpg&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					粤语新歌榜
+				</a>
+			</li>
+			<li>
+				<a title="酷狗分享榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-21101.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/temppic/20131025/20131025103853305845.png);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/temppic/20131025/20131025103853305845.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					酷狗分享榜
+				</a>
+			</li>
+			<li>
+				<a title="5sing音乐榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-22603.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/stdmusic/20160504/20160504171514518791.png);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20160504/20160504171514518791.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					5sing音乐榜
+				</a>
+			</li>
+			<li>
+				<a title="繁星音乐榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-21335.html?from=rank" onclick="sdnClick()">
+					<span style="background-image:url(http://imge.kugou.com/temppic/20140109/20140109170934390969.png);_background-image:none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/temppic/20140109/20140109170934390969.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+					繁星音乐榜
+				</a>
+			</li>-->
+
+    <!-- 特色音乐榜
+    <div class="pc_rank_sidebar ">
+        <h3 data-index="1"><a href="javascript:;" hidefocus="true" title="特色音乐榜">特色音乐榜<i class="pc_temp_arrow"></i></a></h3>
+        <ul>																												<li>
+            <a title="洗脑神曲" id="24574" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-24574.html?from=rank" onclick="sdnClick(36538)">
+                <span style="background-image:url(http://imge.kugou.com/stdmusic/20160108/20160108180453655920.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20160108/20160108180453655920.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                洗脑神曲
+            </a>
+        </li>																												<li>
+            <a title="百大DJ" id="24306" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-24306.html?from=rank" onclick="sdnClick(36270)">
+                <span style="background-image:url(http://imge.kugou.com/stdmusic/20151222/20151222143059932587.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20151222/20151222143059932587.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                百大DJ
+            </a>
+        </li>																												<li>
+            <a title="伤感网络情歌" id="28542" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-28542.html?from=rank" onclick="sdnClick(40506)">
+                <span style="background-image:url(http://imge.kugou.com/stdmusic/20160805/20160805174132122112.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20160805/20160805174132122112.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                伤感网络情歌
+            </a>
+        </li>																												<li>
+            <a title="KTV" id="24307" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-24307.html?from=rank" onclick="sdnClick(36271)">
+                <span style="background-image:url(http://imge.kugou.com/stdmusic/20151222/20151222142813590494.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20151222/20151222142813590494.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                KTV
+            </a>
+        </li>																												<li>
+            <a title="影视金曲" id="22096" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-22096.html?from=rank" onclick="sdnClick(34060)">
+                <span style="background-image:url(http://imge.kugou.com/stdmusic/20151222/20151222143034989298.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20151222/20151222143034989298.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                影视金曲
+            </a>
+        </li>																												<li>
+            <a title="纯音乐" id="28475" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-28475.html?from=rank" onclick="sdnClick(40439)">
+                <span style="background-image:url(http://imge.kugou.com/stdmusic/20160728/20160728182722980092.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20160728/20160728182722980092.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                纯音乐
+            </a>
+        </li>				</ul>
+    </div>-->
+    <!-- 全球榜
+    <div class="pc_rank_sidebar">
+        <h3 data-index="2">
+            <a href="javascript:;" hidefocus="true" title="全球榜">
+                全球榜 <i class="pc_temp_arrow"></i>
+            </a>
+        </h3>
+        <ul class="clear_fix">									<li>
+            <a title="美国BillBoard榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-4681.html?from=rank" onclick="sdnClick(12022)">
+                <span style="background-image:url(http://imge.kugou.com/temppic/20130807/20130807192258314669.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/temppic/20130807/20130807192258314669.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                美国BillBoard榜 						</a>
+        </li>									<li>
+            <a title="英国单曲榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-4680.html?from=rank" onclick="sdnClick(12023)">
+                <span style="background-image:url(http://imge.kugou.com/stdmusic/20161013/20161013180833243081.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20161013/20161013180833243081.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                英国单曲榜 						</a>
+        </li>									<li>
+            <a title="日本公信榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-4673.html?from=rank" onclick="sdnClick(12026)">
+                <span style="background-image:url(http://imge.kugou.com/stdmusic/20151222/20151222142442217161.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/stdmusic/20151222/20151222142442217161.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                日本公信榜 						</a>
+        </li>									<li>
+            <a title="韩国M-net音乐榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-4672.html?from=rank" onclick="sdnClick(12027)">
+                <span style="background-image:url(http://imge.kugou.com/temppic/20130807/20130807193303334739.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/temppic/20130807/20130807193303334739.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                韩国M-net音乐榜 						</a>
+        </li>									<li>
+            <a title="中国TOP排行榜" hidefocus="true" href="http://www.kugou.com/yy/rank/home/1-22163.html?from=rank" onclick="sdnClick()">
+                <span style="background-image:url(http://imge.kugou.com/temppic/20140827/20140827151250799981.png);_background-image:none;_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=&#39;http://imge.kugou.com/temppic/20140827/20140827151250799981.png&#39;, sizingMethod=&#39;crop&#39;);"></span>
+                中国TOP排行榜</a>
+        </li>
+        </ul>
+    </div>-->
+</div>

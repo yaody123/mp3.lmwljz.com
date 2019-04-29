@@ -1,0 +1,357 @@
+<div class="jp-audio-stream" id="jp_container_1" role="application" aria-label="media player">
+	<!-- 底部播放 -->
+	<div class="ft-player" >
+		<a href="javascript:;" class="ft-go-info" id="goPlay">
+			<div class="ft-left">
+				<img src="__PUBLIC_MOBILE__/images/logo_kugou.png?t=1" class="js-ftImg" id="ftImg">
+			</div>
+			<div class="ft-center">
+				<p class="ft-desc js-ftSongName" id="ftSongName">歌名</p>
+				<p class="ft-sub-desc js-ftUserName" id="ftUserName">歌手</p>
+			</div>
+		</a>
+		<div class="ft-right">
+			<i class="jp-play"></i>
+			<i class="dwpnext dwplay-next"></i>
+			<!-- 此时只会出现两种情况，一个是免费，一个是试听免费，下载收费 -->
+			<i class="ft-icon-download lm_down"></i>
+		</div>
+	</div><!--底部播放-->
+	<!--播放页-->
+	<div class="panel-play" id="panelPlay">
+		<div class="bg-overlay js-bg-overlay" style="background-image:url('__PUBLIC_MOBILE__/images/logo_kugou.png');"></div>
+		<div class="play-overlay"></div>
+		<!--start top-fixed-->
+		<div class="top-fixed">
+			<!--start top-hd -->
+			<div class="top-hd">
+				<div class="logo"></div>
+				<div class="download-app">
+					<a href="http://downloadpkg.apicloud.com/app/download?path=http://A6098916016721.qiniucdn.apicloud-system.com/da638ab346fe33fc5f9a5297f91d1432_d">
+						<span>下载{$Think.config.webname}</span>
+					</a>
+				</div>
+				<a href="{:url('search')}" class="btn-search" id="btnSearch"></a>
+			</div>
+			<!--end top-hd -->
+
+			<!--start top-nav -->
+			<div class="top-goback">
+				<p class="page-title js-ftSongName">歌名</p>
+				<div class="goback" id="hidePlay"><i></i></div>
+			</div>
+			<!--end top-nav -->
+		</div>
+		<!--end top-fixed-->
+
+		<div class="panel-play-bd" id="panelPlayBd">
+			<div class="panel-play-img-box"><img src="__PUBLIC_MOBILE__/images/logo_kugou.png?t=1" class="js-ftImg"></div>
+			<div class="panel-play-lrc-box">
+				<!--歌词-->
+				<div class="panel-play-lrc dwyylrc" style="height: 72px;">
+					<ul id="dwyylrc_list"></ul>
+				</div>
+			</div>
+			<div class="time-wrap" id="timeWrap">
+				<div class="timeshow jp-current-time" id="timeshow" role="timer" aria-label="time"></div>
+				<div class="progress-wrap" id="progressWrap">
+					<div class="progress-bar" id="progressBar1">
+						<div class="preview-progress jp-seek-bar" id="previewProgress1"></div>
+						<div class="progress jp-play-bar" id="progress1"><span></span></div>
+					</div>
+				</div>
+				<div class="time jp-duration" id="time" role="timer" aria-label="duration"></div>
+			</div>
+			<div class="play-operate">
+				<i class="btn-prev  dwplay-prev"></i>
+				<i class="jp-play"></i>
+				<i class="btn-next  dwplay-next"></i>
+			</div>
+			<div class="download-box js-dialog-show"><i></i>下载这首歌</div>
+		</div>
+		<p style="visibility: hidden;height:20px">兼容iphone5c,ipone6</p>
+	</div>
+	<!--播放页-->
+</div>
+	<!-- start 弹框下载 -->
+	<!-- start 免费时歌曲下载 -->
+	<div class="dialog-box single-dialog" id="dialogDownload">
+		<div class="dialog-inner">
+			<div class="dialog-bd">
+				<!--<p>请访问电脑端进行下载。</p>-->
+				<p>请访问电脑端(y.lmwljz.com)进行下载。</p>
+			</div>
+			<div class="dialog-ft">
+				<span class="btn btn-default js-dialog-hide" data-hide="dialog" data-dialog-id="dialogDownload">取消</span>
+				<a href="javascript:;" class="btn btn-primary" id="downloadBtn" onclick="_hmt.push(['_trackEvent','nysoftware', 'nydownload', 'nykugou']);">在客户端下载</a>
+			</div>
+		</div>
+	</div>
+	<!-- end 免费时歌曲下载 -->
+
+	<!-- start 收费时歌曲下载 -->
+	<div class="dialog-box single-dialog" id="dialogFeeDownload">
+		<div class="dialog-inner">
+			<div class="dialog-bd">
+				<p>唱片公司要求这首歌付费后才能试听，请在手机{$Think.config.webname}里购买</p>
+			</div>
+			<div class="dialog-ft">
+				<span class="btn btn-default js-dialog-hide" data-hide="dialog" data-dialog-id="dialogFeeDownload">取消</span>
+				<a href="javascript:;" class="btn btn-primary" id="downloadFeeBtn" onclick="_hmt.push(['_trackEvent','nysoftware', 'nydownload', 'nykugou']);">下载{$Think.config.webname}</a>
+			</div>
+		</div>
+	</div>
+	<!-- end 收费时歌曲下载 -->
+
+	<!-- start 歌曲暂时无法试听 -->
+	<div class="dialog-box single-dialog" id="dialogNotDownload">
+		<div class="dialog-inner">
+			<div class="dialog-bd">
+				<p>唱片公司不给我们这首歌了，先听听别的吧。</p>
+			</div>
+			<div class="dialog-ft">
+				<span class="btn btn-default js-dialog-hide" data-hide="dialog" data-dialog-id="dialogNotDownload">取消</span>
+				<a href="javascript:;" class="btn btn-primary" id="downloadNotBtn" onclick="_hmt.push(['_trackEvent','nysoftware', 'nydownload', 'nykugou']);">下载{$Think.config.webname}</a>
+			</div>
+		</div>
+	</div>
+	<!-- end 歌曲暂时无法试听 -->
+<div id="lm_player" class="jp-jplayer"></div>
+<textarea id="lrc_content" name="textfield" cols="70" rows="10" style="display:none;"></textarea>
+<script src="{:modified('/js/index.js','mobile')}"></script>
+<script type="text/javascript" src="__PUBLIC__/play/js/jquery.min.js"></script>
+<!--<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>-->
+<script type="text/javascript" src="__PUBLIC__/play/js/lmwljz.myplayer.js"></script>
+<script type="text/javascript" src="{:modified('/play/js/dwyy.lrc.js')}"></script>
+<script src="{:modified('/layui/layui.all.js')}"></script>
+<style>
+.dwyylrc{overflow:hidden;/*padding: 0px; top: 0px;padding-top:85px!important;*/}
+#dwyylrc_list{}
+#dwyylrc_list li{font:normal 14px/2.1 'microsoft yahei';color:#fff;line-height: 24px;/*text-align:center;*/}
+#dwyylrc_list li.hover {color:#169af3;font-weight:bold;}
+</style>
+<script>
+	var pindex; /*播放编号*/
+	var timeshow,timetotal;
+	var totalList= $('#panelSongsList>li').length;/*总条数*/
+    var stream   = {'title':'ABC Jazz','mp3':'http://listen.radionomy.com/abc-jazz','m4a':'http://listen.radionomy.com/abc-jazz'},
+         ready   = false,
+		 lrc,times='';
+
+    $("#lm_player").jPlayer({
+        ready: function (event) {
+            ready = true;
+            $(this).jPlayer("setMedia", stream);
+        },
+        pause: function() {
+            /*$(this).jPlayer("clearMedia");*/
+        },
+		ended:function(){
+			//$('.dwplay-next').click();
+		},
+		play:function(event){
+			$.lrc.start(lrc,44,function(){
+				return $('#lm_player').data('jPlayer').status.currentTime;
+			});
+			//console.log(pindex+'--------'+totalList);
+		},
+        error: function(event) {
+            /*if(ready && event.jPlayer.error.type === $.jPlayer.error.URL_NOT_SET) {
+              	//$(this).jPlayer("setMedia", stream).jPlayer("play");
+				//$(this).jPlayer("play",Math.floor(stream.status.currentTime));
+            }
+			*/
+        },
+        swfPath: "__PUBLIC__/play/js",
+        supplied: "m4a",
+        preload: "none",
+        wmode: "window",
+        useStateClassSkin: true,
+        autoBlur: false,
+        keyEnabled: true
+    });
+
+	//播放
+    $('.panel-songslist-item').click(function(){
+        pindex  = $(this).index();    //播放条目编号
+        playindex($(this).data('hash'));
+    });
+
+    //播放
+    /*$('.panel-songslist-item .btn_play').click(function(){
+        pindex  = $(this).parent().index();    //播放条目编号
+        playindex($(this).parent().data('hash'));
+    });*/
+
+    //上一曲
+	$('.dwplay-prev').click(function(){
+        pindex = pindex - 1;
+        timetotal  = '';
+        playindex($('#panelSongsList>li').eq(pindex).data('hash'));
+	});
+
+	//下一曲
+	$('.dwplay-next').click(function(){
+        if(pindex+1<=(totalList-1)){
+            pindex = pindex + 1;
+            timetotal  = '';
+            playindex($('#panelSongsList>li').eq(pindex).data('hash'));
+		}else{
+			layer.msg('已经是最后一首了');
+		}
+	});
+
+	//下载
+	$('.download,.lm_down').click(function(){
+	    var id = $(this).parent().data('hash');
+	    if(!id){
+            id = $("#lm_player").data('jPlayer').status.media.hash;
+		}
+        lmdown(id);
+	});
+
+	function lmdown(id){
+        if (event.stopPropagation){event.stopPropagation();}else{event.cancelBubble = true;}
+	    if(!id){
+	        return false;
+		}
+        var key  = "{:session('lmtoken')}";
+        $.ajax({
+            type: 'post',
+            timeout: 30000,
+            //headers: {'lmtoken':'{$token}'},
+            url: '/index/download',
+            data: {'id':id,'key':key},
+            dataType:"json",
+            async:false,
+            success: function(data){
+                if(data.code==1){
+                    //console.log(data.data.url);
+                    window.open(data.data.url,'_self');
+                }else{
+                    layer.alert(data.msg,{icon:3});
+                }
+                //+JSON.stringify(data)
+            },
+            error: function() {
+                layer.msg('貌似网络开小差了');
+            }
+        });
+	}
+
+    $('#timeshow').on('DOMNodeInserted',function(){
+        timeshow = $('#timeshow').text();
+        if(!timetotal){
+            timetotal = $("#time").text();//总时长
+		}
+		if(timeshow == timetotal && timeshow){
+            pindex = pindex+1;
+            //列表循环
+		    if(pindex == totalList){
+                pindex = 0;
+			}
+            var timetotal;
+            playindex($('#panelSongsList>li').eq(pindex).data('hash'));
+		}
+    });
+
+	function playindex(id) {
+	    if(!id)return;
+        var goPlay  = $('#goPlay');      //正常播放面板info
+        var bjPlay  = $('#panelPlay');   //最大化播放面板
+        var playbox = $('.ft-player');   //显示播放面板
+		//$('.panel-songslist-item').find('li').attr()
+        var name = $('#panelSongsList>li').eq(pindex).find('.btn_play').text();
+        if(name){
+            name = name.split("-");
+            name = name['1'];
+		}
+        $.ajax({
+            type: 'post',
+            timeout: 30000, /*超时时间 30 秒*/
+            headers: {'lmtoken':'{$token}'},
+            url: '/index/dwplay/playinfo',
+            data: {'id':id,'from':1,'name':name},
+            async:false,
+            success: function(data){
+                if(data){
+                    if(playbox.css('display') == 'none'){
+                        playbox.attr('style','display: block');
+                    }
+                    stream = data.data;
+                    goPlay.find('.ft-left>img').attr('src',stream.img);
+                    goPlay.find('#ftSongName').text(stream.song_name);
+                    goPlay.find('#ftUserName').text(stream.authors);
+
+                    bjPlay.find('.panel-play-img-box>img').attr('src',stream.img);
+                    bjPlay.find('.bg-overlay').css({'background-image':'url('+stream.img+')'});
+                    bjPlay.find('.page-title').html(stream.audio_name);
+                    $("#lm_player").jPlayer("setMedia", stream);
+					lrc = stream.lyrics;
+
+                    var interval =window.setInterval(function () {
+                        var t = $('#timeshow').text();
+                        if(t && t == '00:00'){
+                            $("#lm_player").jPlayer("play");
+                            clearInterval(interval);
+						}
+                    },500);
+                }else{
+                    layer.msg('试听歌曲资源正在路上');//+JSON.stringify(data)
+				}
+            },
+            error: function() {
+                layer.msg('貌似网络开小差了');
+            }
+        });
+    }
+
+    document.onkeydown = function(){
+        if(window.event && window.event.keyCode == 123) {
+            event.keyCode=0;
+            event.returnValue=false;
+        }
+        if(window.event && window.event.keyCode == 13) {
+            window.event.keyCode = 505;
+        }
+        if(window.event && window.event.keyCode == 8) {
+            alert(str+"\n请使用Del键进行字符的删除操作！");
+            window.event.returnValue=false;
+        }
+    }
+    document.oncontextmenu = function (event){
+        if(window.event){
+            event = window.event;
+        }try{
+            var the = event.srcElement;
+            if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+                return false;
+            }
+            return true;
+        }catch (e){
+            return false;
+        }
+    }
+
+    /*$.ajaxSettings.async = false;//同步执行
+        $.get('/index/Dwplay/info',{'id':id,'from':1},function(data){
+            if(data.code){
+                if(playbox.css('display') == 'none'){
+                    playbox.attr('style','display: block');
+                }
+                stream = data.data;
+                goPlay.find('.ft-left>img').attr('src',stream.img);
+                goPlay.find('#ftSongName').html(stream.song_name);
+                goPlay.find('#ftUserName').html(stream.authors);
+
+                bjPlay.find('.panel-play-img-box>img').attr('src',stream.img);
+                bjPlay.find('.bg-overlay').css('background-image',stream.img);
+                bjPlay.find('.page-title').html(stream.song_name);
+                $("#jquery_jplayer_1").jPlayer("setMedia", stream).jPlayer("play");
+            }else{
+                alert('试听歌曲资源正在路上');
+            }
+        },'json');
+        $.ajaxSettings.async = true;*/
+</script>
+<script type="text/javascript" charset="UTF-8" src="{:url('Index/index/statistics','','js')}"></script>

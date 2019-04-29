@@ -1,0 +1,218 @@
+{include file="public/base_head" /}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="懂我音乐, 歌手,明星,音乐,在线音乐,在线听歌,听歌,新专辑,港台,日本,韩国,欧美,英国">
+<meta name="description" content="懂我音乐官方网站是中国最新最全的在线正版音乐网站,提供最新的在线音乐服务、免费音乐下载、最新的音乐播放器下载。">
+<title>{$title}_巅峰榜 - {$Think.config.webname} - 懂你所听</title>
+<link href="/favicon.ico" rel="shortcut icon">
+<link rel="stylesheet" href="__PUBLIC__/css/rankPage.min.css" type="text/css">
+<link rel="stylesheet" href="__PUBLIC__/css/common.css" type="text/css">
+
+<script type="text/javascript">
+	var lmtoken = "{$token}";
+</script>
+<style>
+.pc_temp_mv{
+    display: -webkit-inline-box;
+    /* height: 54px !important; */
+    font-size: 14px;
+    /* line-height: 4px; 
+    https: //y.gtimg.cn/mediastyle/yqq/img/icon_sprite@2x.png?max_age=2592000&v=07c1fc9fc5592c08947c2049926c9ea1&v=07c1fc9fc5592c08947c2049926c9ea1&v=436a840da7095677a3d5910557b04015;*/
+    background-image: url("https://y.gtimg.cn/mediastyle/yqq/img/icon_sprite.png?max_age=2592000&v=07c1fc9fc5592c08947c2049926c9ea1&v=07c1fc9fc5592c08947c2049926c9ea1");
+    width: 33px;
+    height: 16px;
+    background-position: -40px -280px;
+    vertical-align: middle;}
+.qqtop_pic{min-width:1000px;width: 1000px!important;margin: 0px auto;}
+.qqtop_pic img{width:100%;}
+.songimg img{width:44px;height:44px;}
+
+.pc_temp_songlist .pc_temp_num{margin-right:5px;}
+.pc_temp_songlist .songimg{margin-right:10px;}
+.pc_temp_songlist .in_count{width:45px;line-height:23px;font-size: 10px;color:#999;text-align: center;}
+.in_count .icon_rank_popular{display: block;width: 15px;height: 15px;background-image: -webkit-image-set(url('https://y.gtimg.cn/mediastyle/yqq/img/icon_rank.png?max_age=2592000&v=49dbc44baeb6f4644cf6e38ec5ae8576') 1x,url('https://y.gtimg.cn/mediastyle/yqq/img/icon_rank@2x.png?max_age=2592000&v=49dbc44baeb6f4644cf6e38ec5ae8576&v=49dbc44baeb6f4644cf6e38ec5ae8576&v=99bb57e4d81370ee8fa4687c532a0da1') 2x);background-position: 0 -60px;margin-left: 15px;}
+</style>
+</head>
+
+<body>
+<input type="hidden" name="__token__" value="{$Request.token}" />
+{include file="public/header" /}
+<div class="pc_temp_wrap pc_temp_2col_critical">
+	{if condition="$list['topinfo']['picDetail']"}
+	<div class="qqtop_pic">
+		<a href="javascript:;">
+			<img src="{$list['topinfo']['picDetail']}" title="{$title}">
+		</a>
+	</div>
+	{/if}
+	<div class="aplayer-wrap qqtop_pic">
+		<div id="dwyyplay"></div>
+	</div>
+	<div class="pc_temp_main">
+		{include file="public/menu_qqtop" /}
+		<div class="pc_temp_content">
+			<div class="pc_temp_container">
+				<div class="pc_rank_title clear_fix">
+					<div id="pc_temp_title" class="pc_temp_title">
+						<h3>{$param.title}</h3>
+						<span class="rank_update">{if condition="$list['data']"}{$list['topinfo']['update_time']} 更新{/if}</span>
+						<a href="javascript:;" class="pc_temp_btn_s02 pc_temp_bicon_play" title="播放全部" data-active="play" data-index="" hidefocus="true"><span><i class="t2"></i>播放全部</span></a>
+					</div>
+				</div>
+				<div id="rankWrap">
+					<!-- <div class="pc_temp_songhead clear_fix">					
+						<span class="pc_temp_btn_check pc_temp_btn_checked checkedAll"></span>全选
+					</div> -->
+					<div class="pc_temp_songlist ">
+						<ul>
+						{if condition="$list['type']"}
+							{volist name="list.data" id="v" key="k"}
+							<li class="" title="{$v.title}" data-index="0">
+								<span class="pc_temp_num"><strong>{$k}</strong></span>
+								<span class="pc_temp_songname in_count"><i class="icon_rank_popular"></i>{$v.score}</span>
+								<span class="pc_temp_num songimg"><img src="{$v.pic}"></span>
+								<a class="pc_temp_songname" title="{$v.title}" target="_blank" onclick='mp_play_mv("{$v.vid}","{$v.title}","{$v.pic}")'>{$v.title} - {$v.author}</a>
+								<span class="pc_temp_tips_r">
+									<a href="javascript:;" data-active="play" data-index="0" class="pc_temp_btn_listen" title="播放" hidefocus="true" onclick='mp_play_mv("{$v.vid}","{$v.title}","{$v.pic}")'>播放</a>
+									<a href="javascript:;" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+									<a href="javascript:;" data-active="share" data-index="0" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+									<span class="pc_temp_time">{$v.load_time}</span>
+								</span>
+							</li>
+							{/volist}
+						{else /}
+							{volist name="list.data" id="v" key="k"}
+							<li class="" title="{$v.title}" data-index="0">
+								<!-- <span class="pc_temp_btn_check pc_temp_btn_checked" data-index="0"></span> -->
+								<span class="pc_temp_num"><strong>{$k}</strong></span>
+								<span class="pc_temp_songname in_count"><i class="icon_rank_popular"></i>{$v.in_count}%</span>
+								<span class="pc_temp_num songimg" onclick="mp_play('{$k-1}')"><img src="{$v.albumimg}"></span>
+								<a class="pc_temp_songname" title="{if condition="$v['albumdesc']"}{$v.title} - {$v.albumdesc}{else /}{$v.title}{/if}" target="_blank" onclick="mp_play('{$k-1}')">{$v.title} - {$v.author}</a>
+								
+								{if condition="$v['mvid']"}<span class="pc_temp_mv" data-mvid="{$v.albummid}"></span>{/if}
+								<span class="pc_temp_tips_r">
+									<a href="javascript:;" data-active="play" data-index="0" class="pc_temp_btn_listen" title="播放" hidefocus="true" onclick="mp_play('{$k-1}')">播放</a>
+									<a href="javascript:;" onclick="dwyy_download('{$v['songmid']}','qq')" class="pc_temp_btn_download" title="下载" hidefocus="true">下载</a>
+									<a href="javascript:;" data-active="share" data-index="0" class="pc_temp_btn_share" title="分享" hidefocus="true">分享</a>
+									<span class="pc_temp_time">{$v.time}</span>
+								</span>
+							</li>
+							{/volist}
+						{/if}
+						</ul>
+					</div>
+				</div>
+				<div class="fans_login"></div>
+				<div class="pc_temp_nvg">
+					<span id="mypage">
+					{$list.pagelist}
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{include file="public/footer" /}
+<script src="{:modified('/js/common.js')}"></script>
+
+<script src="__PUBLIC__/aplayer/color-thief.js"></script>
+<script src="__PUBLIC__/aplayer/APlayer.min.js"></script>
+<link href="__PUBLIC__/aplayer/APlayer.min.css" rel="stylesheet" type="text/css" />
+
+
+<!-- <script src="__PUBLIC__/layui/layui.js"></script> 
+<script>
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form,layer = layui.layer;
+});
+</script> -->
+
+
+<script type="text/javascript">
+var audio;
+var list ={$list.audio|json_encode=###};
+var wplay;
+
+$('.pc_temp_bicon_play').click(function(){
+	creaplay(list);
+	wplay.play();
+});
+
+//MV
+$('.pc_temp_mv').click(function(){
+	var mid  = $(this).data('mvid');
+	var title= $(this).parent().find('a').attr('title');
+	if(!mid)return;
+	//'y.qq.com/n/yqq/mv/v/'+mid+'.html';
+	//window.location.href="{:url('video')}?id="+mid;
+	//window.open("{:url('video')}?id="+mid);
+	mp_play_mv(mid,title);
+	
+});
+
+function mp_play_mv(mid,title,pic){
+	var content = "{:url('play/video')}?id="+mid;
+	if(pic){
+		content += '&img='+pic;
+	}
+	layer.open({
+		type: 2,
+		title: title+"-MV在线播放",
+		skin: 'layui-layer-rim', //加上边框
+		shadeClose: true,
+		shade: 0.5,
+		maxmin: true, //开启最大化最小化按钮
+		//area: [w,h],
+		area: ['50%','65%'],
+		scrollbar: false,
+		content: content
+	});
+}
+
+//播放
+function mp_play(id){
+	var ths = wplay;
+	//ths.switch(id);
+	//ths.toggle()
+	if(!ths){
+		ths = creaplay(list);
+	}else{
+		ths = wplay;
+	}
+	if(id){
+		ths.switchAudio(id);
+	}
+	
+	//console.log(ths);
+	if(!ths.index){
+		ths.play();
+	}
+}
+
+function creaplay(list){
+	if(list){
+		window.wplay = new APlayer({
+			container: document.getElementById('dwyyplay'),
+			fixed:true,
+			theme: '#169af3',
+			autoplay:false,
+			listFolded:true,//列表折叠
+			lrcType: 3,
+			audio: list
+		});
+		//监听播放
+		wplay.on('play', function () {
+			var i = wplay.list.index;
+			console.log('正在播放:'+wplay.list.audios[i]['name']);
+		});
+		return wplay;
+	}
+}
+
+</script>
+</body>
+</html>

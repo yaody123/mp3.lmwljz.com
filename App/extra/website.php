@@ -1,0 +1,1 @@
+<?php	return array ( 'title' => '网站结束', 'name' => 'userinfo', ); ?>

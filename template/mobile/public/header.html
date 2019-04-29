@@ -1,0 +1,20 @@
+
+<div class="top-fixed" id="topFixed" style="display: block;">
+    <div class="top-hd">
+        <a class="logo" href="/" title="{$Think.config.webname}"></a>
+        <div class="download-app">
+			<a href="http://downloadpkg.apicloud.com/app/download?path=http://A6098916016721.qiniucdn.apicloud-system.com/da638ab346fe33fc5f9a5297f91d1432_d">
+				<span>下载{$Think.config.webname}</span>
+			</a>
+		</div>
+        <a href="{:url('index/search')}" class="btn-search" id="btnSearch"></a>
+    </div>
+    <div class="top-nav" id="topNav">
+        <ul>
+            <li {if condition="$action eq 'index' && $param['id'] eq '31308' && $model eq 'Index'"}class="cur"{/if}><a href="{:url('Index/index',['id'=>'31308'])}" >新歌</a></li>
+            <li {if condition="$action eq 'index' && $param['id'] eq '23784' && $model eq 'Index'"}class="cur"{/if}><a href="{:url('Index/index',['id'=>'23784'])}" >网络红歌</a></li>
+			<li {if condition="$model eq 'Ik123' && $action eq 'index'"}class="cur"{/if}><a href="{:url('ik123/index')}" >深港DJ</a></li>
+            <li {if condition="$action eq 'rank' && $model eq 'Index'"}class="cur"{/if}><a href="{:url('Index/rank')}" >排行</a></li>
+        </ul>
+    </div>
+</div>

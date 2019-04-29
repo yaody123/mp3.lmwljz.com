@@ -1,0 +1,40 @@
+<!-- 侧栏 -->
+<div class="pc_temp_side">
+    <!-- 热门榜单 -->
+    <div class="pc_rank_sidebar pc_rank_sidebar_first pc_rank_sidebar_collapse">
+	{if condition="$menu"}
+        <h3 data-index="0">
+            <a href="javascript:;" hidefocus="true" title="音乐巅峰榜">音乐巅峰榜<i class="pc_temp_arrow"></i></a>
+        </h3>
+        <ul>
+			{foreach  name="menu.music" item="i" key="k"}
+            <li>
+                <a title="{$i.name}" hidefocus="true" href="{:url('index',array('id'=>$k))}" class='{if condition="$id eq $k"}current{else /}link_ads{/if}'>
+                    <span style="background-image:url({$i.pic});"></span>
+                    {$i.name}
+                    {if condition="$i['hot']"}
+					<img height="18" width="50" class="link_ads" src="__PUBLIC__/images/blank.gif" style="background-image:url(__PUBLIC__/images/topicon/hot.png);">
+					{/if}
+                </a>
+            </li>
+			{/foreach}
+        </ul>
+	{/if}
+		<h3 data-index="0">
+            <a href="javascript:;" hidefocus="true" title="MV巅峰榜">MV巅峰榜<i class="pc_temp_arrow"></i></a>
+        </h3>
+        <ul>
+			{foreach  name="menu.mv" item="i" key="k"}
+            <li>
+                <a title="{$i.name}" hidefocus="true" href="{:url('index',array('type'=>'mv','id'=>$k))}" class='{if condition="$id eq $k"}current{else /}link_ads{/if}'>
+                    <span style="background-image:url({$i.pic});"></span>
+                    {$i.name}
+                    {if condition="$i['hot']"}
+					<img height="18" width="50" class="link_ads" src="__PUBLIC__/images/blank.gif" style="background-image:url(__PUBLIC__/images/topicon/hot.png);">
+					{/if}
+                </a>
+            </li>
+			{/foreach}
+        </ul>
+    </div>
+</div>
